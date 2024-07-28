@@ -3,13 +3,16 @@
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     </head>
     <body>
         <header class="bg-kLightBlue">
             <nav class="font-[Inter] flex items-center justify-between px-8 py-4">
                 <div>
-                    <h3 class="font-bold text-kDarkBlue text-xl">Tel-A-PrintHub</h3>
+                    <a href="">
+                        <h3 class="font-bold text-kDarkBlue text-xl">TEL-A PrintHub</h3>
+                    </a>
+                    
                 </div>
                 <div>
                     <ul class="flex gap-x-3">
