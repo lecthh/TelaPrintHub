@@ -6,7 +6,19 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'roboto_condensed': [
+          "Roboto Condensed", "sans-serif"
+        ],
+        'Roboto': [
+          "Roboto", "sans-serif"
+        ],
+        'Inter': [
+          "Inter", "sans-serif"
+        ],
+      }
+    },
     colors: {
       'kLightBlue': '#C6E6FD',
       'kDarkBlue': '#010387',
