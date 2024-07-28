@@ -7,7 +7,7 @@
             <h3 class="text-2xl font-bold">Design. Print. Wear.</h3>
             <h3 class="text-2xl font-bold text-kDarkBlue">It's that simple with PrintHub</h3>
         </div>
-        <div>
+        <div class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
             <a href="" class="bg-kDarkBlue py-3 px-6 text-kDirtyWhite border-black rounded-md shadow-lg">
                 Start designing
             </a>
@@ -111,9 +111,9 @@
                 mi.
             </p>
         </div>
-        <div class="flex bg-kDirtyWhite p-2 font-semibold font-Inter text-kDarkBlue justify-center">
+        <a href="" class="transition ease-in-out delay-150 flex bg-kDirtyWhite p-2 font-semibold font-Inter text-kDarkBlue justify-center hover:bg-kLightBlue">
             Start NOW !!! -->
-        </div>
+        </a>
     </div>
 
     <div class="container bg-kDirtyWhite w-1/2 px-16 py-[84] flex justify-center">
