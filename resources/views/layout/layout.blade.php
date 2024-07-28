@@ -37,5 +37,50 @@
         </header>
     </body>
     @yield('content')
-    <h1>footer</h1>
+    <footer class="bg-white border-t-2 border-kDarkBlue p-12 flex flex-col gap-y-8 itemsce">
+        <div class="flex flex-col items-center gap-y-1">
+            <h4 class="font-bold text-KDarkBlue text-sm">Site Links</h4>
+            <ul class="text-sm text-kDarkBlue flex gap-x-6">
+                <a href="">
+                    <li>
+                        Home
+                    </li>
+                </a>
+                <a href="">
+                    <li>
+                        How it works
+                    </li>
+                </a>
+                <a href="">
+                    <li>
+                        FAQs
+                    </li>
+                </a>
+                <a href="">
+                    <li>
+                        Become a Partner
+                    </li>
+                </a>
+                <a href="">
+                    <li>
+                        Get Started!!
+                    </li>
+                </a>
+                <a href="">
+                    <li>
+                        Contact Us
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <a href="" class="self-center">
+            <i class="fa-brands fa-facebook text-3xl" style="color: #010387;"></i>
+        </a>
+        <div class="flex flex-col gap-y-2">
+            <hr style="color: #010387;">
+            <h3 class="text-xs font-bold text-kDarkBlue self-center">A Capstone Project By Team NIKA | S.Y. 2023-2024</h3>
+        </div>
+        
+    </footer>
 </html>
+<script src="https://kit.fontawesome.com/d3c4f3f1ff.js" crossorigin="anonymous"></script>
