@@ -8,25 +8,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'Roboto-condensed': [
-          "Roboto Condensed", "sans-serif"
-        ],
-        'Roboto': [
-          "Roboto", "sans-serif"
-        ],
-        'Inter': [
-          "Inter", "sans-serif"
+        'dm-sans': [
+          "DM Sans", "sans-serif"
         ],
       }
     },
     colors: {
-      'kLightBlue': '#C6E6FD',
-      'kDarkBlue': '#010387',
-      'kOrange': '#ED4230',
-      'kDirtyWhite': '#F5F4F2',
-      'kBlack': '#000000',
-      'kLightOrange': '#FDA543'
+      'kGray': '#D9D9D9',
+      'kLightGray': '#F3F3F3',
+      'kWhite': '#FFFFFF',
+      'kBlack': '#1F1F1F',
+      'kBlackReal': '#000000'
     }
   },
   plugins: [],
 }
+
