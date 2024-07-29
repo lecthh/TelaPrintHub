@@ -15,22 +15,25 @@
                 <div>
                     <ul class="flex gap-x-3">
                         <a href="">
-                            <li class="text-l font-semibold text-kDirtyWhite bg-kDarkBlue p-2 hover:bg-kDarkBlue">Home</li>
+                            <li class="text-lg font-semibold text-kDirtyWhite bg-kDarkBlue p-2 hover:bg-kDarkBlue">Home</li>
                         </a>
                         <a href="">
-                            <li class="text-l font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">How it works</li>
+                            <li class="text-lg font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">How it works</li>
                         </a>
                         <a href="">
-                            <li class="text-l font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">FAQs</li>
+                            <li class="text-lg font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">FAQs</li>
                         </a>
                         <a href="">
-                            <li class="text-l font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Become a Partner</li>
+                            <li class="text-lg font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Become a Partner</li>
                         </a>
                         <a href="">
-                            <li class="text-l font-semibold text-kOrange p-2 hover:bg-kOrange transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Get Started!!</li>
+                            <li class="text-lg font-semibold text-kOrange p-2 hover:bg-kOrange transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Get Started!!</li>
                         </a>
                         <a href="">
-                            <li class="text-l font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Contact Us</li>
+                            <li class="text-lg font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Track my order</li>
+                        </a>
+                        <a href="">
+                            <li class="text-lg font-semibold text-kDarkBlue p-2 hover:bg-kDarkBlue transition ease-in-out delay-100 duration-300 hover:text-kDirtyWhite">Contact Us</li>
                         </a>
                     </ul>
                 </div>

@@ -21,7 +21,7 @@
 <!-- scrolling -->
 <div class="scroller-wrapper overflow-hidden relative w-full">
     <div
-        class="scroller font-roboto_condensed font-bold text-kDarkBlue bg-white flex whitespace-nowrap gap-x-4 py-6 px-12">
+        class="scroller font-Roboto-condensed font-bold text-kDarkBlue bg-white flex whitespace-nowrap gap-x-4 py-6 px-12">
         <span class="flex items-center gap-4">
             <h1 class="text-3xl">HOW IT WORKS</h1>
             <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
@@ -56,12 +56,12 @@
             <img src="/img/design.png" alt="" class="absolute inset-0 h-full">
         </div>
     </div>
-    <div class="container font-roboto_condensed bg-kLightBlue w-1/2 px-8 py-16">
+    <div class="container font-Roboto-condensed bg-kLightBlue w-1/2 px-8 py-16">
         <div class="flex items-center gap-x-6">
             <h1 class="font-bold text-kDarkBlue text-[220px]">1</h1>
             <h1 class="font-bold text-kDarkBlue text-8xl leading-[100px]">CREATE A<br>DESIGN !!!</h1>
         </div>
-        <p class="font-bold font-roboto_condense text-kDarkBlue text-justify">
+        <p class="font-bold font-Roboto-condensed text-kDarkBlue text-justify">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.
             Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
             tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur
@@ -73,12 +73,12 @@
 </div>
 
 <div class="flex gap-y-6">
-    <div class="container font-roboto_condensed bg-kLightBlue w-1/2 px-8 py-16">
+    <div class="container font-Roboto-condensed bg-kLightBlue w-1/2 px-8 py-16">
         <div class="flex items-center gap-x-6">
             <h1 class="font-bold text-kDarkBlue text-[220px]">2</h1>
             <h1 class="font-bold text-kDarkBlue text-8xl leading-[100px]">REQUEST <br>A PRINT</h1>
         </div>
-        <p class="font-bold font-roboto_condense text-kDarkBlue text-justify">
+        <p class="font-bold font-Roboto-condensed text-kDarkBlue text-justify">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.
             Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
             tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur
@@ -95,13 +95,13 @@
 </div>
 
 <div class="flex gap-y-6">
-    <div class="container flex flex-col font-roboto_condensed bg-kDarkBlue w-1/2 px-8 py-6 gap-y-16">
+    <div class="container flex flex-col font-Roboto-condensed bg-kDarkBlue w-1/2 px-8 py-6 gap-y-16">
         <div>
             <div class="flex items-center gap-x-6">
                 <h1 class="font-bold text-kDirtyWhite text-[220px]">3</h1>
                 <h1 class="font-bold text-kDirtyWhite text-8xl leading-[100px]">WEAR</h1>
             </div>
-            <p class="font-bold font-roboto_condensed text-kDirtyWhite text-justify">
+            <p class="font-bold font-Roboto-condensed text-kDirtyWhite text-justify">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.
                 Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae
                 mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum
