@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="flex">
-        <div class="flex flex-col gap-y-6">
+        <div class="flex flex-grow flex-col gap-y-3">
             <div class="flex flex-col gap-y-3">
                 <div class="flex flex-col">
                     <h1 class="text-lg font-medium">* Company name</h1>
@@ -39,24 +39,13 @@
                                 </option>
                             @endforeach
                         </select>
-                        <input type="text" class="focus:outline-none text-normal text-kGray" placeholder="123-456">
+                        <input type="number" class="focus:outline-none text-normal text-kGray" placeholder="123-456">
                     </div>
                 </div>
-                <div class="flex flex-col">
-                    <h1 class="text-lg font-medium">Company details</h1>
-                    <textarea name="" id="" class="focus:outline-none text-normal text-kGray" placeholder="VanJam is a sportswear printing company."></textarea>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="flex flex-col">
-                    <h1 class="text-lg font-medium">* Username</h1>
-                    <input type="text" class="focus:outline-none text-normal text-kGray" placeholder="VanJam">
-                </div>
-                <div class="flex flex-col">
-                    <h1 class="text-lg font-medium">* Password</h1>
-                    <input type="password" class="focus:outline-none text-normal text-kGray" placeholder="*****">
-                </div>
-            </div>            
+            </div>    
+        </div>
+        <div class="flex flex-grow">
+
         </div>
     </div>
 </div>
