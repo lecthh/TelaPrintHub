@@ -14,7 +14,7 @@ export default {
       }
     },
     colors: {
-      'kGray': '#D9D9D9',
+      'kGray': '#5C5959',
       'kLightGray': '#F3F3F3',
       'kWhite': '#FFFFFF',
       'kBlack': '#1F1F1F',
