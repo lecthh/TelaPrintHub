@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,5 +16,6 @@ Route::get('/track', function() {
 })->name('track');
 
 Route::get('/become-a-partner', function() {
-    return view('become-partner');
+    $countryCodes = DB::table('country_codes')->get();
+    return view('become-partner', compact('countryCodes'));
 })->name('become-a-partner');
