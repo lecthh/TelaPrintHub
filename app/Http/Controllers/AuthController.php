@@ -25,4 +25,9 @@ class AuthController extends Controller
     public function registerPost(Request $request)
     {
     }
+
+    public function setPassword()
+    {
+        return view('auth.setpassword');
+    }
 }
