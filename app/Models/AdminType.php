@@ -17,7 +17,6 @@ class AdminType extends Model
         'admin_type_name',
     ];
 
-    // Relationships
     public function admins()
     {
         return $this->hasMany(Admin::class, 'admin_type_ID', 'admin_type_ID');

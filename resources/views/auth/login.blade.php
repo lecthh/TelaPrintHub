@@ -4,7 +4,7 @@
 <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
-        <form method="POST" action="{{ route('loginPost') }}">
+        <form method="POST" action="{{ route('login.post') }}">
             @csrf
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>

@@ -19,34 +19,39 @@
         </div>
     </div>
     <div class="flex">
-        <div class="flex flex-grow flex-col gap-y-3">
+        <form method="POST" action="{{ route('become-a-partner.post') }}" class="flex flex-grow flex-col gap-y-3">
+            @csrf
             <div class="flex flex-col gap-y-3">
                 <div class="flex flex-col">
-                    <h1 class="text-lg font-medium">* Company name</h1>
-                    <input type="text" class="text-normal text-kGray focus:outline-none" placeholder="VanJam">
+                    <label for="company_name" class="text-lg font-medium">* Company name</label>
+                    <input type="text" id="company_name" name="company_name" class="text-normal text-kGray focus:outline-none" placeholder="VanJam" required>
                 </div>
                 <div class="flex flex-col">
-                    <h1 class="text-lg font-medium">* Email address</h1>
-                    <input type="email" class="focus:outline-none text-normal text-kGray" placeholder="VanJam">
+                    <label for="email" class="text-lg font-medium">* Email address</label>
+                    <input type="email" id="email" name="email" class="focus:outline-none text-normal text-kGray" placeholder="VanJam@example.com" required>
                 </div>
                 <div class="flex flex-col">
-                    <h1 class="text-lg font-medium">* Phone number</h1>
+                    <label for="phone_number" class="text-lg font-medium">* Phone number</label>
                     <div class="flex gap-x-2">
-                        <select name="country_code" id="" class="focus:outline-none text-normal w-[170]">
+                        <select name="country_code" id="country_code" class="focus:outline-none text-normal w-[170]" required>
                             @foreach ($countryCodes as $country)
-                                <option value="{{ $country->code }}">
-                                    {{ $country->flag_emoji }} {{ $country->name}} | {{ $country->code }}
-                                </option>
+                            <option value="{{ $country->code }}">
+                                {{ $country->flag_emoji }} {{ $country->name }} | {{ $country->code }}
+                            </option>
                             @endforeach
                         </select>
-                        <input type="number" class="focus:outline-none text-normal text-kGray" placeholder="123-456">
+                        <input type="text" id="phone_number" name="phone_number" class="focus:outline-none text-normal text-kGray" placeholder="123-456" required>
                     </div>
                 </div>
-            </div>    
-        </div>
-        <div class="flex flex-grow">
-
-        </div>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Register</button>
+            </div>
+        </form>
     </div>
+    <div class="flex flex-grow">
+
+    </div>
+</div>
 </div>
 @endsection

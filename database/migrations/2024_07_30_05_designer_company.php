@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('designer_company', function (Blueprint $table) {
             $table->string('designer_ID')->primary();
             $table->string('admin_ID');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->string('contact_details')->nullable();
             $table->string('email');
+            $table->boolean('is_verified')->default(false);
+            $table->timestamps();
 
             $table->foreign('admin_ID')->references('admin_ID')->on('admin');
         });
