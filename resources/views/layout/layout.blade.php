@@ -3,8 +3,8 @@
     <head>
         
     </head>
-    <body>
-        <header class="kWhite px-8 py-3 font-dm-sans">
+    <body class="bg-kBlackReal">
+        <header class="bg-kWhite px-8 py-3 font-dm-sans">
             <nav class="flex items-center justify-between">
                 <svg width="100" height="52" viewBox="0 0 175 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.43995 44V23.84H0.199951V18.24H22.2V23.84H14.96V44H7.43995ZM24.1828 44V18.24H43.7028V24H31.7028V28.2H42.2228V34.04H31.7028V38.24H43.7028V44H24.1828ZM46.0969 44V18.24H53.6169V38.24H65.2169V44H46.0969ZM66.4297 35.52V29.76H82.6297V35.52H66.4297ZM84.6328 44L94.5128 18.24H102.473L112.353 44H104.513L102.353 38.52H94.5928L92.4728 44H84.6328ZM95.5928 33.12H101.353L98.4728 25.56L95.5928 33.12Z" fill="#1F1F1F"/>
