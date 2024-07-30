@@ -8,13 +8,30 @@
     </div>
     <div class="bg-kLightGray p-3 flex flex-col rounded-md items-center gap-y-4">
         <h1 class="font-semibold text-lg">I am a...</h1>
+        <!-- make state -->
         <div class="flex gap-x-4 w-full">
-            <a href="" class="bg-kBlack flex-1 p-3 gap-x-4 rounded-md text-kWhite border border-kBlack text-center">
+            <a href="" class="bg-kWhite flex-1 p-3 gap-x-4 rounded-md text-kBlack border border-kBlack text-center transition hover:bg-kBlack hover:text-kWhite">
                 Designer
             </a>
-            <a href="" class="bg-kWhite flex-1 p-3 gap-x-4 rounded-md text-kBlack border border-kBlack text-center">
+            <a href="" class="bg-kWhite flex-1 p-3 gap-x-4 rounded-md text-kBlack border border-kBlack text-center transition hover:bg-kBlack hover:text-kWhite">
                 Printer/Tailor
             </a>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="flex flex-col gap-y-3">
+            <div class="flex flex-col">
+                <h1 class="text-lg font-medium">* Company name</h1>
+                <input type="text" class="text-normal text-kGray focus:outline-none" placeholder="VanJam">
+            </div>
+            <div class="flex flex-col">
+                <h1 class="text-lg font-medium">* Email address</h1>
+                <input type="email" class="focus:outline-none text-normal text-kGray" placeholder="VanJam">
+            </div>
+            <div class="flex flex-col">
+                <h1 class="text-lg font-medium">* Phone number</h1>
+                <input type="text" class="focus:outline-none text-normal text-kGray" placeholder="09384912">
+            </div>
         </div>
     </div>
 </div>

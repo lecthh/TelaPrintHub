@@ -13,26 +13,26 @@
                 <div class="flex gap-x-3">
                     <div class="flex flex-col w-[284]">
                         <h3 class="font-medium text-lg">Name</h3>
-                        <input type="text" class="text-kGray p-2 border border-kGray rounded-md" placeholder="Jane Doe">
+                        <input type="text" class="text-kGray focus:outline-none" placeholder="Jane Doe">
                     </div>
                     <div class="flex flex-col w-[284]">
                         <h3 class="font-medium text-lg">Subject</h3>
-                        <input type="text" class="text-kGray p-2 border border-kGray rounded-md" placeholder="Subject name">
+                        <input type="text" class="text-kGray focus:outline-none" placeholder="Subject name">
                     </div>
                 </div>
                 <div class="flex gap-x-3">
                     <div class="flex flex-col w-[284]">
                         <h3 class="font-medium text-lg">Email address</h3>
-                        <input type="email" class="text-kGray p-2 border border-kGray rounded-md" placeholder="jane@example.com">
+                        <input type="email" class="text-kGray focus:outline-none" placeholder="jane@example.com">
                     </div>
                     <div class="flex flex-col w-[284]">
                         <h3 class="font-medium text-lg">Company</h3>
-                        <input type="text" class="text-kGray p-2 border border-kGray rounded-md" placeholder="Company name">
+                        <input type="text" class="text-kGray focus:outline-none" placeholder="Company name">
                     </div>
                 </div>
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Message</h3>
-                    <textarea name="" id="" class="text-kGray p-2 border border-kGray rounded-md" placeholder="Input message here..."></textarea>
+                    <textarea name="" id="" class="text-kGray focus:outline-none" placeholder="Input message here..."></textarea>
                 </div>
             </div>
         </div>

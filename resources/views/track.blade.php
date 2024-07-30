@@ -5,11 +5,11 @@
         <h1 class="font-bold text-3xl">Track my order</h1>
         <div class="flex flex-col">
             <h3 class="font-medium text-lg">Order no:</h3>
-            <input type="text" class="font-normal text-lg text-kGray border border-kGray rounded-md p-2" placeholder="TELAPH-J8tkdg">
+            <input type="text" class="font-normal text-lg text-kGray focus:outline-none" placeholder="TELAPH-J8tkdg">
         </div>
         <div class="flex flex-col">
             <h3 class="font-medium text-lg">Email address:</h3>
-            <input type="email" class="font-normal text-lg text-kGray border border-kGray rounded-md p-2" placeholder="jane@example.com">
+            <input type="email" class="font-normal text-lg text-kGray focus:outline-none" placeholder="jane@example.com">
         </div>
         <button type="submit" class="bg-kBlack text-kWhite rounded-md p-2">Track</button>
     </div>
