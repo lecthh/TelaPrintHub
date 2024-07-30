@@ -1,138 +1,70 @@
 @extends('layout.layout')
 
 @section('content')
-<div class="font-[Inter] bg-kLightBlue flex px-8 py-28 gap-x-8 justify-center items-center">
-    <div class="flex flex-col gap-y-6">
-        <div>
-            <h3 class="text-2xl font-bold">Design. Print. Wear.</h3>
-            <h3 class="text-2xl font-bold text-kDarkBlue">It's that simple with PrintHub</h3>
+<div class="bg-kWhite font-dm-sans px-8 py-10 flex justify-between items-center">
+    <div class="flex flex-col">
+        <div class="flex flex-col gap-y-2 max-w-[800]">
+            <h1 class="font-bold text-3xl">Transform Your Ideas<br>into Wearable Art</h1>
+            <p>
+                Choose a design that perfectly represents your vision from our extensive library or upload your own unique artwork. Next, select from our trusted network of top-tier printing partners who specialize in high-quality prints and reliable service. Finally, place your order and relax as your custom apparel is expertly printed and delivered straight to your doorstep.
+            </p>
         </div>
-        <div class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
-            <a href="" class="bg-kDarkBlue py-3 px-6 text-kDirtyWhite border-black rounded-md shadow-lg">
-                Start designing
+        <div class="mt-6">
+            <a href="" class="bg-kBlack text-kWhite rounded-md inline-flex items-center gap-x-2 px-4 py-2">
+                Request a print
+                <svg width="21" height="9" viewBox="0 0 21 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.3441 5.11273C20.5445 4.92267 20.5528 4.6062 20.3627 4.40587L17.2656 1.14128C17.0755 0.94095 16.759 0.932622 16.5587 1.12268C16.3584 1.31274 16.35 1.62921 16.5401 1.82954L19.2931 4.7314L16.3913 7.48444C16.191 7.6745 16.1826 7.99097 16.3727 8.1913C16.5627 8.39163 16.8792 8.39996 17.0795 8.2099L20.3441 5.11273ZM0.986847 4.74983L19.9868 5.24982L20.0132 4.25017L1.01315 3.75017L0.986847 4.74983Z" fill="white"/>
+                </svg>
             </a>
         </div>
     </div>
-    <div class="relative w-[416.52px] h-[416.52px] border-dashed border-4 border-kDarkBlue transform rotate-[6.2deg]">
-        <img src="/img/landing.jpg" alt="" class="absolute inset-0 w-full h-full object-contain bg-kDirtyWhite">
+
+    <div class="flex gap-x-6">
+        <div class="bg-kBlack p-3 w-[207px] h-[207px] rounded-md">
+            <img src="/img/landing-1.png" alt="">
+        </div>
+        <div class="bg-kBlack p-3 w-[207px] h-[207px] rounded-md">
+            <img src="/img/landing-2.png" alt="">
+        </div>
+        <div class="bg-kBlack p-3 w-[207px] h-[207px] rounded-md">
+            <img src="/img/landing-3.png" alt="">
+        </div>
     </div>
 </div>
 
-<!-- scrolling -->
-<div class="scroller-wrapper overflow-hidden relative w-full">
-    <div
-        class="scroller font-Roboto-condensed font-bold text-kDarkBlue bg-white flex whitespace-nowrap gap-x-4 py-6 px-12">
-        <span class="flex items-center gap-4">
-            <h1 class="text-3xl">HOW IT WORKS</h1>
-            <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
-        </span>
-        <span class="flex items-center gap-4">
-            <h1 class="text-3xl">HOW IT WORKS</h1>
-            <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
-        </span>
-        <span class="flex items-center gap-4">
-            <h1 class="text-3xl">HOW IT WORKS</h1>
-            <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
-        </span>
-        <span class="flex items-center gap-4">
-            <h1 class="text-3xl">HOW IT WORKS</h1>
-            <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
-        </span>
-        <span class="flex items-center gap-4">
-            <h1 class="text-3xl">HOW IT WORKS</h1>
-            <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
-        </span>
-        <span class="flex items-center gap-4">
-            <h1 class="text-3xl">HOW IT WORKS</h1>
-            <i class="text-2xl fa-solid fa-shirt" style="color: #010387;"></i>
-        </span>
+<div class="bg-kWhite px-8 py-10">
+    <div class="flex items-center justify-center gap-x-[96px]">
+        <img src="/logos/php_logo.png" alt="" class="w-[56]">
+        <img src="/logos/vs_logo.png" alt="" class="w-[56]">
+        <img src="/logos/git_logo.png" alt="" class="w-[56]">
+        <img src="/logos/intel_logo.png" alt="" class="w-[56]">
+        <img src="/logos/spotify_logo.png" alt="" class="w-[56]">
+        <img src="/logos/apple_logo.png" alt="" class="w-[56]">
+        <img src="/logos/microsoft_logo.png" alt="" class="w-[56]">
     </div>
 </div>
 
-<!-- how it works -->
-<div class="flex gap-y-6">
-    <div class="container bg-kDarkBlue px-16 py-[84] w-1/2 flex justify-center">
-        <div class="relative w-[487] h-[626]">
-            <img src="/img/design.png" alt="" class="absolute inset-0 h-full">
+<div class="bg-kWhite flex flex-col gap-y-6 px-8 py-10">
+    <div class="flex gap-x-6 justify-start">
+        <div class="bg-kBlack p-3 rounded-md text-kWhite font-bold text-2xl">
+            How it works
         </div>
-    </div>
-    <div class="container font-Roboto-condensed bg-kLightBlue w-1/2 px-8 py-16">
-        <div class="flex items-center gap-x-6">
-            <h1 class="font-bold text-kDarkBlue text-[220px]">1</h1>
-            <h1 class="font-bold text-kDarkBlue text-8xl leading-[100px]">CREATE A<br>DESIGN !!!</h1>
-        </div>
-        <p class="font-bold font-Roboto-condensed text-kDarkBlue text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.
-            Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
-            tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur
-            pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
-            Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci
-            facilisis id.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
+        <p class="max-w-[1400]">
+            Getting your custom apparel is a breeze with our simple and straightforward process. Follow these easy steps to bring your unique designs to life, choose a reliable printing partner, and enjoy wearing your custom-made clothing with pride.
         </p>
     </div>
-</div>
 
-<div class="flex gap-y-6">
-    <div class="container font-Roboto-condensed bg-kLightBlue w-1/2 px-8 py-16">
-        <div class="flex items-center gap-x-6">
-            <h1 class="font-bold text-kDarkBlue text-[220px]">2</h1>
-            <h1 class="font-bold text-kDarkBlue text-8xl leading-[100px]">REQUEST <br>A PRINT</h1>
-        </div>
-        <p class="font-bold font-Roboto-condensed text-kDarkBlue text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.
-            Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
-            tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur
-            pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales.
-            Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci
-            facilisis id.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
-        </p>
+    <div class="bg-kLightGray p-3 flex flex-col gap-y-4 rounded-md">
+        <h1 class="text-lg font-bold">1. Create a design</h1>
+        <p class="text-base">Start by crafting a design that reflects your style and message. Use our intuitive design tools to create something from scratch or choose from a variety of customizable templates. Upload your own artwork or artwork, ensuring it’s exactly how you envision it.</p>
     </div>
-    <div class="container bg-kDarkBlue w-1/2 px-16 py-[84] flex justify-center">
-        <div class="relative w-[487] h-[626]">
-            <img src="/img/print.png" alt="" class="absolute inset-0 h-full">
-        </div>
+    <div class="bg-kLightGray p-3 flex flex-col gap-y-4 rounded-md">
+        <h1 class="text-lg font-bold">2. Choose a partner</h1>
+        <p class="text-base">Select from our curated list of trusted printing partners, each known for their expertise and quality. Compare options based on printing techniques, materials, and customer reviews to find the best fit for your needs. Our partners will ensure your design is printed with precision and care.your own artwork or artwork, ensuring it’s exactly how you envision it.</p>
+    </div>
+    <div class="bg-kLightGray p-3 flex flex-col gap-y-4 rounded-md">
+        <h1 class="text-lg font-bold">3. Wear</h1>
+        <p class="text-base">Once your order is placed, sit back and relax as your custom apparel is expertly produced and delivered. When it arrives, try it on and enjoy your one-of-a-kind garment that’s tailored just for you. Wear it with pride, knowing you’ve created something truly special.</p>
     </div>
 </div>
-
-<div class="flex gap-y-6">
-    <div class="container flex flex-col font-Roboto-condensed bg-kDarkBlue w-1/2 px-8 py-6 gap-y-16">
-        <div>
-            <div class="flex items-center gap-x-6">
-                <h1 class="font-bold text-kDirtyWhite text-[220px]">3</h1>
-                <h1 class="font-bold text-kDirtyWhite text-8xl leading-[100px]">WEAR</h1>
-            </div>
-            <p class="font-bold font-Roboto-condensed text-kDirtyWhite text-justify">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.
-                Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae
-                mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum
-                eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at
-                sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu
-                eros, eget tempus orci facilisis id.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
-                mi.
-            </p>
-        </div>
-        <a href="" class="transition ease-in-out delay-150 flex bg-kDirtyWhite p-2 font-semibold font-Inter text-kDarkBlue justify-center hover:bg-kLightBlue">
-            Start NOW !!! -->
-        </a>
-    </div>
-
-    <div class="container bg-kDirtyWhite w-1/2 px-16 py-[84] flex justify-center">
-        <div class="relative w-[487] h-[626]">
-            <img src="/img/wera.jpg" alt="" class="absolute inset-0 h-full object-cover">
-        </div>
-    </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const scroller = document.querySelector('.scroller');
-        const scrollerWidth = scroller.scrollWidth;
-        const wrapperWidth = document.querySelector('.scroller-wrapper').offsetWidth;
-
-        if (scrollerWidth <= wrapperWidth) {
-            scroller.innerHTML += scroller.innerHTML;
-        }
-    });
-</script>
-
 @endsection
