@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(CountryCodesSeeder::class);
+        $this->call(AdminTypeSeeder::class);
     }
 }

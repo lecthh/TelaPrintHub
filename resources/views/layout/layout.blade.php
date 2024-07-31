@@ -60,6 +60,9 @@
                 <a href="">
                     <li class="text-sm">Request a print</li>
                 </a>
+                <a href="">
+                    <li class="text-sm">Already a partner?</li>
+                </a>
             </ul>
         </div>
     </footer>

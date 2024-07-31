@@ -14,10 +14,11 @@ return new class extends Migration
 
         Schema::create('admin', function (Blueprint $table) {
             $table->string('admin_ID')->primary();
-            $table->string('admin_type_ID');
+            $table->unsignedBigInteger('admin_type_ID');
             $table->string('name');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('email');
+            $table->boolean('is_verified')->default(false);
             $table->string('contact_information')->nullable();
             $table->timestamps();
 
