@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\DesignerCompany;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
@@ -19,8 +21,20 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    function loginPost(Request $request)
+    function loginPost(Request $request): RedirectResponse
     {
+        $request->validate([
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:8',
+        ]);
+
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
+            return redirect()->intended('catalog');
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Invalid email or password']);
+        }
     }
 
     public function register()
@@ -43,7 +57,7 @@ class AuthController extends Controller
         $admin = Admin::create([
             'admin_ID' => (string) Uuid::generate(4),
             'admin_type_ID' => 2,
-            'name' => "Joel",
+            'name' => $request->input('company_name'),
             'email' => $request->input('email'),
             'password' => null,
             'contact_information' => $fullPhoneNumber,

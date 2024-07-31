@@ -4,11 +4,16 @@
 <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
+
+        @if($errors->has('error'))
+        <div class="text-red-500 text-sm mb-4">{{ $errors->first('error') }}</div>
+        @endif
+
         <form method="POST" action="{{ route('login.post') }}">
             @csrf
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                <input type="email" id="email" name="email" required autofocus class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <input type="email" id="email" name="email" required autofocus class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="{{ old('email') }}">
                 @if($errors->has('email'))
                 <span class="text-red-500 text-sm">{{ $errors->first('email') }}</span>
                 @endif
