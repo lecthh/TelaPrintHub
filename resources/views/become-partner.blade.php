@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-grow border-l-2 pl-8">
+            <div class="flex flex-grow pl-8">
                 <div class="flex flex-col">
                     <!-- if designer selected -->
                     <div id="designer-options" class="flex flex-col gap-y-3">
