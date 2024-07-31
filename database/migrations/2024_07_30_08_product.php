@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->string('product_ID')->primary();
             $table->string('designer_ID');
-            $table->string('apparel_category_ID');
+            $table->unsignedBigInteger('apparel_category_ID');
             $table->string('name');
             $table->text('description');
             $table->string('image')->nullable();

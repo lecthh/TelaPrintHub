@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('production_ID');
             $table->string('order_confirmation_ID');
             $table->string('order_status_ID');
-            $table->string('apparel_category_ID');
+            $table->unsignedBigInteger('apparel_category_ID');
             $table->string('customization_details_ID');
             $table->string('print_type_ID');
             $table->dateTime('estimated_delivery_date');

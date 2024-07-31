@@ -59,7 +59,7 @@
                         <div class="flex gap-x-3">
                             <div class="flex flex-col gap-y-3">
                                 <label for="tshirt" class="cursor-pointer">
-                                    <input type="checkbox" name="apparel" id="tshirt" class="hidden peer">
+                                    <input type="checkbox" name="apparel_categories[]" id="tshirt" value="1" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">T-shirt</h1>
                                         <svg width="40" height="32" viewBox="0 0 40 32" fill="kBlack" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@
                                     </div>
                                 </label>
                                 <label for="hoodie" class="cursor-pointer">
-                                    <input type="checkbox" name="apparel" id="hoodie" class="hidden peer">
+                                    <input type="checkbox" name="apparel_categories[]" id="hoodie" value="2" class="hidden peer">
                                     <div class="flex gap-x-4 items-center h-[50] border-2 rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Hoodie</h1>
                                         <svg width="45" height="36" viewBox="0 0 45 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@
                                     </div>
                                 </label>
                                 <label for="poloshirt" class="cursor-pointer">
-                                    <input type="checkbox" name="apparel" id="poloshirt" class="hidden peer">
+                                    <input type="checkbox" name="apparel_categories[]" id="poloshirt" value="3" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Polo shirt</h1>
                                         <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +88,7 @@
                             </div>
                             <div class="flex flex-col gap-y-3">
                                 <label for="shorts" class="cursor-pointer">
-                                    <input type="checkbox" name="apparel" id="shorts" class="hidden peer">
+                                    <input type="checkbox" name="apparel_categories[]" id="shorts" value="4" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Shorts</h1>
                                         <svg width="42" height="34" viewBox="0 0 42 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,7 @@
                                     </div>
                                 </label>
                                 <label for="sportswear" class="cursor-pointer">
-                                    <input type="checkbox" name="apparel" id="sportswear" class="hidden peer">
+                                    <input type="checkbox" name="apparel_categories[]" id="sportswear" value="5" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] items-center justify-between rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite">
                                         <h1 class="text-base">Sportswear</h1>
                                         <svg width="37" height="46" viewBox="0 0 37 46" fill="none" xmlns="http://www.w3.org/2000/svg">

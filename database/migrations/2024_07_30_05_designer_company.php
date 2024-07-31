@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('contact_details')->nullable();
             $table->string('email');
             $table->boolean('is_verified')->default(false);
+
             $table->timestamps();
 
             $table->foreign('admin_ID')->references('admin_ID')->on('admin');
