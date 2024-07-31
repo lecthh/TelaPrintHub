@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20cd0f0c7d8b327cb828e5408a578300",
+    "content-hash": "dcbe7ce8d0a5e25dd308d6ef711c03e2",
     "packages": [
         {
             "name": "brick/math",
@@ -5742,24 +5742,24 @@
         },
         {
             "name": "webpatser/laravel-uuid",
-            "version": "4.0",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webpatser/laravel-uuid.git",
-                "reference": "ac2d27479fc362cb24132b6b597039ff60ae93cc"
+                "reference": "f82715c6bc6a4fcc61bb020cb4fddeb8cc73bbea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webpatser/laravel-uuid/zipball/ac2d27479fc362cb24132b6b597039ff60ae93cc",
-                "reference": "ac2d27479fc362cb24132b6b597039ff60ae93cc",
+                "url": "https://api.github.com/repos/webpatser/laravel-uuid/zipball/f82715c6bc6a4fcc61bb020cb4fddeb8cc73bbea",
+                "reference": "f82715c6bc6a4fcc61bb020cb4fddeb8cc73bbea",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0|^8.0"
             },
             "require-dev": {
-                "fakerphp/faker": "~1.12",
-                "phpunit/phpunit": "~9.3.8"
+                "fakerphp/faker": "^1.9.1",
+                "phpunit/phpunit": "^9.3.3"
             },
             "type": "library",
             "extra": {
@@ -5796,7 +5796,7 @@
                 "issues": "https://github.com/webpatser/laravel-uuid/issues",
                 "source": "https://github.com/webpatser/laravel-uuid"
             },
-            "time": "2020-12-14T12:45:59+00:00"
+            "time": "2023-05-19T08:56:59+00:00"
         }
     ],
     "packages-dev": [
