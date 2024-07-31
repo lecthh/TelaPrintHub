@@ -25,8 +25,8 @@
                     <a href="{{ route('become-a-partner') }}">
                         <li class="p-2 text-lg">Become a partner</li>
                     </a>
-                    <a href="">
-                        <li class="p-2 text-lg border rounded-lg">Request a print</li>
+                    <a href="{{ route('request-print') }}">
+                        <li class="p-2 text-lg border-2 rounded-lg">Request a print</li>
                     </a>
                 </ul>
             </nav>
@@ -57,7 +57,7 @@
                 <a href="{{ route('become-a-partner') }}">
                     <li class="text-sm">Become a partner</li>
                 </a>
-                <a href="">
+                <a href="{{ route('request-print') }}">
                     <li class="text-sm">Request a print</li>
                 </a>
                 <a href="">

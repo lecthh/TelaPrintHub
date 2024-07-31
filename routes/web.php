@@ -19,6 +19,10 @@ Route::get('/track', function () {
     return view('track');
 })->name('track');
 
+Route::get('/request-print', function () {
+    $countryCodes = DB::table('country_codes')->get();
+    return view('request-print', compact('countryCodes'));
+})->name('request-print');
 
 Route::get('/become-a-partner', [AuthController::class, "register"])->name('become-a-partner');
 Route::post('/become-a-partner', [AuthController::class, "registerPost"])->name('become-a-partner.post');
