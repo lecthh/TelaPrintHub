@@ -39,14 +39,14 @@
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Phone number</h1>
                         <div class="flex gap-x-2">
-                            <select name="country_code" id="" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal w-[170px]">
+                            <select name="country_code" id="" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal w-[200px]">
                                 @foreach ($countryCodes as $country)
-                                <option value="{{ $country->code }}">
+                                <option value="{{ $country->code }}" {{ $country->code == '+63' ? 'selected' : '' }}>
                                     {{ $country->flag_emoji }} {{ $country->name}} | {{ $country->code }}
                                 </option>
                                 @endforeach
                             </select>
-                            <input type="text" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
+                            <input type="number" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
                         </div>
                     </div>
                 </div>
