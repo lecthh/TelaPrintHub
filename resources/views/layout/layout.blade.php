@@ -26,7 +26,7 @@
                         <li class="p-2 text-lg">Become a partner</li>
                     </a>
                     <a href="{{ route('request-print') }}">
-                        <li class="p-2 text-lg border-2 rounded-lg">Request a print</li>
+                        <li class="p-2 text-lg border-2 border-kBlack rounded-lg">Request a print</li>
                     </a>
                 </ul>
             </nav>
