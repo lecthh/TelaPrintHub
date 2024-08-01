@@ -25,6 +25,15 @@
                 </label>
             </div>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="flex">
             <div class="flex flex-grow flex-col gap-y-3">
                 <div class="flex flex-col gap-y-3">

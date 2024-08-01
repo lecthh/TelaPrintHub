@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Services\AuthenTicationService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,19 +23,19 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function loginPost(Request $request)
+    function loginPost(Request $request)
     {
         $request->validate([
             'email' => 'required|email|max:255',
             'password' => 'required|min:8',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            $request->session()->regenerate();
+        $credentials = $request->only('email', 'password');
+        if (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->intended('catalog');
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Invalid email or password']);
         }
-
-        return redirect()->back()->withErrors(['error' => 'Invalid email or password']);
     }
 
     public function register()

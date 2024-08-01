@@ -17,6 +17,7 @@ class DesignerCompany extends Model
     protected $fillable = [
         'designer_ID',
         'admin_ID',
+        'name',
         'description',
         'logo',
         'contact_details',
