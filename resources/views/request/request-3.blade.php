@@ -46,18 +46,32 @@
             </div>
             <div class="flex gap-x-6">
                 <div class="w-1/2">
-                    <div class="bg-kBlack text-kWhite p-3">
+                    <div class="bg-kBlack text-kWhite p-3 h-full">
                         IMAGE
                     </div>
                 </div>
                 <div class="w-1/2">
-                    <div class="text-kBlack p-3 flex flex-col">
-                        <h1>Item</h1>
+                    <div class="text-kBlack p-3 flex flex-col gap-y-2">
+                        <h1 class="text-lg font-semibold">Order details:</h1>
+                        <div class="flex flex-col gap-x-2 pb-2">
+                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">T-shirt</span></h1>
+                            <h1 class="text-base font-semibold">Company: <span class="font-normal text-base text-kGray">VanJam</span></h1>
+                        </div>
+
+                        <hr>
+
+                        <h1 class="text-lg font-semibold">Contact details:</h1>
+                        <div class="flex flex-col gap-x-2 pb-2">
+                            <h1 class="text-base font-semibold">Name: <span class="font-normal text-base text-kGray">Jane Doe</span></h1>
+                            <h1 class="text-base font-semibold">Email: <span class="font-normal text-base text-kGray">jane@example.com</span></h1>
+                            <h1 class="text-base font-semibold">Number: <span class="font-normal text-base text-kGray">8560386</span></h1>
+                            <h1 class="text-base font-semibold">Preferred mode of contact: <span class="font-normal text-base text-kGray">WhatsApp</span></h1>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
-
         
         <div class="inline-flex justify-end">
             <button type="submit" class="bg-kBlack font-semibold flex gap-x-2 justify-around items-center text-kWhite text-lg rounded-md p-3">
