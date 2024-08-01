@@ -4,12 +4,12 @@
 <div class="bg-kWhite font-dm-sans px-6 py-10 flex flex-col h-[750]">
     <div class="flex justify-around gap-x-8">
         <div class="flex flex-col gap-y-6">
-            <h1 class="text-4xl font-bold">Contact us</h1>
-            <p class="max-w-[700]">We’re here to help you with any questions or concerns you might have. Whether you need assistance with your order, have a general inquiry, or just want to provide feedback, our team is ready to assist you. Reach out to us through any of the following methods, and we’ll get back to you as soon as possible.</p>
+            <h1 class="text-3xl font-bold">Contact us</h1>
+            <p class="max-w-[700] text-base">We’re here to help you with any questions or concerns you might have. Whether you need assistance with your order, have a general inquiry, or just want to provide feedback, our team is ready to assist you. Reach out to us through any of the following methods, and we’ll get back to you as soon as possible.</p>
         </div>
         <form action="">
             <div class="flex flex-col gap-y-6">
-                <h1 class="text-4xl font-bold">Say hello!</h1>
+                <h1 class="text-3xl font-bold">Say hello!</h1>
                 <div class="flex flex-col gap-y-3">
                     <div class="flex gap-x-3">
                         <div class="flex flex-col w-[284]">

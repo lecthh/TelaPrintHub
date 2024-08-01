@@ -13,13 +13,13 @@
             <div class="flex gap-x-4 w-full">
                 <label for="designer" class="cursor-pointer flex-1">
                     <input type="radio" id="designer" name="partner-type" class="hidden peer" value="Designer">
-                    <div class="bg-kLightGray flex-1 p-3 gap-x-4 rounded-md text-kBlack border-2 border-kBlack text-center transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
+                    <div class="bg-kLightGray text-base flex-1 p-3 gap-x-4 rounded-md text-kBlack border-2 border-kBlack text-center transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                         Designer
                     </div>
                 </label>
                 <label for="printer" class="cursor-pointer flex-1">
                     <input type="radio" id="printer" name="partner-type" class="hidden peer" value="Production">
-                    <div class="bg-kLightGray flex-1 p-3 gap-x-4 rounded-md text-kBlack border-2 border-kBlack text-center transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
+                    <div class="bg-kLightGray text-base flex-1 p-3 gap-x-4 rounded-md text-kBlack border-2 border-kBlack text-center transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                         Printer/Tailor
                     </div>
                 </label>
@@ -30,23 +30,23 @@
                 <div class="flex flex-col gap-y-3">
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Company name</h1>
-                        <input type="text" id="company_name" name="company_name" class="text-normal text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="VanJam">
+                        <input type="text" id="company_name" name="company_name" class="text-normal text-base text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="VanJam">
                     </div>
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Email address</h1>
-                        <input type="email" id="email" name="email" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-kGray" placeholder="VanJam">
+                        <input type="email" id="email" name="email" class="text-base rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-kGray" placeholder="vanjam@example.com">
                     </div>
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Phone number</h1>
                         <div class="flex gap-x-2">
-                            <select name="country_code" id="" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal w-[200px]">
+                            <select name="country_code" id="" class="text-base rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal w-[200px]">
                                 @foreach ($countryCodes as $country)
                                 <option value="{{ $country->code }}" {{ $country->code == '+63' ? 'selected' : '' }}>
                                     {{ $country->flag_emoji }} {{ $country->name}} | {{ $country->code }}
                                 </option>
                                 @endforeach
                             </select>
-                            <input type="number" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
+                            <input type="number" id="phone_number" name="phone_number" class="text-base rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
                         </div>
                     </div>
                 </div>
@@ -139,9 +139,9 @@
                 <input type="file" id="owner-id" name="owner_id" class="hidden">
             </label>
         </div>
-        <label for="tAndc" class="flex gap-x-3 cursor-pointer">
+        <label for="tAndc" class="flex gap-x-3 cursor-pointer items-center">
             <input type="checkbox" id="tAndc" class="accent-kBlack ring-kBlack focus:ring-kBlack focus:accent-kBlack" required>
-            I agrewo the Terms and Conditions
+            I agree to the Terms and Conditions
         </label>
         <button type="submit" class="p-2 bg-kBlack text-kWhite rounded-md">Submit</button>
     </form>

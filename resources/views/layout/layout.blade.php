@@ -14,19 +14,19 @@
                 </a>
                 <ul class="flex gap-x-5">
                     <a href="{{ route('home') }}">
-                        <li class="p-2 text-lg">Home</li>
+                        <li class="p-2 text-base hover:border-b-2 border-kBlack">Home</li>
                     </a>
                     <a href="{{ route('contact') }}">
-                        <li class="p-2 text-lg">Contact us</li>
+                        <li class="p-2 text-base hover:border-b-2 border-kBlack">Contact us</li>
                     </a>
                     <a href="{{ route('track') }}">
-                        <li class="p-2 text-lg">Track my order</li>
+                        <li class="p-2 text-base hover:border-b-2 border-kBlack">Track my order</li>
                     </a>
                     <a href="{{ route('become-a-partner') }}">
-                        <li class="p-2 text-lg">Become a partner</li>
+                        <li class="p-2 text-base hover:border-b-2 border-kBlack">Become a partner</li>
                     </a>
                     <a href="{{ route('request-print') }}">
-                        <li class="p-2 text-lg border-2 border-kBlack rounded-lg">Request a print</li>
+                        <li class="p-2 text-base border-2 border-kBlack rounded-lg transition hover:bg-kBlack hover:text-kWhite">Request a print</li>
                     </a>
                 </ul>
             </nav>
