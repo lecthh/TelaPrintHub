@@ -72,12 +72,11 @@
             </div>
             <div class="flex gap-x-3">
                 @foreach($designerCompanies as $company)
-                <label for="{$company->name}" class="cursor-pointer">
-
-                    <input type="radio" name="company" id="php" class="hidden peer">
+                <label for="{{ $company->designer_ID }}" class="cursor-pointer">
+                    <input type="radio" name="company" id="{{ $company->designer_ID }}" class="hidden peer" onchange="updateDescription('{{$company->designer_ID}}', '{{ $company->description }}')">
                     <div class="flex gap-x-4 border-2 rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
-                        <h1 class="text-base">{{$company->name}}</h1>
-                        <img src="/image/" alt="" srcset="">
+                        <h1 class="text-base">{{ $company->name }}</h1>
+                        <img src="/path/to/company/icons/{{ $company->logo }}" alt="Company Icon" width="28" height="29">
                     </div>
                 </label>
                 @endforeach
@@ -164,10 +163,12 @@
             </div>
             <div class="bg-kBlack p-3 flex flex-col gap-y-6 rounded-md">
                 <div class="flex flex-col">
-                    <h1 class="text-base text-kWhite font-semibold">About COMPANY NAME</h1>
-                    <p class="text-base text-kWhite">PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1993 and released in 1995. </p>
+                    <h1 class="text-base text-kWhite font-semibold" id="company-name">About COMPANY NAME</h1>
+                    <p class="text-base text-kWhite" id="company-description">
+                        Please select a company to see the details.
+                    </p>
                 </div>
-                <h1 class="text-base text-kWhite font-semibold">Price range: Starts at PHP 1,200</h1>
+                <h1 class="text-base text-kWhite font-semibold" id="price-range">Price range: Starts at PHP 1,200</h1>
                 <div class="flex flex-col gap-y-3">
                     <h1 class="text-base text-kWhite font-semibold">Sample products/services</h1>
                     <div class="flex gap-x-3">
@@ -183,45 +184,51 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-col gap-y-6">
-            <div class="flex gap-x-3 items-center">
-                <h1 class="bg-kBlack text-lg text-kWhite font-semibold p-3 rounded-md">Contact details</h1>
-                <p class="text-kBlack text-base max-w-[1400]">Fill in your contact details so we can reach you with updates about your order and any necessary communications.</p>
-            </div>
-            <div class="flex">
-                <div class="flex flex-col gap-y-3">
-                    <div class="flex flex-col">
-                        <h1 class="text-base font-medium">* First name</h1>
-                        <input type="text" class="text-normal text-kGray focus:outline-none" placeholder="Jane">
-                    </div>
-                    <div class="flex flex-col">
-                        <h1 class="text-base font-medium">* Email address</h1>
-                        <input type="email" class="focus:outline-none text-normal text-kGray" placeholder="jane@gmail.com">
-                    </div>
+            <div class="flex flex-col gap-y-6">
+                <div class="flex gap-x-3 items-center">
+                    <h1 class="bg-kBlack text-lg text-kWhite font-semibold p-3 rounded-md">Contact details</h1>
+                    <p class="text-kBlack text-base max-w-[1400]">Fill in your contact details so we can reach you with updates about your order and any necessary communications.</p>
                 </div>
-                <div class="flex flex-col gap-y-3">
-                    <div class="flex flex-col">
-                        <h1 class="text-base font-medium">* Last name</h1>
-                        <input type="text" class="text-normal text-kGray focus:outline-none" placeholder="Doe">
+                <div class="flex">
+                    <div class="flex flex-col gap-y-3">
+                        <div class="flex flex-col">
+                            <h1 class="text-base font-medium">* First name</h1>
+                            <input type="text" class="text-normal text-kGray focus:outline-none" placeholder="Jane">
+                        </div>
+                        <div class="flex flex-col">
+                            <h1 class="text-base font-medium">* Email address</h1>
+                            <input type="email" class="focus:outline-none text-normal text-kGray" placeholder="jane@gmail.com">
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <h1 class="text-lg font-medium">* Phone number</h1>
-                        <div class="flex gap-x-2">
-                            <select name="country_code" id="" class="focus:outline-none text-normal w-[170px]">
-                                @foreach ($countryCodes as $country)
-                                <option value="{{ $country->code }}">
-                                    {{ $country->flag_emoji }} {{ $country->name}} | {{ $country->code }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <input type="number" class="focus:outline-none text-normal text-kGray" placeholder="123-456">
+                    <div class="flex flex-col gap-y-3">
+                        <div class="flex flex-col">
+                            <h1 class="text-base font-medium">* Last name</h1>
+                            <input type="text" class="text-normal text-kGray focus:outline-none" placeholder="Doe">
+                        </div>
+                        <div class="flex flex-col">
+                            <h1 class="text-lg font-medium">* Phone number</h1>
+                            <div class="flex gap-x-2">
+                                <select name="country_code" id="" class="focus:outline-none text-normal w-[170px]">
+                                    @foreach ($countryCodes as $country)
+                                    <option value="{{ $country->code }}">
+                                        {{ $country->flag_emoji }} {{ $country->name}} | {{ $country->code }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                <input type="number" class="focus:outline-none text-normal text-kGray" placeholder="123-456">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <button type="submit" class="bg-kBlack font-semibold text-kWhite text-lg rounded-md p-3">Confirm</button>
+            <button type="submit" class="bg-kBlack font-semibold text-kWhite text-lg rounded-md p-3">Confirm</button>
     </form>
 </div>
+
+<script>
+    function updateDescription(id, description) {
+        document.getElementById('company-name').textContent = 'About ' + document.querySelector(`label[for="${id}"] .text-base`).textContent;
+        document.getElementById('company-description').textContent = description;
+    }
+</script>
 @endsection
