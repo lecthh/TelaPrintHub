@@ -11,35 +11,35 @@
             <div class="flex gap-x-3">
                 <label for="tshirt" class="cursor-pointer">
                     <input type="radio" name="apparel" id="tshirt" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack h-[65] rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack h-[65] hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">T-shirt</h1>
                         <div class="w-6 h-6"><x-lineawesome-tshirt-solid /></div>
                     </div>
                 </label>
                 <label for="hoodie" class="cursor-pointer">
                     <input type="radio" name="apparel" id="hoodie" class="hidden peer">
-                    <div class="flex gap-x-4 items-center h-[65] border-2 border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 items-center h-[65] border-2 hover:bg-kBlack hover:text-kWhite border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Hoodie</h1>
                         <div class="w-6 h-6"><x-phosphor-hoodie /></div>
                     </div>
                 </label>
                 <label for="poloshirt" class="cursor-pointer">
                     <input type="radio" name="apparel" id="poloshirt" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack h-[65] items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite h-[65] items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Polo shirt</h1>
                         <div class="w-6 h-6"><x-ri-shirt-line /></div>
                     </div>
                 </label>
                 <label for="shorts" class="cursor-pointer">
                     <input type="radio" name="apparel" id="shorts" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 h-[65] border-kBlack items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 h-[65] hover:bg-kBlack hover:text-kWhite border-kBlack items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Shorts</h1>
                         <div class="w-6 h-6"><x-hugeicons-shorts-pants /></div>
                     </div>
                 </label>
                 <label for="sportswear" class="cursor-pointer">
                     <input type="radio" name="apparel" id="sportswear" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack h-[65] items-center justify-between rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite">
+                    <div class="flex gap-x-4 border-2 border-kBlack h-[65] hover:bg-kBlack hover:text-kWhite items-center justify-between rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite">
                         <h1 class="text-base">Sportswear</h1>
                         <div class="w-6 h-6"><x-tabler-shirt-sport /></div>
                     </div>
@@ -55,43 +55,43 @@
             <div class="flex gap-x-3">
                 <label for="php" class="cursor-pointer">
                     <input type="radio" name="company" id="php" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">PHP</h1>
                     </div>
                 </label>
                 <label for="vs" class="cursor-pointer">
                     <input type="radio" name="company" id="vs" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">VS Code</h1>
                     </div>
                 </label>
                 <label for="git" class="cursor-pointer">
                     <input type="radio" name="company" id="git" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Git</h1>
                     </div>
                 </label>
                 <label for="intel" class="cursor-pointer">
                     <input type="radio" name="company" id="intel" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Intel</h1>
                     </div>
                 </label>
                 <label for="spotify" class="cursor-pointer">
                     <input type="radio" name="company" id="spotify" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Spotify</h1>
                     </div>
                 </label>
                 <label for="apple" class="cursor-pointer">
                     <input type="radio" name="company" id="apple" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Apple</h1>
                     </div>
                 </label>
                 <label for="windows" class="cursor-pointer">
                     <input type="radio" name="company" id="windows" class="hidden peer">
-                    <div class="flex gap-x-4 border-2 border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
+                    <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Windows</h1>
                     </div>
                 </label>
