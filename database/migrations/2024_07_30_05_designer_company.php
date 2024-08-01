@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('designer_company', function (Blueprint $table) {
             $table->string('designer_ID')->primary();
             $table->string('admin_ID');
+            $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->string('contact_details')->nullable();

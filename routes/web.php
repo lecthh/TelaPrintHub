@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,8 @@ Route::get('/track', function () {
     return view('track');
 })->name('track');
 
-Route::get('/request-print', function () {
-    $countryCodes = DB::table('country_codes')->get();
-    return view('request-print', compact('countryCodes'));
-})->name('request-print');
+
+Route::get('/request-print', [HomeController::class, "requestPrint"])->name('request-print');
 
 Route::get('/become-a-partner', [AuthController::class, "register"])->name('become-a-partner');
 Route::post('/become-a-partner', [AuthController::class, "registerPost"])->name('become-a-partner.post');
@@ -33,6 +32,7 @@ Route::post('setpassword', [PasswordController::class, "setPassword"])->name('se
 Route::get('/login', [AuthController::class, "login"])->name('login');
 Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 
-Route::middleware("auth.basic")->group(function () {
+
+Route::middleware(['auth:admin'])->group(function () {
     Route::view('/catalog', 'partner.catalog')->name('catalog');
 });
