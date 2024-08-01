@@ -141,7 +141,7 @@
         </div>
         <label for="tAndc" class="flex gap-x-3 cursor-pointer">
             <input type="checkbox" id="tAndc" class="accent-kBlack ring-kBlack focus:ring-kBlack focus:accent-kBlack" required>
-            I agree to the Terms and Conditions
+            I agrewo the Terms and Conditions
         </label>
         <button type="submit" class="p-2 bg-kBlack text-kWhite rounded-md">Submit</button>
     </form>
