@@ -1,55 +1,55 @@
 @extends('layout.layout')
 @section('content')
-<div class="bg-kWhite font-dm-sans px-8 py-10 flex gap-x-8 justify-evenly">
-    <div class="flex flex-col gap-y-3">
+<div class="bg-kWhite font-dm-sans px-8 py-10 flex gap-x-8 justify-around">
+    <div class="flex flex-col gap-y-3 w-1/2">
         <h1 class="font-bold text-3xl">Track my order</h1>
         <div class="flex flex-col">
             <h3 class="font-medium text-lg">Order no:</h3>
-            <input type="text" class="font-normal text-lg text-kGray focus:outline-none" placeholder="TELAPH-J8tkdg">
+            <input type="text" class="font-normal text-base text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="TELAPH-J8tkdg">
         </div>
         <div class="flex flex-col">
             <h3 class="font-medium text-lg">Email address:</h3>
-            <input type="email" class="font-normal text-lg text-kGray focus:outline-none" placeholder="jane@example.com">
+            <input type="email" class="font-normal text-base text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="jane@example.com">
         </div>
         <button type="submit" class="bg-kBlack text-kWhite rounded-md p-2">Track</button>
     </div>
 
     <!--if naa na search-->
-    <div class="border-l-2 pl-10 flex flex-col gap-y-3">
+    <div class="w-1/2 border-l-2 pl-10 flex flex-col gap-y-3">
         <h1 class="font-bold text-3xl">Order details</h1>
         <div class="flex flex-col gap-y-6">
             <div class="flex flex-col gap-y-3">
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Order no:</h3>
-                    <h4 class="font-normal text-lg text-kGray">TELAPH-J8tkdg</h4>
+                    <h4 class="font-normal text-base text-kGray">TELAPH-J8tkdg</h4>
                 </div>
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Email address:</h3>
-                    <h4 class="font-normal text-lg text-kGray">jane@example.com</h4>
+                    <h4 class="font-normal text-base text-kGray">jane@example.com</h4>
                 </div>
             </div>
             <div class="flex flex-col gap-y-3">
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Order date:</h3>
-                    <h4 class="font-normal text-lg text-kGray">July 20, 2024</h4>
+                    <h4 class="font-normal text-base text-kGray">July 20, 2024</h4>
                 </div>
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Order specifications:</h3>
-                    <h4 class="font-normal text-lg text-kGray">20 Hoodies</h4>
+                    <h4 class="font-normal text-base text-kGray">20 Hoodies</h4>
                 </div>
             </div>
             <div class="flex gap-x-10">
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Producer:</h3>
                     <a href="">
-                        <h4 class="font-normal text-lg text-kGray">VanJam</h4>
+                        <h4 class="font-normal text-base text-kGray">VanJam</h4>
                     </a>
                     
                 </div>
                 <div class="flex flex-col">
                     <h3 class="font-medium text-lg">Designer:</h3>
                     <a href="">
-                        <h4 class="font-normal text-lg text-kGray">VanJam</h4>
+                        <h4 class="font-normal text-base text-kGray">VanJam</h4>
                     </a>
                 </div>
             </div>

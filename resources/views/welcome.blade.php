@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('content')
-<div class="bg-kWhite font-dm-sans px-8 py-10 flex justify-between items-center">
+<div class="bg-kWhite font-dm-sans px-8 py-10 flex justify-around items-center">
     <div class="flex flex-col">
         <div class="flex flex-col gap-y-2 max-w-[800]">
             <h1 class="font-bold text-3xl">Transform Your Ideas<br>into Wearable Art</h1>
@@ -10,7 +10,7 @@
             </p>
         </div>
         <div class="mt-6">
-            <a href="" class="bg-kBlack text-kWhite rounded-md inline-flex items-center gap-x-2 px-4 py-2">
+            <a href="" class="bg-kBlack text-kWhite rounded-md inline-flex items-center gap-x-2 px-4 py-2 hover:shadow-md">
                 Request a print
                 <svg width="21" height="9" viewBox="0 0 21 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.3441 5.11273C20.5445 4.92267 20.5528 4.6062 20.3627 4.40587L17.2656 1.14128C17.0755 0.94095 16.759 0.932622 16.5587 1.12268C16.3584 1.31274 16.35 1.62921 16.5401 1.82954L19.2931 4.7314L16.3913 7.48444C16.191 7.6745 16.1826 7.99097 16.3727 8.1913C16.5627 8.39163 16.8792 8.39996 17.0795 8.2099L20.3441 5.11273ZM0.986847 4.74983L19.9868 5.24982L20.0132 4.25017L1.01315 3.75017L0.986847 4.74983Z" fill="white"/>
@@ -32,24 +32,16 @@
     </div>
 </div>
 
-<div class="bg-kWhite px-8 py-10">
-    <div class="flex items-center justify-center gap-x-[96px]">
-        <img src="/logos/php_logo.png" alt="" class="w-[56]">
-        <img src="/logos/vs_logo.png" alt="" class="w-[56]">
-        <img src="/logos/git_logo.png" alt="" class="w-[56]">
-        <img src="/logos/intel_logo.png" alt="" class="w-[56]">
-        <img src="/logos/spotify_logo.png" alt="" class="w-[56]">
-        <img src="/logos/apple_logo.png" alt="" class="w-[56]">
-        <img src="/logos/microsoft_logo.png" alt="" class="w-[56]">
-    </div>
+<div class="bg-kBlack px-8 py-10 flex items-center justify-center">
+    <h1 class="text-kWhite text-lg font-bold">!! COMPANY LOGOS !!</h1>
 </div>
 
 <div class="bg-kWhite flex flex-col gap-y-6 px-8 py-10">
     <div class="flex gap-x-6 justify-start">
-        <div class="bg-kBlack p-3 rounded-md text-kWhite font-bold text-2xl">
+        <div class="bg-kBlack p-3 rounded-md text-kWhite font-bold text-lg">
             How it works
         </div>
-        <p class="max-w-[1400]">
+        <p class="max-w-[1400] text-base">
             Getting your custom apparel is a breeze with our simple and straightforward process. Follow these easy steps to bring your unique designs to life, choose a reliable printing partner, and enjoy wearing your custom-made clothing with pride.
         </p>
     </div>

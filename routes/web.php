@@ -20,8 +20,16 @@ Route::get('/track', function () {
 })->name('track');
 
 Route::get('/request-print', function () {
+    return view('request.request-1');
+})->name('request-print');
+
+Route::get('/request-print-2', function () {
+    return view('request.request-2');
+})->name('request-print');
+
+Route::get('/request-print-3', function () {
     $countryCodes = DB::table('country_codes')->get();
-    return view('request-print', compact('countryCodes'));
+    return view('request.request-3', compact('countryCodes'));
 })->name('request-print');
 
 Route::get('/become-a-partner', [AuthController::class, "register"])->name('become-a-partner');
