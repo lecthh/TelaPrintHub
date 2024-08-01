@@ -25,7 +25,7 @@
                 </label>
             </div>
         </div>
-        <div class="flex">
+        <div class="flex gap-x-3">
             <div class="flex flex-grow flex-col gap-y-3 w-1/2">
                 <div class="flex flex-col gap-y-3">
                     <div class="flex flex-col">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-grow pl-8 w-1/2">
+            <div class="flex flex-grow w-1/2">
                 <div class="flex flex-col">
                     <!-- if designer selected -->
                     <div id="designer-options" class="flex flex-col gap-y-3">
