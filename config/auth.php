@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'admins'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'admin'),
     ],
 
     /*
@@ -36,7 +36,7 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
@@ -62,7 +62,7 @@ return [
     'providers' => [
         'admins' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Admin::class),
+            'model' =>  App\Models\Admin::class,
         ],
 
         // 'users' => [
@@ -91,7 +91,7 @@ return [
     */
 
     'passwords' => [
-        'admins' => [
+        'admin' => [
             'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,

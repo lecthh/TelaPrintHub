@@ -17,7 +17,6 @@ class AdminTypeSeeder extends Seeder
             ['admin_type_name' => 'Designer Admin'],
             ['admin_type_name' => 'Production Admin'],
         ];
-
         DB::table('admin_type')->insert($adminTypes);
     }
 }
