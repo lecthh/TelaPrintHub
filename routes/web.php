@@ -23,8 +23,8 @@ Route::get('/track', function () {
 })->name('track');
 
 Route::get('/request-print-1', [UserController::class, "requestPrint1"])->name('request-print-1');
-Route::get('/request-print-2', [UserController::class, "requestPrint2"])->name('request-print-2');
-Route::get('/request-print-3', [UserController::class, "requestPrint3"])->name('request-print-3');
+Route::post('/request-print-2', [UserController::class, "requestPrint2"])->name('request-print-2');
+Route::post('/request-print-3', [UserController::class, "requestPrint3"])->name('request-print-3');
 
 Route::get('/become-a-partner', [AuthController::class, "register"])->name('become-a-partner');
 Route::post('/become-a-partner', [AuthController::class, "registerPost"])->name('become-a-partner.post');
