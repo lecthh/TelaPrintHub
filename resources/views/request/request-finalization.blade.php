@@ -33,7 +33,7 @@
                             </option>
                             @endforeach
                         </select>
-                        <input type="number" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
+                        <input type="text" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
 
-    public function requestPrint1(Request $request)
+    public function requestCompanySelection(Request $request)
     {
         $selectedCategory = $request->input('apparel');
         $designerCompanies = collect();
@@ -25,10 +25,10 @@ class UserController extends Controller
         }
 
         $categories = DB::table('apparel_category')->pluck('name', 'apparel_category_ID');
-        return view('request.request-1', compact('designerCompanies', 'categories', 'selectedCategory'));
+        return view('request.request-company-selection', compact('designerCompanies', 'categories', 'selectedCategory'));
     }
 
-    public function requestPrint2(Request $request)
+    public function requestApparelCustomization(Request $request)
     {
         $selectedCategory = $request->input('selected_category');
         $selectedCompany = $request->input('selected_company');
@@ -37,10 +37,10 @@ class UserController extends Controller
         Session::put('selected_category', $selectedCategory);
         Session::put('selected_company', $selectedCompany);
 
-        return view('request.request-2');
+        return view('request.request-apparel-customization');
     }
 
-    public function requestPrint3(Request $request)
+    public function requestFinalization(Request $request)
     {
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
@@ -50,6 +50,6 @@ class UserController extends Controller
         }
         $countryCodes = DB::table('country_codes')->get();
 
-        return view('request.request-3', compact('selectedCategory', 'selectedCompany', 'countryCodes'));
+        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes'));
     }
 }

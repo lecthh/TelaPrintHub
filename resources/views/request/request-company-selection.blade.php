@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-kWhite px-8 py-10">
-    <form method="GET" action="{{ route('request-print-1') }}" class="flex flex-col gap-y-10">
+    <form method="GET" action="{{ route('request-company-selection') }}" class="flex flex-col gap-y-10">
         <div class="flex flex-col gap-y-3">
             <div class="flex gap-x-3 items-center">
                 <h1 class="bg-kBlack text-lg text-kWhite font-semibold p-3 rounded-md">Select your apparel</h1>
@@ -49,7 +49,7 @@
         </div>
     </form>
 
-    <form method="POST" action="{{ route('request-print-2') }}" class="flex flex-col gap-y-10">
+    <form method="POST" action="{{ route('request-apparel-customization') }}" class="flex flex-col gap-y-10">
         @csrf
         @if($selectedCategory)
         <div class="flex flex-col gap-y-3">

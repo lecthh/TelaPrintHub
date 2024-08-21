@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-kWhite px-8 py-10">
-    <form method="POST" action="{{ route('request-print-3') }}" class="flex flex-col gap-y-10">
+    <form method="POST" action="{{ route('request-finalization') }}" class="flex flex-col gap-y-10">
         @csrf
         <div class="flex flex-col gap-y-3">
             <div class="flex gap-x-3 items-center">
