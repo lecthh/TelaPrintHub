@@ -28,12 +28,12 @@
                     <div class="flex gap-x-2">
                         <select name="country_code" id="" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal w-[200px]">
                             @foreach ($countryCodes as $country)
-                                <option value="{{ $country->code }}" {{ $country->code == '+63' ? 'selected' : '' }}>
-                                    {{ $country->flag_emoji }} {{ $country->name }} | {{ $country->code }}
-                                </option>
+                            <option value="{{ $country->code }}" {{ $country->code == '+63' ? 'selected' : '' }}>
+                                {{ $country->flag_emoji }} {{ $country->name }} | {{ $country->code }}
+                            </option>
                             @endforeach
                         </select>
-                        <input type="number" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
+                        <input type="text" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
                     </div>
                 </div>
             </div>
@@ -54,8 +54,8 @@
                     <div class="text-kBlack p-3 flex flex-col gap-y-2">
                         <h1 class="text-lg font-semibold">Order details:</h1>
                         <div class="flex flex-col gap-x-2 pb-2">
-                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">T-shirt</span></h1>
-                            <h1 class="text-base font-semibold">Company: <span class="font-normal text-base text-kGray">VanJam</span></h1>
+                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">{{ $selectedCategory }}</span></h1>
+                            <h1 class="text-base font-semibold">Company: <span class="font-normal text-base text-kGray">{{ $selectedCompany->name }}</span></h1>
                         </div>
 
                         <hr>
@@ -68,18 +68,18 @@
                             <h1 class="text-base font-semibold">Preferred mode of contact: <span class="font-normal text-base text-kGray">WhatsApp</span></h1>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
-        
+
         <div class="inline-flex justify-end">
             <button type="submit" class="bg-kBlack font-semibold flex gap-x-2 justify-around items-center text-kWhite text-lg rounded-md p-3">
                 <p>Confirm</p>
             </button>
         </div>
     </form>
-    
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 @endsection

@@ -27,7 +27,7 @@
                 <a href="{{ route('become-a-partner') }}">
                     <li class="p-2 text-base hover:border-b-2 border-kBlack">Become a partner</li>
                 </a>
-                <a href="{{ route('request-print-1') }}">
+                <a href="{{ route('request-company-selection') }}">
                     <li class="p-2 text-base border-2 border-kBlack rounded-lg transition hover:bg-kBlack hover:text-kWhite">Request a print</li>
                 </a>
             </ul>
@@ -59,7 +59,7 @@
             <a href="{{ route('become-a-partner') }}">
                 <li class="text-sm">Become a partner</li>
             </a>
-            <a href="{{ route('request-print-1') }}">
+            <a href="{{ route('request-company-selection') }}">
                 <li class="text-sm">Request a print</li>
             </a>
             <a href="">
