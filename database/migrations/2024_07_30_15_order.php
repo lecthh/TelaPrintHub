@@ -15,13 +15,13 @@ return new class extends Migration
             $table->string('order_ID')->primary();
             $table->string('user_details_ID');
             $table->string('designer_ID');
-            $table->string('production_ID');
-            $table->string('order_confirmation_ID');
-            $table->string('order_status_ID');
+            $table->string('production_ID')->nullable();
+            $table->string('order_confirmation_ID')->nullable();
+            $table->string('order_status_ID')->nullable(); // change to not nullable
             $table->unsignedBigInteger('apparel_category_ID');
-            $table->string('customization_details_ID');
-            $table->string('print_type_ID');
-            $table->dateTime('estimated_delivery_date');
+            $table->string('customization_details_ID')->nullable();
+            $table->string('print_type_ID')->nullable();
+            $table->dateTime('estimated_delivery_date')->nullable();
             $table->string('tracking_number')->nullable();
             $table->timestamps();
 

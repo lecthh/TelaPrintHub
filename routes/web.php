@@ -24,7 +24,8 @@ Route::get('/track', function () {
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-apparel-customization', [UserController::class, "requestApparelCustomization"])->name('request-apparel-customization');
-Route::post('/request-finalization', [UserController::class, "requestFinalization"])->name('request-finalization');
+Route::get('/request-finalization', [UserController::class, "requestFinalization"])->name('request-finalization');
+Route::post('/request-finalization', [UserController::class, "requestFinalizationPost"])->name('request-finalization-post');
 
 Route::get('/become-a-partner', [AuthController::class, "register"])->name('become-a-partner');
 Route::post('/become-a-partner', [AuthController::class, "registerPost"])->name('become-a-partner.post');
