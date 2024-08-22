@@ -62,21 +62,18 @@
                                     <input type="checkbox" name="apparel" id="tshirt" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">T-shirt</h1>
-                                        <div class="w-6 h-6"><x-lineawesome-tshirt-solid /></div>
                                     </div>
                                 </label>
                                 <label for="hoodie" class="cursor-pointer">
                                     <input type="checkbox" name="apparel" id="hoodie" class="hidden peer">
                                     <div class="flex gap-x-4 items-center h-[50] border-2 border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Hoodie</h1>
-                                        <div class="w-6 h-6"><x-phosphor-hoodie /></div>
                                     </div>
                                 </label>
                                 <label for="poloshirt" class="cursor-pointer">
                                     <input type="checkbox" name="apparel" id="poloshirt" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] items-center border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Polo shirt</h1>
-                                        <div class="w-6 h-6"><x-ri-shirt-line /></div>
                                     </div>
                                 </label>
                             </div>
@@ -85,14 +82,12 @@
                                     <input type="checkbox" name="apparel" id="shorts" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] items-center border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Shorts</h1>
-                                        <div class="w-6 h-6"><x-hugeicons-shorts-pants /></div>
                                     </div>
                                 </label>
                                 <label for="sportswear" class="cursor-pointer">
                                     <input type="checkbox" name="apparel" id="sportswear" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] items-center justify-between border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite">
                                         <h1 class="text-base">Sportswear</h1>
-                                        <div class="w-6 h-6"><x-tabler-shirt-sport /></div>
                                     </div>
                                 </label>
                             </div>
@@ -108,7 +103,6 @@
                                     <input type="checkbox" name="prodStyle" id="heatpress" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 h-[50] border-kBlack rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                                         <h1 class="text-base">Heat press</h1>
-                                        <div class="w-6 h-6"><x-iconoir-heating-square /></div>
                                     </div>
                                 </label>
                             </div>
@@ -117,7 +111,6 @@
                                     <input type="checkbox" name="prodStyle" id="embroidery" class="hidden peer">
                                     <div class="flex gap-x-4 border-2 border-kBlack h-[50] items-center justify-between rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite">
                                         <h1 class="text-base">Embroidery</h1>
-                                        <div class="w-6 h-6"><x-radix-sewing-pin /></div>
                                     </div>
                                 </label>
                             </div>
@@ -129,12 +122,10 @@
         <div class="bg-kLightGray p-3 flex flex-col gap-y-3 rounded-md">
             <h1 class="text-lg font-semibold">Please upload the necessary documents</h1>
             <label class="border-2 border-kBlack rounded-md p-3 flex gap-x-2 cursor-pointer">
-                <div class="w-6 h-6"><x-bx-file /></div>
                 <h4 class="text-base font-semibold">Business permit</h4>
                 <input type="file" id="business-permit" name="business_permit" class="hidden">
             </label>
             <label class="border-2 border-kBlack rounded-md p-3 flex gap-x-2 cursor-pointer">
-                <div class="w-6 h-6"><x-tabler-id /></div>
                 <h4 class="text-base font-semibold">* Business owner identification card</h4>
                 <input type="file" id="owner-id" name="owner_id" class="hidden">
             </label>
