@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('content')
-<div class="bg-kWhite font-dm-sans px-8 py-10 flex gap-x-8 justify-around">
+<div class="bg-kWhite font-dm-sans px-8 py-10 flex gap-x-8 justify-center">
     <div class="flex flex-col gap-y-3 w-1/2">
         <h1 class="font-bold text-3xl">Track my order</h1>
         <div class="flex flex-col">
