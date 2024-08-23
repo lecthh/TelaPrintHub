@@ -14,10 +14,6 @@
             </div>
         </div>
 
-        <!-- Hidden inputs to pass selected values to the next request -->
-        <input type="hidden" name="selected_category" value="{{ session('selected_category') }}">
-        <input type="hidden" name="selected_company" value="{{ session('selected_company') }}">
-
         <div class="inline-flex justify-end">
             <button type="submit" class="bg-kBlack font-semibold flex gap-x-2 justify-around items-center text-kWhite text-lg rounded-md p-3">
                 <p>Next</p>

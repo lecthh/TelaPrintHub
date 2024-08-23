@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('designer_ID');
             $table->string('production_ID')->nullable();
             $table->string('order_confirmation_ID')->nullable();
-            $table->string('order_status_ID')->nullable(); // TODO: change to not nullable
+            $table->unsignedBigInteger('order_status_ID');
             $table->unsignedBigInteger('apparel_category_ID');
             $table->string('customization_details_ID')->nullable();
             $table->string('print_type_ID')->nullable();

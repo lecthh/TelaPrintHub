@@ -55,7 +55,7 @@
                     <div class="text-kBlack p-3 flex flex-col gap-y-2">
                         <h1 class="text-lg font-semibold">Order details:</h1>
                         <div class="flex flex-col gap-x-2 pb-2">
-                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">{{ $selectedCategory }}</span></h1>
+                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">{{ $selectedCategory->name }}</span></h1>
                             <h1 class="text-base font-semibold">Company: <span class="font-normal text-base text-kGray">{{ $selectedCompany->name }}</span></h1>
                         </div>
 

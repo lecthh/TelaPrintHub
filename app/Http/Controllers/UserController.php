@@ -29,6 +29,9 @@ class UserController extends Controller
                 ->select('designer_company.*')
                 ->distinct()
                 ->get();
+
+            $apparelCategory = DB::table('apparel_category')->where('name', $selectedCategory)->first();
+            Session::put('selected_category', $apparelCategory);
         }
 
         $categories = DB::table('apparel_category')->pluck('name', 'apparel_category_ID');
@@ -37,11 +40,7 @@ class UserController extends Controller
 
     public function requestApparelCustomization(Request $request)
     {
-        $selectedCategory = $request->input('selected_category');
         $selectedCompany = $request->input('selected_company');
-
-
-        Session::put('selected_category', $selectedCategory);
         Session::put('selected_company', $selectedCompany);
 
         return view('request.request-apparel-customization');
@@ -55,6 +54,7 @@ class UserController extends Controller
         if ($selectedCompany) {
             $selectedCompany = DB::table('designer_company')->where('designer_ID', $selectedCompany)->first();
         }
+
         $countryCodes = DB::table('country_codes')->get();
 
         return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes'));
@@ -62,7 +62,7 @@ class UserController extends Controller
 
     public function requestFinalizationPost(Request $request)
     {
-        $selectedCategory = Session::get('selected_category');
+        $selectedCategory = Session::get('selected_category');  // Retrieve the full object
         $selectedCompanyId = Session::get('selected_company');
 
         $request->validate([
