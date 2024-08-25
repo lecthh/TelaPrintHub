@@ -13,35 +13,30 @@
                     <input type="radio" name="apparel" id="tshirt" value="T-shirt" class="hidden peer" {{ request('apparel') === 'T-shirt' ? 'checked' : '' }} onchange="this.form.submit(); document.getElementById('selected_category').value = 'T-shirt';">
                     <div class="flex gap-x-4 border-2 border-kBlack h-[65px] hover:bg-kBlack hover:text-kWhite rounded-md p-3 items-center peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">T-shirt</h1>
-                        <div class="w-6 h-6"><x-lineawesome-tshirt-solid /></div>
                     </div>
                 </label>
                 <label for="hoodie" class="cursor-pointer">
                     <input type="radio" name="apparel" id="hoodie" value="Hoodie" class="hidden peer" {{ request('apparel') === 'Hoodie' ? 'checked' : '' }} onchange="this.form.submit(); document.getElementById('selected_category').value = 'Hoodie';">
                     <div class="flex gap-x-4 items-center h-[65px] border-2 hover:bg-kBlack hover:text-kWhite border-kBlack rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Hoodie</h1>
-                        <div class="w-6 h-6"><x-phosphor-hoodie /></div>
                     </div>
                 </label>
                 <label for="poloshirt" class="cursor-pointer">
                     <input type="radio" name="apparel" id="poloshirt" value="Polo shirt" class="hidden peer" {{ request('apparel') === 'Polo shirt' ? 'checked' : '' }} onchange="this.form.submit(); document.getElementById('selected_category').value = 'Polo shirt';">
                     <div class="flex gap-x-4 border-2 border-kBlack hover:bg-kBlack hover:text-kWhite h-[65px] items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Polo shirt</h1>
-                        <div class="w-6 h-6"><x-ri-shirt-line /></div>
                     </div>
                 </label>
                 <label for="shorts" class="cursor-pointer">
                     <input type="radio" name="apparel" id="shorts" value="Shorts" class="hidden peer" {{ request('apparel') === 'Shorts' ? 'checked' : '' }} onchange="this.form.submit(); document.getElementById('selected_category').value = 'Shorts';">
                     <div class="flex gap-x-4 border-2 h-[65px] hover:bg-kBlack hover:text-kWhite border-kBlack items-center rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite justify-between">
                         <h1 class="text-base">Shorts</h1>
-                        <div class="w-6 h-6"><x-hugeicons-shorts-pants /></div>
                     </div>
                 </label>
                 <label for="sportswear" class="cursor-pointer">
                     <input type="radio" name="apparel" id="sportswear" value="Sportswear" class="hidden peer" {{ request('apparel') === 'Sportswear' ? 'checked' : '' }} onchange="this.form.submit(); document.getElementById('selected_category').value = 'Sportswear';">
                     <div class="flex gap-x-4 border-2 border-kBlack h-[65px] hover:bg-kBlack hover:text-kWhite items-center justify-between rounded-md p-3 peer-checked:bg-kBlack peer-checked:text-kWhite">
                         <h1 class="text-base">Sportswear</h1>
-                        <div class="w-6 h-6"><x-tabler-shirt-sport /></div>
                     </div>
                 </label>
             </div>
