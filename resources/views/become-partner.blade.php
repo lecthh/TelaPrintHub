@@ -30,23 +30,23 @@
                 <div class="flex flex-col gap-y-3">
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Company name</h1>
-                        <input type="text" id="company_name" name="company_name" class="text-normal text-kGray focus:outline-none" placeholder="VanJam">
+                        <input type="text" id="company_name" name="company_name" class="text-normal rounded-md text-kGray focus:outline-none" placeholder="VanJam">
                     </div>
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Email address</h1>
-                        <input type="email" id="email" name="email" class="focus:outline-none text-normal text-kGray" placeholder="VanJam">
+                        <input type="email" id="email" name="email" class="focus:outline-none text-normal rounded-md text-kGray" placeholder="VanJam">
                     </div>
                     <div class="flex flex-col">
                         <h1 class="text-lg font-medium">* Phone number</h1>
                         <div class="flex gap-x-2">
-                            <select name="country_code" id="" class="focus:outline-none text-normal w-[170px]">
+                            <select name="country_code" id="" class="focus:outline-none text-normal rounded-md w-[170px]">
                                 @foreach ($countryCodes as $country)
                                 <option value="{{ $country->code }}">
                                     {{ $country->flag_emoji }} {{ $country->name}} | {{ $country->code }}
                                 </option>
                                 @endforeach
                             </select>
-                            <input type="text" id="phone_number" name="phone_number" class="focus:outline-none text-normal text-kGray" placeholder="123-456">
+                            <input type="text" id="phone_number" name="phone_number" class="focus:outline-none text-normal rounded-md text-kGray" placeholder="123-456">
                         </div>
                     </div>
                 </div>
