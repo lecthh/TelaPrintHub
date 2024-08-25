@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ApparelCategorySeeder::class);
         $this->call(CountryCodesSeeder::class);
         $this->call(AdminTypeSeeder::class);
+        $this->call(OrderPlacementStatusSeeder::class);
+        $this->call(OrderStatusTypeSeeder::class);
     }
 }

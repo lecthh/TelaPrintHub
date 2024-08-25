@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-kWhite px-8 py-10">
-    <form method="POST" action="{{ route('request-finalization') }}" class="flex flex-col gap-y-10">
+    <form method="GET" action="{{ route('request-finalization') }}" class="flex flex-col gap-y-10">
         @csrf
         <div class="flex flex-col gap-y-3">
             <div class="flex gap-x-3 items-center">
@@ -13,10 +13,6 @@
                 <!-- Add customization fields here -->
             </div>
         </div>
-
-        <!-- Hidden inputs to pass selected values to the next request -->
-        <input type="hidden" name="selected_category" value="{{ session('selected_category') }}">
-        <input type="hidden" name="selected_company" value="{{ session('selected_company') }}">
 
         <div class="inline-flex justify-end">
             <button type="submit" class="bg-kBlack font-semibold flex gap-x-2 justify-around items-center text-kWhite text-lg rounded-md p-3">

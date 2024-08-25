@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="bg-kWhite px-8 py-10">
-    <form action="" class="flex flex-col gap-y-10">
+    <form method="POST" action="{{ route('request-finalization-post') }}" class="flex flex-col gap-y-10">
+        @csrf
         <div class="flex flex-col gap-y-3">
             <div class="flex gap-x-3 items-center">
                 <h1 class="bg-kBlack text-lg text-kWhite font-semibold p-3 rounded-md">Contact details</h1>
@@ -11,17 +12,17 @@
             <div class="flex gap-x-3 w-1/2">
                 <div class="flex flex-col flex-1">
                     <h3 class="font-medium text-lg">First name</h3>
-                    <input type="text" class="text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="Jane">
+                    <input type="text" name="first_name" class="text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="Jane" required>
                 </div>
                 <div class="flex flex-col flex-1">
                     <h3 class="font-medium text-lg">Last name</h3>
-                    <input type="text" class="text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="Doe">
+                    <input type="text" name="last_name" class="text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="Doe" required>
                 </div>
             </div>
             <div class="flex gap-x-3 w-1/2">
                 <div class="flex flex-col flex-1">
                     <h3 class="font-medium text-lg">Email</h3>
-                    <input type="email" class="text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="jane@example.com">
+                    <input type="email" name="email" class="text-kGray rounded-md focus:outline-none focus:ring-0 focus:border-kBlack" placeholder="jane@example.com" required>
                 </div>
                 <div class="flex flex-col gap-x-2 flex-1">
                     <h3 class="font-medium text-lg">Phone number</h3>
@@ -33,7 +34,7 @@
                             </option>
                             @endforeach
                         </select>
-                        <input type="text" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456">
+                        <input type="text" id="phone_number" name="phone_number" class="rounded-md focus:outline-none focus:ring-0 focus:border-kBlack text-normal text-kGray" placeholder="123-456" required>
                     </div>
                 </div>
             </div>
@@ -54,7 +55,7 @@
                     <div class="text-kBlack p-3 flex flex-col gap-y-2">
                         <h1 class="text-lg font-semibold">Order details:</h1>
                         <div class="flex flex-col gap-x-2 pb-2">
-                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">{{ $selectedCategory }}</span></h1>
+                            <h1 class="text-base font-semibold">Apparel: <span class="font-normal text-base text-kGray">{{ $selectedCategory->name }}</span></h1>
                             <h1 class="text-base font-semibold">Company: <span class="font-normal text-base text-kGray">{{ $selectedCompany->name }}</span></h1>
                         </div>
 
@@ -62,9 +63,9 @@
 
                         <h1 class="text-lg font-semibold">Contact details:</h1>
                         <div class="flex flex-col gap-x-2 pb-2">
-                            <h1 class="text-base font-semibold">Name: <span class="font-normal text-base text-kGray">Jane Doe</span></h1>
-                            <h1 class="text-base font-semibold">Email: <span class="font-normal text-base text-kGray">jane@example.com</span></h1>
-                            <h1 class="text-base font-semibold">Number: <span class="font-normal text-base text-kGray">8560386</span></h1>
+                            <h1 class="text-base font-semibold">Name: <span class="font-normal text-base text-kGray">{{ old('first_name') }} {{ old('last_name') }}</span></h1>
+                            <h1 class="text-base font-semibold">Email: <span class="font-normal text-base text-kGray">{{ old('email') }}</span></h1>
+                            <h1 class="text-base font-semibold">Number: <span class="font-normal text-base text-kGray">{{ old('country_code') }} {{ old('phone_number') }}</span></h1>
                             <h1 class="text-base font-semibold">Preferred mode of contact: <span class="font-normal text-base text-kGray">WhatsApp</span></h1>
                         </div>
                     </div>

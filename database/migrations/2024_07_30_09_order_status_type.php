@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_status_type', function (Blueprint $table) {
-            $table->string('order_status_ID')->primary();
+            $table->id('order_status_ID'); // Auto-incrementing ID
             $table->string('name');
         });
     }
