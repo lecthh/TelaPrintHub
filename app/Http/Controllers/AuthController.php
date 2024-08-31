@@ -47,13 +47,15 @@ class AuthController extends Controller
     public function registerPost(Request $request)
     {
         $validated = $request->validate([
+            'partner-type' => 'required|string',
             'company_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'country_code' => 'required|string|max:10',
             'phone_number' => 'required|string|max:20',
             'description' => 'nullable|string',
             'logo' => 'nullable|string',
-            'apparel_categories' => 'array',
+            'apparel_categories' => 'array|required',
+            'tAndc' => 'required',
         ]);
 
         $this->authService->registerDesignerCompany($validated);
