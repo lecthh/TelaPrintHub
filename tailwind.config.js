@@ -15,11 +15,11 @@ export default {
       }
     },
     colors: {
-      'kGray': '#5C5959',
-      'kLightGray': '#F3F3F3',
+      'kGray': '#D9D9D9',
       'kWhite': '#FFFFFF',
       'kBlack': '#1F1F1F',
-      'kBlackReal': '#000000'
+      'kBlackReal': '#000000',
+      'kViolet': 'FF2FDC'
     }
   },
   plugins: [
