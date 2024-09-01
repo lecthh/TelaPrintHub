@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Str;
 
-class AuthenTicationService
+class AuthenticationService
 {
     protected $mailService;
 
