@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\AuthenTicationService;
+use App\Services\AuthenticationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,10 +54,8 @@ class AuthController extends Controller
             'country_code' => 'required|string|max:10',
             'phone_number' => 'required|string|max:20|unique:Admin,contact_information',
             'apparel_categories' => 'array|required',
-            'tAndc' => 'required',
         ], [
             'apparel_categories.required' => 'Please select at least one apparel category.',
-            'tAndc.required' => 'You must agree to the terms and conditions.',
             'company_name.required' => 'Company name is required.',
             'company_name.unique' => 'Company name is already in use.',
             'email.required' => 'Email is required.',

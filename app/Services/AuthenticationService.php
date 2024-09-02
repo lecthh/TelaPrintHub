@@ -8,6 +8,7 @@ use App\Models\DesignerCompany;
 use App\Models\DesignerCompanyApparelCategory;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Validation\ValidationException;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Str;
 

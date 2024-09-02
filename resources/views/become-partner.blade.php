@@ -132,6 +132,7 @@
     <div class="w-1/2 flex justify-end items-center pr-6">
         <img src="/img/partner-1.png" alt="">
     </div>
+
 </div>
 
 <script>
