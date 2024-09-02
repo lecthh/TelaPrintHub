@@ -12,14 +12,14 @@
                             <h1 class="text-lg font-bold">Select Apparel</h1>
                             <div class="flex">
                                 @foreach(['T-shirt', 'Hoodie', 'Polo shirt', 'Shorts', 'Sportswear'] as $apparel)
-                                    <label for="{{ strtolower(str_replace(' ', '', $apparel)) }}" class="cursor-pointer">
-                                        <input type="radio" name="apparel" id="{{ strtolower(str_replace(' ', '', $apparel)) }}" value="{{ $apparel }}" class="hidden peer" 
-                                            {{ request('apparel') === $apparel ? 'checked' : '' }}
-                                            onchange="this.form.submit(); document.getElementById('selected_category').value = '{{ $apparel }}';">
-                                        <div class="p-[10px] border {{ $loop->first ? 'rounded-l-md' : ($loop->last ? 'rounded-r-md' : '') }} border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
-                                            {{ $apparel }}
-                                        </div>
-                                    </label>
+                                <label for="{{ strtolower(str_replace(' ', '', $apparel)) }}" class="cursor-pointer">
+                                    <input type="radio" name="apparel" id="{{ strtolower(str_replace(' ', '', $apparel)) }}" value="{{ $apparel }}" class="hidden peer"
+                                        {{ request('apparel') === $apparel ? 'checked' : '' }}
+                                        onchange="this.form.submit(); document.getElementById('selected_category').value = '{{ $apparel }}';">
+                                    <div class="p-[10px] border {{ $loop->first ? 'rounded-l-md' : ($loop->last ? 'rounded-r-md' : '') }} border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
+                                        {{ $apparel }}
+                                    </div>
+                                </label>
                                 @endforeach
                             </div>
                         </div>
@@ -27,44 +27,44 @@
                 </div>
             </form>
 
-            <form method="POST" action="{{ route('request-apparel-customization') }}" class="flex flex-col flex-grow px-6 py-3 gap-y-6 justify-between">
+            <form method="POST" action="{{ route('request-company-selection-post') }}" class="flex flex-col flex-grow px-6 py-3 gap-y-6 justify-between">
                 @csrf
                 @if($selectedCategory)
-                    <div class="flex flex-col px-6 py-3 gap-y-6">
-                        <div class="flex flex-col gap-y-3">
-                            <h1 class="text-lg font-bold">Choose a Printing Company</h1>
-                            @if($designerCompanies->isEmpty())
-                                <p class="text-red-700 text-base">No companies are offering this apparel.</p>
-                            @else
-                                <div class="flex flex-col gap-y-6">
-                                    @foreach($designerCompanies as $company)
-                                        <label for="{{ $company->designer_ID }}" class="cursor-pointer">
-                                            <input type="radio" name="company" id="{{ $company->designer_ID }}" class="hidden peer"
-                                                onchange="updateDescription('{{ $company->designer_ID }}', '{{ $company->description }}')">
-                                            <div class="flex gap-x-3">
-                                                <div class="w-[100px] h-[100px] border border-kBlack">
-                                                    <img src="/path/to/company/icons/{{ $company->logo }}" alt="{{ $company->name }} Logo" class="object-cover w-full h-full">
-                                                </div>
-                                                <div class="flex flex-col gap-y-2">
-                                                    <h1 class="text-base font-bold">{{ $company->name }}</h1>
-                                                    <div class="flex gap-x-1">
-                                                        @for($i = 0; $i < 5; $i++)
-                                                            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="black" />
-                                                            </svg>
-                                                        @endfor
-                                                    </div>
-                                                    <!-- Placeholder for company description -->
-                                                    <p class="text-base">This is a company description</p>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    @endforeach
+                <div class="flex flex-col px-6 py-3 gap-y-6">
+                    <div class="flex flex-col gap-y-3">
+                        <h1 class="text-lg font-bold">Choose a Printing Company</h1>
+                        @if($designerCompanies->isEmpty())
+                        <p class="text-red-700 text-base">No companies are offering this apparel.</p>
+                        @else
+                        <div class="flex flex-col gap-y-6">
+                            @foreach($designerCompanies as $company)
+                            <label for="{{ $company->designer_ID }}" class="cursor-pointer">
+                                <input type="radio" name="company" id="{{ $company->designer_ID }}" class="hidden peer"
+                                    onchange="updateDescription('{{ $company->designer_ID }}', '{{ $company->description }}')">
+                                <div class="flex gap-x-3">
+                                    <div class="w-[100px] h-[100px] border border-kBlack">
+                                        <img src="/path/to/company/icons/{{ $company->logo }}" alt="{{ $company->name }} Logo" class="object-cover w-full h-full">
+                                    </div>
+                                    <div class="flex flex-col gap-y-2">
+                                        <h1 class="text-base font-bold">{{ $company->name }}</h1>
+                                        <div class="flex gap-x-1">
+                                            @for($i = 0; $i < 5; $i++)
+                                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="black" />
+                                                </svg>
+                                                @endfor
+                                        </div>
+                                        <!-- Placeholder for company description -->
+                                        <p class="text-base">This is a company description</p>
+                                    </div>
                                 </div>
-                                
-                            @endif
+                            </label>
+                            @endforeach
                         </div>
+
+                        @endif
                     </div>
+                </div>
                 @endif
                 <input type="hidden" name="selected_category" id="selected_category" value="{{ request('apparel') }}">
                 <input type="hidden" name="selected_company" id="selected_company">
@@ -80,7 +80,7 @@
                         <h1 class="text-base font-bold">1</h1>
                     </div>
                     <svg width="80" height="2" viewBox="0 0 80 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line y1="1" x2="80" y2="1" stroke="black" stroke-width="2"/>
+                        <line y1="1" x2="80" y2="1" stroke="black" stroke-width="2" />
                     </svg>
                 </div>
                 <div class="flex items-center justify-center">
@@ -88,7 +88,7 @@
                         <h1 class="text-base font-bold">2</h1>
                     </div>
                     <svg width="80" height="2" viewBox="0 0 80 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line y1="1" x2="80" y2="1" stroke="black" stroke-width="2"/>
+                        <line y1="1" x2="80" y2="1" stroke="black" stroke-width="2" />
                     </svg>
                 </div>
                 <div class="flex items-center justify-center">
@@ -111,19 +111,19 @@
                         <div class="flex flex-col gap-y-2">
                             <div class="flex gap-x-1">
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                             </div>
                             <p id="comp-desc-2" class="text-base">asdfasdf</p>
@@ -151,19 +151,19 @@
                             <h1 class="font-semibold">username</h1>
                             <div class="flex gap-x-1">
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                             </div>
                         </div>
@@ -174,19 +174,19 @@
                             <h1 class="font-semibold">username</h1>
                             <div class="flex gap-x-1">
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black"/>
+                                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" fill="black" />
                                 </svg>
                             </div>
                         </div>
@@ -195,21 +195,40 @@
                 </div>
             </div>
         </div>
+        @endif
+        <input type="hidden" name="selected_category" id="selected_category" value="{{ request('apparel') }}">
+        <input type="hidden" name="selected_company" id="selected_company">
+        <div class="inline-flex justify-end">
+            <button type="submit" value="Next" class="bg-kBlack font-semibold flex gap-x-2 justify-around items-center text-kWhite text-lg rounded-md p-3">
+                <p>Next</p>
+                <svg width="21" height="9" viewBox="0 0 21 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.3441 5.11273C20.5445 4.92267 20.5528 4.6062 20.3627 4.40587L17.2656 1.14128C17.0755 0.94095 16.759 0.932622 16.5587 1.12268C16.3584 1.31274 16.35 1.62921 16.5401 1.82954L19.2931 4.7314L16.3913 7.48444C16.191 7.6745 16.1826 7.99097 16.3727 8.1913C16.5627 8.39163 16.8792 8.39996 17.0795 8.2099L20.3441 5.11273ZM0.986847 4.74983L19.9868 5.24982L20.0132 4.25017L1.01315 3.75017L0.986847 4.74983Z" fill="white" />
+                </svg>
+            </button>
+        </div>
+        </form>
+        @if($errors->any())
+        <div class="text-red-500 text-sm">
+            @foreach($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
     </div>
-</div>
 
 
-<script>
-    function updateDescription(id, description) {
-        document.getElementById('aboutSection').style.display = 'block';
+    <script>
+        function updateDescription(id, description) {
+            document.getElementById('aboutSection').style.display = 'block';
 
-        document.getElementById('company-name').textContent = 'about ' + document.querySelector(`label[for="${id}"] .text-base`).textContent;
-        document.getElementById('company-name-2').textContent = document.querySelector(`label[for="${id}"] .text-base`).textContent;
+            document.getElementById('company-name').textContent = 'about ' + document.querySelector(`label[for="${id}"] .text-base`).textContent;
+            document.getElementById('company-name-2').textContent = document.querySelector(`label[for="${id}"] .text-base`).textContent;
 
-        document.getElementById('company-description').textContent = description;
-        document.getElementById('comp-desc-2').textContent = description;
-        document.getElementById('selected_company').value = id;
-    }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
-@endsection
+            document.getElementById('company-description').textContent = description;
+            document.getElementById('comp-desc-2').textContent = description;
+            document.getElementById('selected_company').value = id;
+            document.getElementById('companyAccordion').classList.remove('hidden');
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+    @endsection

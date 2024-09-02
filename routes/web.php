@@ -27,7 +27,11 @@ Route::get('/confirm', function () {
 })->name('order-confirmation');
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
-Route::post('/request-apparel-customization', [UserController::class, "requestApparelCustomization"])->name('request-apparel-customization');
+Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');
+
+Route::get('/request-apparel-customization', [UserController::class, "requestApparelCustomization"])->name('request-apparel-customization');
+Route::post('/request-apparel-customization', [UserController::class, "requestApparelCustomizationPost"])->name('request-apparel-customization-post');
+
 Route::get('/request-finalization', [UserController::class, "requestFinalization"])->name('request-finalization');
 Route::post('/request-finalization', [UserController::class, "requestFinalizationPost"])->name('request-finalization-post');
 

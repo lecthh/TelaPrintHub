@@ -31,29 +31,52 @@ class UserController extends Controller
                 ->get();
 
             $apparelCategory = DB::table('apparel_category')->where('name', $selectedCategory)->first();
-            Session::put('selected_category', $apparelCategory);
         }
 
         $categories = DB::table('apparel_category')->pluck('name', 'apparel_category_ID');
         return view('request.request-company-selection', compact('designerCompanies', 'categories', 'selectedCategory'));
     }
 
-    public function requestApparelCustomization(Request $request)
+    public function requestCompanySelectionPost(Request $request)
     {
-        $selectedCompany = $request->input('selected_company');
+        $request->validate([
+            'selected_company' => 'required',
+            'selected_category' => 'required',
+        ], [
+            'selected_company.required' => 'You need to select a company before proceeding.',
+            'selected_category.required' => 'You need to select a category before proceeding.',
+        ]);
+
+        $selectedCategory = DB::table('apparel_category')
+            ->where('name', $request->input('selected_category'))
+            ->first();
+
+        $selectedCompany = DB::table('designer_company')
+            ->where('designer_ID', $request->input('selected_company'))
+            ->first();
+
+        Session::put('selected_category', $selectedCategory);
         Session::put('selected_company', $selectedCompany);
 
+        return redirect()->route('request-apparel-customization');
+    }
+
+
+
+    public function requestApparelCustomization()
+    {
         return view('request.request-apparel-customization');
+    }
+
+    public function requestApparelCustomizationPost(Request $request)
+    {
+        return redirect()->route('request-finalization');
     }
 
     public function requestFinalization()
     {
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
-
-        if ($selectedCompany) {
-            $selectedCompany = DB::table('designer_company')->where('designer_ID', $selectedCompany)->first();
-        }
 
         $countryCodes = DB::table('country_codes')->get();
 
@@ -62,20 +85,21 @@ class UserController extends Controller
 
     public function requestFinalizationPost(Request $request)
     {
-        $selectedCategory = Session::get('selected_category');  // Retrieve the full object
-        $selectedCompanyId = Session::get('selected_company');
+        $selectedCategory = Session::get('selected_category');
+        $selectedCompany = Session::get('selected_company');
 
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
+        ], [
+            'first_name.required' => 'You need to provide your first name.',
+            'last_name.required' => 'You need to provide your last name.',
+            'email.required' => 'You need to provide your email address.',
+            'email.email' => 'You need to provide a valid email address.',
+            'phone_number.required' => 'You need to provide your phone number.',
         ]);
-
-        $selectedCompany = null;
-        if ($selectedCompanyId) {
-            $selectedCompany = DB::table('designer_company')->where('designer_ID', $selectedCompanyId)->first();
-        }
 
         $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all());
 
