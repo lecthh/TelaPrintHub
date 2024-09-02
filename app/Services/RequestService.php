@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderPlacement;
 use App\Models\UserDetails;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Session;
 use Webpatser\Uuid\Uuid;
 
 class RequestService
@@ -33,7 +34,7 @@ class RequestService
             'customization_details_ID' => null,
             'print_type_ID' => null,
             'estimated_delivery_date' => null,
-            'tracking_number' => null,
+            'tracking_number' => (string) Uuid::generate(4),
         ]);
 
         OrderPlacement::create([
@@ -41,6 +42,11 @@ class RequestService
             'user_details_ID' => $userDetails->user_details_ID,
             'order_ID' => $order->order_ID,
             'order_placement_status_ID' => 1,
+        ]);
+
+        Session::flash('request-confirmed', [
+            'email' => $request['email'],
+            'tracking_number' => $order->tracking_number,
         ]);
     }
 }

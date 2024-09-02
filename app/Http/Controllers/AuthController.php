@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -52,14 +53,24 @@ class AuthController extends Controller
             'email' => 'required|email|max:255',
             'country_code' => 'required|string|max:10',
             'phone_number' => 'required|string|max:20',
-            'description' => 'nullable|string',
-            'logo' => 'nullable|string',
             'apparel_categories' => 'array|required',
             'tAndc' => 'required',
+        ], [
+            'apparel_categories.required' => 'Please select at least one apparel category.',
+            'tAndc.required' => 'You must agree to the terms and conditions.',
+            'company_name.required' => 'Company name is required.',
+            'email.required' => 'Email is required.',
+            'email.email' => 'Email must be a valid email address.',
+            'country_code.required' => 'Country code is required.',
+            'phone_number.required' => 'Phone number is required.',
         ]);
 
         $this->authService->registerDesignerCompany($validated);
 
-        return redirect()->route('home')->with('message', 'Registration successful. Please check your email for confirmation.');
+        Session::flash('partnership', [
+            'status' => true,
+            'email' => $validated['email']
+        ]);
+        return redirect()->route('home');
     }
 }
