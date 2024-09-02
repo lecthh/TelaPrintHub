@@ -22,6 +22,10 @@ Route::get('/track', function () {
     return view('track');
 })->name('track');
 
+Route::get('/confirm', function () {
+    return view('order-confirmation');
+})->name('order-confirmation');
+
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-apparel-customization', [UserController::class, "requestApparelCustomization"])->name('request-apparel-customization');
 Route::get('/request-finalization', [UserController::class, "requestFinalization"])->name('request-finalization');
