@@ -1,8 +1,8 @@
 @extends('layout.layout')
 
 @section('content')
-<div class="flex gap-x-6 justify-between">
-    <div class="w-1/2">
+<div class="flex gap-x-6 justify-center">
+    <div class="w-[1100px]">
         <div class="flex flex-col px-6 py-6 gap-y-6">
             <h1 class="text-xl font-bold">partner application</h1>
             <p class="text-base">We’re excited to expand our network of printing partners and collaborate with top-quality businesses like yours. By joining our network, you’ll gain access to a diverse range of print requests and opportunities to grow your business. Follow the simple steps below to get started!</p>
@@ -129,7 +129,7 @@
             </form>
         </div>
     </div>
-    <div class="w-1/2 flex justify-end items-center pr-6">
+    <div class="w-auto flex justify-center items-center px-6">
         <img src="/img/partner-1.png" alt="">
     </div>
 

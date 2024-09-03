@@ -37,15 +37,109 @@
             <a href="{{ route('request-company-selection') }}" class="hover:border-b-2 hover:border-kBlack">
                 <li>request a print</li>
             </a>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M9.00001 22H15C19.02 22 19.74 20.39 19.95 18.43L20.7 12.43C20.97 9.99 20.27 8 16 8H8.00001C3.73001 8 3.03001 9.99 3.30001 12.43L4.05001 18.43C4.26001 20.39 4.98001 22 9.00001 22Z" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M15.4955 12H15.5045" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M8.49451 12H8.50349" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <a href="javascript:void(0)" id="basketIcon" class="basket-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.00001 22H15C19.02 22 19.74 20.39 19.95 18.43L20.7 12.43C20.97 9.99 20.27 8 16 8H8.00001C3.73001 8 3.03001 9.99 3.30001 12.43L4.05001 18.43C4.26001 20.39 4.98001 22 9.00001 22Z" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.4955 12H15.5045" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.49451 12H8.50349" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </ul>
     </nav>
 </body>
+
+<!-- shopping cart -->
+<div class="relative z-10 lowercase font-dm-sans hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" id="shoppingCart">
+
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+
+        <div class="pointer-events-auto w-screen max-w-md">
+          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+              <div class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+                <div class="ml-3 flex h-7 items-center">
+                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500" id="closeCartIcon">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Close panel</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <div class="flow-root">
+                  <ul role="list" class="-my-6 divide-y divide-gray-200">
+                    <li class="flex py-6">
+                      <div class="h-24 w-24 flex-shrink-0 overflow-hidden border border-kBlack bg-kViolet">
+                      </div>
+
+                      <div class="ml-4 flex flex-1 flex-col">
+                        <div>
+                          <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>
+                              <a href="#">T-shirt</a>
+                            </h3>
+                            <p class="ml-4">&#8369 150.00</p>
+                          </div>
+                        </div>
+                        <div class="flex flex-1 items-end justify-end text-sm">
+                          <div class="flex">
+                            <button type="button" class="font-medium text-kBlack">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="flex py-6">
+                      <div class="h-24 w-24 flex-shrink-0 overflow-hidden border border-kBlack bg-kViolet">
+                      </div>
+
+                      <div class="ml-4 flex flex-1 flex-col">
+                        <div>
+                          <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>
+                              <a href="#">Hoodie</a>
+                            </h3>
+                            <p class="ml-4">&#8369 150.00</p>
+                          </div>
+                        </div>
+                        <div class="flex flex-1 items-end justify-end text-sm">
+                          <div class="flex">
+                            <button type="button" class="font-medium text-kBlack">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <!-- More products... -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div class="flex justify-between text-base font-medium text-gray-900">
+                <p>Estimated price</p>
+                <p>&#8369  262.00</p>
+              </div>
+              <p class="mt-0.5 text-sm text-gray-500">This is just an estimated price; the final price will be determined once your print request is finalized and will be displayed on the order confirmation form.</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @yield('content')
 <footer class="bg-kGray px-6 py-3 flex justify-between items-center">
     <a href="">
@@ -63,13 +157,13 @@
     </a>
 
     <ul class="flex gap-x-3 text-base">
-        <a href="">
+        <a href="{{ route('track') }}">
             <li>order tracker</li>
         </a>
-        <a href="">
+        <a href="{{ route('become-a-partner') }}">
             <li>become a partner</li>
         </a>
-        <a href="">
+        <a href="{{ route('home') }}">
             <li>home</li>
         </a>
         <a href="">
@@ -83,3 +177,20 @@
 
 </html>
 <script src="https://kit.fontawesome.com/d3c4f3f1ff.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = document.getElementById('shoppingCart');
+        const basketIcon = document.getElementById('basketIcon');
+        const closeCartIcon = document.getElementById('closeCartIcon');
+        
+        basketIcon.addEventListener('click', () => {
+            cart.classList.remove('hidden');
+            cart.classList.add('visible');
+        });
+
+        closeCartIcon.addEventListener('click', () => {
+            cart.classList.remove('visible');
+            cart.classList.add('hidden');
+        });
+    });
+</script>
