@@ -72,19 +72,20 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif', // Rules to be updated
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('uploads/temp', $imageName);
-
+            $image->move(public_path('temp'), $imageName);
+            $imagePath = 'temp/' . $imageName;
             $request->session()->put('uploaded_image', $imagePath);
         }
 
         return redirect()->route('request-finalization');
     }
+
 
     public function requestFinalization()
     {
@@ -107,6 +108,7 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
+            'uploadedImagePath' => 'required',
         ], [
             'first_name.required' => 'You need to provide your first name.',
             'last_name.required' => 'You need to provide your last name.',
@@ -115,7 +117,35 @@ class UserController extends Controller
             'phone_number.required' => 'You need to provide your phone number.',
         ]);
 
-        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all());
+        $tempImagePath = $request->session()->get('uploaded_image');
+
+        if ($tempImagePath && file_exists($tempImagePath)) {
+
+            $currentDate = date('Y-m-d');
+            $email = $request->input('email');
+            $phoneNumber = $request->input('phone_number');
+            $imageExtension = pathinfo($tempImagePath, PATHINFO_EXTENSION);
+
+            $sanitizedEmail = preg_replace('/[^a-zA-Z0-9]/', '-', $email);
+            $sanitizedPhoneNumber = preg_replace('/[^a-zA-Z0-9]/', '-', $phoneNumber);
+
+            $newImageName = $currentDate . '-' . $sanitizedEmail . '-' . $sanitizedPhoneNumber . '.' . $imageExtension;
+            $newImagePath = public_path('orderdesigns') . '/' . $newImageName;
+
+            if (!file_exists(public_path('orderdesigns'))) {
+                mkdir(public_path('orderdesigns'), 0777, true);
+            }
+            rename($tempImagePath, $newImagePath);
+
+            if (file_exists($tempImagePath)) {
+                unlink($tempImagePath);
+            }
+            $imagePath = 'orderdesigns/' . $newImageName;
+        } else {
+            $imagePath = null;
+        }
+
+        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $imagePath);
 
         return redirect()->route('home');
     }

@@ -11,7 +11,7 @@ use Webpatser\Uuid\Uuid;
 
 class RequestService
 {
-    public function createOrder($selectedCategory, $selectedCompany, $request)
+    public function createOrder($selectedCategory, $selectedCompany, $request, $imagepath)
     {
         $fullName = $request['first_name'] . ' ' . $request['last_name'];
 
@@ -20,6 +20,7 @@ class RequestService
             'name' => $fullName,
             'email' => $request['email'],
             'contact_information' => $request['phone_number'],
+
             // TODO: Add Preferred Communication
         ]);
 
@@ -34,7 +35,7 @@ class RequestService
             'customization_details_ID' => null,
             'print_type_ID' => null,
             'estimated_delivery_date' => null,
-            'tracking_number' => (string) Uuid::generate(4),
+            'order_design' => $imagepath,
         ]);
 
         OrderPlacement::create([
@@ -42,11 +43,12 @@ class RequestService
             'user_details_ID' => $userDetails->user_details_ID,
             'order_ID' => $order->order_ID,
             'order_placement_status_ID' => 1,
+            'order_design' => $imagepath,
         ]);
 
         Session::flash('request-confirmed', [
             'email' => $request['email'],
-            'tracking_number' => $order->tracking_number,
+            'tracking_number' => $order->order_ID,
         ]);
     }
 }
