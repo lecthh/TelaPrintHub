@@ -31,4 +31,12 @@
         </form>
     </div>
 </div>
+
+@if($errors->any())
+<div class="text-red-500 text-sm">
+    @foreach($errors->all() as $error)
+    <p>{{ $error }}</p>
+    @endforeach
+</div>
+@endif
 @endsection

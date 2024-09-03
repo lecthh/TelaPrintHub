@@ -44,6 +44,6 @@ Route::post('setpassword', [PasswordController::class, "setPassword"])->name('se
 Route::get('/login', [AuthController::class, "login"])->name('login');
 Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 
-Route::middleware("auth.basic")->group(function () {
-    Route::view('/catalog', [AdminController::class, "catalog"])->name('catalog');
+Route::middleware("auth")->group(function () {
+    Route::get('/catalog', [AdminController::class, "catalog"])->name('catalog');
 });
