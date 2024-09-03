@@ -48,7 +48,11 @@
             <div class="flex gap-x-6">
                 <div class="w-1/2">
                     <div class="bg-kBlack text-kWhite p-3 h-full">
-                        IMAGE
+                        if ($uploadedImagePath)
+                        <img src="{{ asset('storage/' . $uploadedImagePath) }}" alt="Uploaded Image" class="max-w-full h-auto border">
+                        @else
+                        <p class="text-red-700 text-base">Error Uploading image, Please retry the customization process again</p>\
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/2">

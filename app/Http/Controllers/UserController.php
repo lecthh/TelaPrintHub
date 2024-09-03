@@ -70,6 +70,19 @@ class UserController extends Controller
 
     public function requestApparelCustomizationPost(Request $request)
     {
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif', // Rules to be updated
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('uploads/temp', $imageName);
+
+            $request->session()->put('uploaded_image', $imagePath);
+        }
+
         return redirect()->route('request-finalization');
     }
 
@@ -77,10 +90,11 @@ class UserController extends Controller
     {
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
-
         $countryCodes = DB::table('country_codes')->get();
 
-        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes'));
+        $uploadedImagePath = Session::get('uploaded_image');
+
+        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes', 'uploadedImagePath'));
     }
 
     public function requestFinalizationPost(Request $request)
