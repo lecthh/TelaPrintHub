@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('content')
-<div class="flex lowercase font-dm-sans gap-x-20 px-6 justify-around">
-    <div class="flex flex-col gap-y-6 p-y-3 w-1/2">
+<div class="flex lowercase font-dm-sans gap-x-20 px-6 justify-center">
+    <div class="flex flex-col gap-y-6 p-y-3 w-1/3">
         <h1 class="text-xl font-bold">orders and returns</h1>
         <p class="text-base">We seek for your patience and understanding on the delays as we get your orders to you in the days to come. Track your order by entering your email address below. You can return an item within 30 days after receiving your order.</p>
         <div class="flex flex-col gap-y-7">
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div id="orderSection" class="flex flex-col gap-y-6 p-y-3 w-1/2">
+    <div id="orderSection" class="flex flex-col gap-y-6 p-y-3 w-1/2 hidden"> <!-- visible when naa na result -->
         <h1 class="text-lg font-bold">order details</h1>
         <div class="flex flex-col gap-y-4">
             <div class="flex flex-col gap-y-2">
