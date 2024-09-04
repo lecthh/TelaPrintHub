@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div id="orderSection" class="flex flex-col gap-y-6 p-y-3 w-1/2 hidden"> <!-- visible when naa na result -->
+    <div id="orderSection" class="flex flex-col gap-y-6 p-y-3 w-1/2 "> <!--(hidden) visible when naa na result -->
         <h1 class="text-lg font-bold">order details</h1>
         <div class="flex flex-col gap-y-4">
             <div class="flex flex-col gap-y-2">
