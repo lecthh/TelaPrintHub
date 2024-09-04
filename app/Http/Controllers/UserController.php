@@ -70,17 +70,33 @@ class UserController extends Controller
 
     public function requestApparelCustomizationPost(Request $request)
     {
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('temp'), $imageName);
+            $imagePath = 'temp/' . $imageName;
+            $request->session()->put('uploaded_image', $imagePath);
+        }
+
         return redirect()->route('request-finalization');
     }
+
 
     public function requestFinalization()
     {
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
-
         $countryCodes = DB::table('country_codes')->get();
+        $preferredCommunicationsType = DB::table('preferred_communication_type')->get();
 
-        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes'));
+        $uploadedImagePath = Session::get('uploaded_image');
+
+        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes', 'uploadedImagePath', 'preferredCommunicationsType'));
     }
 
     public function requestFinalizationPost(Request $request)
@@ -93,15 +109,46 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
+            'uploadedImagePath' => 'required',
+            'contact-method' => 'required',
         ], [
             'first_name.required' => 'You need to provide your first name.',
             'last_name.required' => 'You need to provide your last name.',
             'email.required' => 'You need to provide your email address.',
             'email.email' => 'You need to provide a valid email address.',
             'phone_number.required' => 'You need to provide your phone number.',
+            'contact-method.required' => 'You need to select atleast one preffered mode of Communication.',
         ]);
 
-        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all());
+        $tempImagePath = $request->session()->get('uploaded_image');
+
+        if ($tempImagePath && file_exists($tempImagePath)) {
+
+            $currentDate = date('Y-m-d');
+            $email = $request->input('email');
+            $phoneNumber = $request->input('phone_number');
+            $imageExtension = pathinfo($tempImagePath, PATHINFO_EXTENSION);
+
+            $sanitizedEmail = preg_replace('/[^a-zA-Z0-9]/', '-', $email);
+            $sanitizedPhoneNumber = preg_replace('/[^a-zA-Z0-9]/', '-', $phoneNumber);
+
+            $newImageName = $currentDate . '-' . $sanitizedEmail . '-' . $sanitizedPhoneNumber . '.' . $imageExtension;
+            $newImagePath = public_path('orderdesigns') . '/' . $newImageName;
+
+            if (!file_exists(public_path('orderdesigns'))) {
+                mkdir(public_path('orderdesigns'), 0777, true);
+            }
+            rename($tempImagePath, $newImagePath);
+
+            if (file_exists($tempImagePath)) {
+                unlink($tempImagePath);
+            }
+            $imagePath = 'orderdesigns/' . $newImageName;
+        } else {
+            $imagePath = null;
+        }
+
+        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $imagePath);
 
         return redirect()->route('home');
     }

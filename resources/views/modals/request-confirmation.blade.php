@@ -19,16 +19,16 @@
                 request! We're excited to start working on your custom apparel.</p>
             <div class="bg-kLightGray flex flex-col items-center justify-center rounded-md">
                 @if(Session::has('request-confirmed'))
-                    <p>
-                        Your request has been successfully received and assigned the Reference Number:<span
-                            class="font-semibold">{{ Session::get('request-confirmed')['tracking_number'] }}</span>.
-                    </p>
-                    <br />
-                    <p>
-                        A confirmation email has been sent to <span
-                            class="font-semibold">{{ Session::get('request-confirmed')['email'] }}</span> with
-                        details about your request and the next steps.
-                    </p>
+                <p>
+                    Your request has been successfully received and assigned the Reference Number:<span
+                        class="font-semibold">{{ Session::get('request-confirmed')['tracking_number'] }}</span>.
+                </p>
+                <br />
+                <p>
+                    A confirmation email has been sent to <span
+                        class="font-semibold">{{ Session::get('request-confirmed')['email'] }}</span> with
+                    details about your request and the next steps.
+                </p>
                 @endif
             </div>
             <p class="text-base">If you have any immediate questions or need further assistance, feel free to contact

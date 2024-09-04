@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('customization_details_ID')->nullable();
             $table->string('print_type_ID')->nullable();
             $table->dateTime('estimated_delivery_date')->nullable();
-            $table->string('tracking_number')->nullable();
+            $table->string('final_order_design')->nullable();
+            $table->integer('price')->nullable();
+
             $table->timestamps();
 
             $table->foreign('user_details_ID')->references('user_details_ID')->on('user_details');

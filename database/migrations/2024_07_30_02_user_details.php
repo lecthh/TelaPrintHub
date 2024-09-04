@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->string('user_details_ID')->primary();
-            $table->string('preferred_communication_ID')->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('contact_information')->nullable();
             $table->timestamps();
-
-            $table->foreign('preferred_communication_ID')->references('preferred_communication_ID')->on('preferred_communication');
         });
     }
 

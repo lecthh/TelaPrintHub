@@ -20,8 +20,9 @@ class UserDetails extends Model
         'contact_information'
     ];
 
-    public function preferredCommunication()
+    public function preferredCommunications()
     {
-        return $this->belongsTo(PreferredCommunication::class, 'preferred_communication_ID');
+        return $this->belongsToMany(PreferredCommunicationType::class, 'user_preferred_communication', 'user_details_ID', 'preferred_communication_ID')
+            ->using(UserPreferredCommunication::class);
     }
 }

@@ -19,6 +19,7 @@ class OrderPlacement extends Model
         'user_details_ID',
         'order_ID',
         'order_placement_status_ID',
+        'order_design',
     ];
 
     public function userDetails()
