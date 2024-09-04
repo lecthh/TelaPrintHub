@@ -25,7 +25,8 @@ class Order extends Model
         'customization_details_ID',
         'print_type_ID',
         'estimated_delivery_date',
-        'tracking_number'
+        'order_design',
+        'price',
     ];
 
     public function userDetails()

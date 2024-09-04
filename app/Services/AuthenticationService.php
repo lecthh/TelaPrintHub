@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Str;
 
-class AuthenticationService
+class AuthenTicationService
 {
     protected $mailService;
 
@@ -23,7 +23,6 @@ class AuthenticationService
 
     public function registerDesignerCompany(array $data)
     {
-        $this->validateUniqueness($data);
 
         $fullPhoneNumber = $data['country_code'] . $data['phone_number'];
 
@@ -57,22 +56,6 @@ class AuthenticationService
         }
 
         $this->mailService->sendVerificationEmail($admin);
-    }
-
-    protected function validateUniqueness(array $data)
-    {
-        if (Admin::where('email', $data['email'])->exists()) {
-            throw ValidationException::withMessages(['email' => 'The email address is already registered.']);
-        }
-
-        $fullPhoneNumber = $data['country_code'] . $data['phone_number'];
-        if (Admin::where('contact_information', $fullPhoneNumber)->exists()) {
-            throw ValidationException::withMessages(['phone_number' => 'The phone number is already registered.']);
-        }
-
-        if (DesignerCompany::where('email', $data['email'])->exists()) {
-            throw ValidationException::withMessages(['email' => 'The designer company with this email is already registered.']);
-        }
     }
 
     protected function sendVerificationEmail(Admin $admin)

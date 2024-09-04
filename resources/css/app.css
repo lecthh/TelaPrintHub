@@ -4,25 +4,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-.scroller-wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-}
-
-.scroller {
-    animation: 50s scroll alternate infinite;
-    display: flex;
-}   
-
-@keyframes scroll {
-    from { 
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-100%);
-    }
-}
