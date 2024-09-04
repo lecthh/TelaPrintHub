@@ -92,10 +92,11 @@ class UserController extends Controller
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
         $countryCodes = DB::table('country_codes')->get();
+        $preferredCommunicationsType = DB::table('preferred_communication_type')->get();
 
         $uploadedImagePath = Session::get('uploaded_image');
 
-        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes', 'uploadedImagePath'));
+        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes', 'uploadedImagePath', 'preferredCommunicationsType'));
     }
 
     public function requestFinalizationPost(Request $request)
@@ -109,12 +110,14 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone_number' => 'required',
             'uploadedImagePath' => 'required',
+            'contact-method' => 'required',
         ], [
             'first_name.required' => 'You need to provide your first name.',
             'last_name.required' => 'You need to provide your last name.',
             'email.required' => 'You need to provide your email address.',
             'email.email' => 'You need to provide a valid email address.',
             'phone_number.required' => 'You need to provide your phone number.',
+            'contact-method.required' => 'You need to select atleast one preffered mode of Communication.',
         ]);
 
         $tempImagePath = $request->session()->get('uploaded_image');

@@ -25,7 +25,7 @@ class Order extends Model
         'customization_details_ID',
         'print_type_ID',
         'estimated_delivery_date',
-        'order_design',
+        'final_order_design',
         'price',
     ];
 

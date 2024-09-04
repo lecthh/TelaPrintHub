@@ -1,3 +1,7 @@
+@extends('layout.layout')
+
+@section('content')
+
 @vite('resources/css/app.css')
 <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
@@ -37,4 +41,5 @@
     @endforeach
 </div>
 @endif
+
 @endsection

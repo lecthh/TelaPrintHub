@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('customization_details_ID')->nullable();
             $table->string('print_type_ID')->nullable();
             $table->dateTime('estimated_delivery_date')->nullable();
-            $table->string('order_design')->nullable();
+            $table->string('final_order_design')->nullable();
             $table->integer('price')->nullable();
 
             $table->timestamps();
