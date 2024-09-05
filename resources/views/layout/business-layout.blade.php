@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
-<body class="bg-kWhite flex flex-col gap-y-6 justify-center">
+<body class="bg-kWhite flex flex-col justify-center">
     <nav class="px-6 py-3 font-dm-sans flex justify-center items-center text-base">
         <a href="{{ route('home') }}">
             <svg width="55" height="36" viewBox="0 0 55 36" fill="none" xmlns="http://www.w3.org/2000/svg">

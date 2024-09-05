@@ -2,9 +2,6 @@
 
 @section('content')
 <div class="flex px-6 py-[56px] gap-x-3 lowercase justify-center">
-    @if($errors->has('error'))
-    <div class="text-red-500 text-sm mb-4">{{ $errors->first('error') }}</div>
-    @endif
     <form method="POST" action="{{ route('login.post') }}" class="flex flex-col px-6 py-8 border border-kBlack justify-center items-center text-center gap-y-3">
         @csrf
         <h1 class="text-xl font-bold">business hub login</h1>
@@ -17,7 +14,7 @@
                 @endif
             </div>
             <div class="flex flex-col gap-y-3">
-                <h2 class="text-lg font-bold text-start">confirm password</h2>
+                <h2 class="text-lg font-bold text-start">password</h2>
                 <input type="password" name="password" id="password" required>
                 @if($errors->has('password'))
                 <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
@@ -27,7 +24,17 @@
         <div class="flex w-full">
             <button type="submit" class="flex flex-grow justify-center items-center p-2 text-kWhite bg-kBlack">login</button>
         </div>
+        @if($errors->has('error'))
+        <div class="text-red-500 text-sm mb-4">{{ $errors->first('error') }}</div>
+        @endif
     </form>
+    <!-- @if($errors->any())
+    <div class="text-red-500 text-sm">
+        @foreach($errors->all() as $error)
+        <p>{{ $error }}</p>
+        @endforeach
+    </div>
+    @endif -->
 </div>
 
 <!-- <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
@@ -60,13 +67,5 @@
         </form>
     </div>
 </div> -->
-
-@if($errors->any())
-<div class="text-red-500 text-sm">
-    @foreach($errors->all() as $error)
-    <p>{{ $error }}</p>
-    @endforeach
-</div>
-@endif
 
 @endsection
