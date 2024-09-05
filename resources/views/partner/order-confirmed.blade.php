@@ -21,7 +21,7 @@
             <path d="M16.87 15.25L18.52 17.96" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round" />
         </svg>
-        <h1 class="text-base font-bold text-[#5C5959] uppercase">active order - TELAPHSF1280</h1>
+        <h1 class="text-base font-bold text-[#5C5959] uppercase">confirmed request - TELAPHSF1280</h1>
     </div>
 
     <div class="flex gap-x-3 p-3 bg-kWhite border border-kBlack justify-between">
@@ -87,7 +87,7 @@
                     stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">date</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">date requested</h1>
                 <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
             </div>
         </div>
@@ -215,8 +215,8 @@
                     </div>
                 </div>
                 <div class="flex gap-x-3 justify-end">
-                    <button class="p-2 border border-kBlack">cancel order</button>
-                    <button class="text-kWhite p-2 bg-kblack">complete transaction</button>
+                    <button class="p-2 border border-kBlack">cancel request</button>
+                    <button class="text-kWhite p-2 bg-kblack">activate order</button>
                 </div>
             </div>
         </div>
