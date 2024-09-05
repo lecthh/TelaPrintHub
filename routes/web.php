@@ -26,6 +26,11 @@ Route::get('/confirm', function () {
     return view('order-confirmation');
 })->name('order-confirmation');
 
+// temporary for front end reasons
+Route::get('/orders', function () {
+    return view('partner.order');
+})->name('order-confirmation');
+
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');
 
