@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderPlacement;
 use App\Models\UserDetails;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Webpatser\Uuid\Uuid;
 
@@ -20,9 +21,18 @@ class RequestService
             'name' => $fullName,
             'email' => $request['email'],
             'contact_information' => $request['phone_number'],
-
-            // TODO: Add Preferred Communication
         ]);
+
+        $selectedCommunicationMethods = $request['contact-method'];
+        if ($selectedCommunicationMethods) {
+            foreach ($selectedCommunicationMethods as $method) {
+                DB::table('user_preferred_communication')->insert([
+                    'user_details_ID' => $userDetails->user_details_ID,
+                    'preferred_communication_ID' => $method,
+                ]);
+            }
+        }
+
 
         $order = Order::create([
             'order_ID' => (string) Uuid::generate(4),

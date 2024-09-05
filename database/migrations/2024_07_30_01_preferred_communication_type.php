@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('preferred_communication', function (Blueprint $table) {
-            $table->string('preferred_communication_ID')->primary();
+        Schema::create('preferred_communication_type', function (Blueprint $table) {
+            $table->id('preferred_communication_type_ID');
             $table->string('name');
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('preferred_communication');
+        Schema::dropIfExists('preferred_communication_type');
     }
 };
