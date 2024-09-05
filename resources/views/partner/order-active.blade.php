@@ -21,7 +21,7 @@
             <path d="M16.87 15.25L18.52 17.96" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round" />
         </svg>
-        <h1 class="text-base font-bold text-[#5C5959] uppercase">pending request - TELAPHSF1280</h1>
+        <h1 class="text-base font-bold text-[#5C5959] uppercase">active order - TELAPHSF1280</h1>
     </div>
 
     <div class="flex gap-x-3 p-3 bg-kWhite border border-kBlack justify-between">
@@ -190,10 +190,10 @@
                 <div class="flex flex-col">
                     <div class="flex flex-grow">
                         <h1 class="flex flex-grow font-bold text-kBlack w-1/2">designer</h1>
-                        <div class="flex w-1/2">
-                            <div class="inline-block border border-kBlack">
-                                <select name="" id=""></select>
-                            </div>
+                        <div class="flex flex-col gap-y-1 w-1/2">
+                            <a href="" class="normal-case">Jane Doe</a>
+                            <p class="lowercase">jane@gmail.com</p>
+                            <p class="uppercase">0978 974 4325</p>
                         </div>
                     </div>
                 </div>
@@ -215,8 +215,8 @@
                     </div>
                 </div>
                 <div class="flex gap-x-3 justify-end">
-                    <button class="p-2 border border-kBlack">cancel request</button>
-                    <button class="text-kWhite p-2 bg-kblack">confirm request</button>
+                    <button class="p-2 border border-kBlack">cancel order</button>
+                    <button class="text-kWhite p-2 bg-kblack">complete transaction</button>
                 </div>
             </div>
         </div>
