@@ -22,7 +22,6 @@ class Order extends Model
         'order_confirmation_ID',
         'order_status_ID',
         'apparel_category_ID',
-        'customization_details_ID',
         'print_type_ID',
         'estimated_delivery_date',
         'final_order_design',
@@ -57,11 +56,6 @@ class Order extends Model
     public function apparelCategory()
     {
         return $this->belongsTo(ApparelCategory::class, 'apparel_category_ID');
-    }
-
-    public function customizationDetails()
-    {
-        return $this->belongsTo(CustomizationDetails::class, 'customization_details_ID');
     }
 
     public function printType()

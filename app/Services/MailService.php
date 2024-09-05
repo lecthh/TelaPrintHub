@@ -25,4 +25,6 @@ class MailService
             $message->subject('Set Your Password');
         });
     }
+
+    public function sendConfirmationEmail() {}
 }
