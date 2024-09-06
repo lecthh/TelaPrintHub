@@ -4,7 +4,7 @@
 @section('content')
 @include('layout.dashboard-layout')
 <div class="flex flex-col gap-y-5 p-3 bg-kWhite border border-kBlack lowercase">
-    <div class="flex gap-x-3 p-3">
+    <div class="flex gap-x-3 pt-3 pl-3">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M9.87 5.6701L6.45 7.75012L4.89001 5.19012C4.32001 4.25012 4.62 3.01012 5.56 2.44012C6.5 1.87012 7.74 2.1701 8.31 3.1101L9.87 5.6701Z"
@@ -27,20 +27,12 @@
     <div class="flex gap-x-3 p-3 bg-kWhite border border-kBlack justify-between">
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
-                    stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                 <path
-                    d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M18.5 9.5V14.5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
+                    d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
+                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <path
-                    d="M9 18C9 18.75 8.78998 19.46 8.41998 20.06C7.72998 21.22 6.46 22 5 22C3.54 22 2.27002 21.22 1.58002 20.06C1.21002 19.46 1 18.75 1 18C1 15.79 2.79 14 5 14C7.21 14 9 15.79 9 18Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M7.75 15.25L2.25 20.75" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
+                    d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z"
+                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">customer reference</h1>
@@ -48,21 +40,14 @@
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
-                    stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+            <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 6V16C17 20 16 21 12 21H6C2 21 1 20 1 16V6C1 2 2 1 6 1H12C16 1 17 2 17 6Z" stroke="#171717"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M11 4.5H7" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
                     stroke-linejoin="round" />
-                <path d="M18.5 9.5V14.5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
                 <path
-                    d="M9 18C9 18.75 8.78998 19.46 8.41998 20.06C7.72998 21.22 6.46 22 5 22C3.54 22 2.27002 21.22 1.58002 20.06C1.21002 19.46 1 18.75 1 18C1 15.79 2.79 14 5 14C7.21 14 9 15.79 9 18Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M7.75 15.25L2.25 20.75" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
+                    d="M8.99995 18.1C9.85599 18.1 10.55 17.406 10.55 16.55C10.55 15.694 9.85599 15 8.99995 15C8.14391 15 7.44995 15.694 7.44995 16.55C7.44995 17.406 8.14391 18.1 8.99995 18.1Z"
+                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">mobile number</h1>
@@ -71,21 +56,38 @@
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
-                    stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                 <path
-                    d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z"
+                    d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z"
                     stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                     stroke-linejoin="round" />
-                <path d="M18.5 9.5V14.5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M9 18C9 18.75 8.78998 19.46 8.41998 20.06C7.72998 21.22 6.46 22 5 22C3.54 22 2.27002 21.22 1.58002 20.06C1.21002 19.46 1 18.75 1 18C1 15.79 2.79 14 5 14C7.21 14 9 15.79 9 18Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M7.75 15.25L2.25 20.75" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="#171717" stroke-width="1.5"
+                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
+            <div class="flex flex-col gap-y-3">
+                <h1 class="text-base font-bold text-[#5C5959]">email</h1>
+                <h1 class="text-base font-bold normal-case">gulf@gmail.com</h1>
+            </div>
+        </div>
+        <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2V5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M16 2V5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M3.5 9.08997H20.5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
+                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M11.9955 13.7H12.0045" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M8.29431 13.7H8.30329" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M8.29431 16.7H8.30329" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">date</h1>
                 <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
@@ -93,20 +95,12 @@
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
-                    stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                 <path
-                    d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    d="M20.75 13.25C20.75 18.08 16.83 22 12 22C7.17 22 3.25 18.08 3.25 13.25C3.25 8.42 7.17 4.5 12 4.5C16.83 4.5 20.75 8.42 20.75 13.25Z"
+                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 8V13" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 2H15" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                     stroke-linejoin="round" />
-                <path d="M18.5 9.5V14.5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M9 18C9 18.75 8.78998 19.46 8.41998 20.06C7.72998 21.22 6.46 22 5 22C3.54 22 2.27002 21.22 1.58002 20.06C1.21002 19.46 1 18.75 1 18C1 15.79 2.79 14 5 14C7.21 14 9 15.79 9 18Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M7.75 15.25L2.25 20.75" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                    stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">lead time</h1>
@@ -116,6 +110,8 @@
     </div>
 
     <div class="flex gap-x-4">
+        <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
+        </div>
         <div class="inline-block w-full">
             <table class="table-auto border border-kBlack w-full">
                 <thead>
@@ -164,8 +160,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
-        </div>
     </div>
 
     <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
@@ -189,11 +183,9 @@
                 <h1 class="font-bold text-base text-[#5C5959]">additional information</h1>
                 <div class="flex flex-col">
                     <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">designer</h1>
+                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">printer</h1>
                         <div class="flex flex-col gap-y-1 w-1/2">
-                            <a href="" class="normal-case">Jane Doe</a>
-                            <p class="lowercase">jane@gmail.com</p>
-                            <p class="uppercase">0978 974 4325</p>
+                            <a href="" class="normal-case hover:underline">VanJam</a>
                         </div>
                     </div>
                 </div>
@@ -201,8 +193,7 @@
                     <div class="flex flex-grow">
                         <h1 class="flex flex-grow font-bold text-kBlack w-1/2">request form</h1>
                         <div class="flex flex-col gap-y-1 w-1/2">
-                            <a href="" class="hover:underline">request 129430</a>
-                            <p class="normal-case">12 August, 2024</p>
+                            <a href="" class="hover:underline capitalize">request no. 129430</a>
                         </div>
                     </div>
                 </div>

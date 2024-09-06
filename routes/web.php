@@ -27,21 +27,29 @@ Route::get('/confirm', function () {
 })->name('order-confirmation');
 
 // temporary for front end reasons
-Route::get('/orders', function () {
-    return view('partner.order');
-})->name('order-confirmation');
+Route::get('/order-active', function () {
+    return view('partner.active.view');
+})->name('order-active');
 
-Route::get('/order-confirm-reqs', function () {
-    return view('partner.order-confirm-req');
-})->name('order-confirm-reqs');
+Route::get('/order-active-x', function () {
+    return view('partner.active.order');
+})->name('order-active-x');
+
+Route::get('/order-confirmed', function () {
+    return view('partner.confirmed.view');
+})->name('order-confirmed');
+
+Route::get('/order-confirmed-x', function () {
+    return view('partner.confirmed.order');
+})->name('order-confirmed-x');
 
 Route::get('/order-pending', function () {
-    return view('partner.order-pending');
+    return view('partner.pending.view');
 })->name('order-pending');
 
-Route::get('/order-active', function () {
-    return view('partner.order-active');
-})->name('order-active');
+Route::get('/order-pending-x', function () {
+    return view('partner.pending.order');
+})->name('order-pending-x');
 
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
