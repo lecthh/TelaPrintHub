@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('customization_details', function (Blueprint $table) {
             $table->string('customization_details_ID')->primary();
-            $table->text('description');
+            $table->string('remarks');
             $table->string('sizes_ID')->nullable();
             $table->string('name');
             $table->string('number')->nullable();
