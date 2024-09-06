@@ -199,7 +199,7 @@
             <div class="flex flex-col gap-y-2 w-1/2">
                 <h1 class="font-bold text-base text-[#5C5959]">confirm details</h1>
                 <div class="flex items-center">
-                    <h1 class="font-bold text-base w-1/2">designer:</h1>
+                    <h1 class="font-bold text-base w-1/2">printer:</h1>
                     <select name="" id="" class="w-1/2">
                         <option value="">test</option>
                     </select>
