@@ -219,7 +219,7 @@
                                     profile
                                 </li>
                             </a>
-                            <a href="" class="hover:bg-gray-300 hover:rounded-md p-2">
+                            <a href="{{ route('logout') }}" class="hover:bg-gray-300 hover:rounded-md p-2">
                                 <li class="flex gap-x-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
