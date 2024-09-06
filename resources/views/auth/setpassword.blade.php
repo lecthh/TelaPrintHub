@@ -1,7 +1,34 @@
-@extends('layout.layout')
+@extends('layout.business-layout')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
+<div class="flex px-6 py-[56px] gap-x-3 lowercase justify-center">
+    <form method="POST" action="{{ route('setpassword.post') }}" class="flex flex-col px-6 py-8 border border-kBlack justify-center items-center text-center gap-y-3">
+        @csrf
+        <h1 class="text-xl font-bold">create password</h1>
+        <div class="flex flex-col gap-y-3 w-[612px]">
+            <div class="flex flex-col gap-y-3">
+                <h2 class="text-lg font-bold text-start">password</h2>
+                <input type="password" name="password" id="password" required>
+                @if($errors->has('password'))
+                <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+            <div class="flex flex-col gap-y-3">
+                <h2 class="text-lg font-bold text-start">confirm password</h2>
+                <input type="password" name="password_confirmation" id="password_confirmation" required>
+                @if($errors->has('password_confirmation'))
+                <span class="text-red-500 text-sm">{{ $errors->first('password_confirmation') }}</span>
+                @endif
+            </div>
+            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="email" value="{{ $email }}">
+        </div>
+        <div class="flex w-full">
+            <button type="submit" class="flex flex-grow justify-center items-center p-2 text-kWhite bg-kBlack">set password</button>
+        </div>
+    </form>
+</div>
+<!-- <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create Password</h2>
         <form method="POST" action="{{ route('setpassword.post') }}">
@@ -27,5 +54,5 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
 @endsection

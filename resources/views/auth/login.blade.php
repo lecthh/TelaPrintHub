@@ -1,9 +1,43 @@
-@extends('layout.layout')
+@extends('layout.business-layout')
 
 @section('content')
+<div class="flex px-6 py-[56px] gap-x-3 lowercase justify-center">
+    <form method="POST" action="{{ route('login.post') }}" class="flex flex-col px-6 py-8 border border-kBlack justify-center items-center text-center gap-y-3">
+        @csrf
+        <h1 class="text-xl font-bold">business hub login</h1>
+        <div class="flex flex-col gap-y-3 w-[612px]">
+            <div class="flex flex-col gap-y-3">
+                <h2 class="text-lg font-bold text-start">email</h2>
+                <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                @if($errors->has('email'))
+                <span class="text-red-500 text-sm">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
+            <div class="flex flex-col gap-y-3">
+                <h2 class="text-lg font-bold text-start">password</h2>
+                <input type="password" name="password" id="password" required>
+                @if($errors->has('password'))
+                <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+        </div>
+        <div class="flex w-full">
+            <button type="submit" class="flex flex-grow justify-center items-center p-2 text-kWhite bg-kBlack">login</button>
+        </div>
+        @if($errors->has('error'))
+        <div class="text-red-500 text-sm mb-4">{{ $errors->first('error') }}</div>
+        @endif
+    </form>
+    <!-- @if($errors->any())
+    <div class="text-red-500 text-sm">
+        @foreach($errors->all() as $error)
+        <p>{{ $error }}</p>
+        @endforeach
+    </div>
+    @endif -->
+</div>
 
-@vite('resources/css/app.css')
-<div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
+<!-- <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
 
@@ -32,14 +66,6 @@
             </div>
         </form>
     </div>
-</div>
-
-@if($errors->any())
-<div class="text-red-500 text-sm">
-    @foreach($errors->all() as $error)
-    <p>{{ $error }}</p>
-    @endforeach
-</div>
-@endif
+</div> -->
 
 @endsection

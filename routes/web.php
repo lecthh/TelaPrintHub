@@ -26,6 +26,24 @@ Route::get('/confirm', function () {
     return view('order-confirmation');
 })->name('order-confirmation');
 
+// temporary for front end reasons
+Route::get('/orders', function () {
+    return view('partner.order');
+})->name('order-confirmation');
+
+Route::get('/order-confirm-reqs', function () {
+    return view('partner.order-confirm-req');
+})->name('order-confirm-reqs');
+
+Route::get('/order-pending', function () {
+    return view('partner.order-pending');
+})->name('order-pending');
+
+Route::get('/order-active', function () {
+    return view('partner.order-active');
+})->name('order-active');
+
+
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');
 
