@@ -1,5 +1,5 @@
 @vite('resources/css/app.css')
-<div class="flex lowercase bg-[#F1F1F1] h-fit">
+<div class="flex lowercase bg-[#F1F1F1] h-max">
     <div class="flex flex-col justify-between px-6 py-8 border-r border-kBlack">
         <div class="flex flex-col gap-y-8">
             <a href="">

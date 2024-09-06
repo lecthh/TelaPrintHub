@@ -35,9 +35,9 @@ Route::get('/order-confirm-reqs', function () {
     return view('partner.order-confirm-req');
 })->name('order-confirm-reqs');
 
-Route::get('/order-confirmed-req', function () {
-    return view('partner.order-confirmed');
-})->name('order-confirmed-req');
+Route::get('/order-pending', function () {
+    return view('partner.order-pending');
+})->name('order-pending');
 
 Route::get('/order-active', function () {
     return view('partner.order-active');

@@ -87,8 +87,30 @@
                     stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">date requested</h1>
-                <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">email</h1>
+                <h1 class="text-base font-bold lowercase">gulf@gmail.com</h1>
+            </div>
+        </div>
+        <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
+                    stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z"
+                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M18.5 9.5V14.5" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M9 18C9 18.75 8.78998 19.46 8.41998 20.06C7.72998 21.22 6.46 22 5 22C3.54 22 2.27002 21.22 1.58002 20.06C1.21002 19.46 1 18.75 1 18C1 15.79 2.79 14 5 14C7.21 14 9 15.79 9 18Z"
+                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M7.75 15.25L2.25 20.75" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="flex flex-col gap-y-3">
+                <h1 class="text-base font-bold text-[#5C5959]">communication</h1>
+                <h1 class="text-base font-bold lowercase">email</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3">
@@ -109,116 +131,95 @@
                     stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">lead time</h1>
-                <h1 class="text-base font-bold uppercase">3 - 5 working days</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">date</h1>
+                <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
             </div>
         </div>
     </div>
 
-    <div class="flex gap-x-6">
-        <div class="inline-block w-full">
-            <table class="table-auto border border-kBlack w-full">
-                <thead>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-lg font-bold border-r border-kBlack p-2 text-center">no</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">shirt name</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">jersey #</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">size</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">short #</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">size</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">pocket</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">remarks</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Alexis</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Joel</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Cyber</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="flex gap-x-3">
+        <div class="w-[610px] h-[400px] border border-kBlack bg-kViolet">
         </div>
-        <div class="w-[500px] h-[500px] bg-kViolet border border-kBlack">
+        <div class="flex flex-grow border border-kBlack gap-x-3 p-3">
+            <div class="flex flex-col gap-y-2 w-full">
+                <div class="flex gap-y-3">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21 5.25H14C13.59 5.25 13.25 4.91 13.25 4.5C13.25 4.09 13.59 3.75 14 3.75H21C21.41 3.75 21.75 4.09 21.75 4.5C21.75 4.91 21.41 5.25 21 5.25Z"
+                            fill="#171717" />
+                        <path
+                            d="M21 10.25H14C13.59 10.25 13.25 9.91 13.25 9.5C13.25 9.09 13.59 8.75 14 8.75H21C21.41 8.75 21.75 9.09 21.75 9.5C21.75 9.91 21.41 10.25 21 10.25Z"
+                            fill="#171717" />
+                        <path
+                            d="M21 15.25H3C2.59 15.25 2.25 14.91 2.25 14.5C2.25 14.09 2.59 13.75 3 13.75H21C21.41 13.75 21.75 14.09 21.75 14.5C21.75 14.91 21.41 15.25 21 15.25Z"
+                            fill="#171717" />
+                        <path
+                            d="M21 20.25H3C2.59 20.25 2.25 19.91 2.25 19.5C2.25 19.09 2.59 18.75 3 18.75H21C21.41 18.75 21.75 19.09 21.75 19.5C21.75 19.91 21.41 20.25 21 20.25Z"
+                            fill="#171717" />
+                        <path
+                            d="M7.92 3.5H5.08C3.68 3.5 3 4.18 3 5.58V8.43C3 9.83 3.68 10.51 5.08 10.51H7.93C9.33 10.51 10.01 9.83 10.01 8.43V5.58C10 4.18 9.32 3.5 7.92 3.5Z"
+                            fill="#171717" />
+                    </svg>
+                    <h4 class="font-bold text-base text-[#5C5959]">order details</h4>
+                </div>
+                <div class="flex flex-col gap-y-2 w-full h-full">
+                    <h1 class="font-bold text-lg">description:</h1>
+                    <div class="flex w-full h-full gap-x-3 p-2 border border-kBlack">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quod earum accusamus.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-y-2 w-full">
+                    <h1 class="font-bold text-lg">images:</h1>
+                    <div class="flex w-full gap-x-2">
+                        <div class="w-[180px] h-[150px] border border-kBlack bg-kViolet">
+                        </div>
+                        <div class="w-[180px] h-[150px] border border-kBlack bg-kViolet">
+                        </div>
+                        <div class="w-[180px] h-[150px] border border-kBlack bg-kViolet">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
-        <div class="flex gap-x-3 p-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M22.9999 17.91C23.0199 18.66 22.8199 19.37 22.4599 19.98C22.2599 20.34 21.9899 20.6701 21.6899 20.9401C20.9999 21.5801 20.0899 21.9701 19.0799 22.0001C17.6199 22.0301 16.3299 21.2801 15.6199 20.1301C15.2399 19.5401 15.0099 18.8301 14.9999 18.0801C14.9699 16.8201 15.5299 15.6801 16.4299 14.9301C17.1099 14.3701 17.9699 14.0201 18.9099 14.0001C21.1199 13.9501 22.9499 15.7 22.9999 17.91Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M17.4399 18.0298L18.45 18.9897L20.5399 16.9697" stroke="#171717" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M3.17017 7.44043L12.0002 12.5504L20.7701 7.4704" stroke="#171717" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M12.0002 21.61V12.54" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path
-                    d="M21.6101 9.17V14.83C21.6101 14.88 21.6101 14.92 21.6001 14.97C20.9001 14.36 20.0001 14 19.0001 14C18.0601 14 17.1901 14.33 16.5001 14.88C15.5801 15.61 15.0001 16.74 15.0001 18C15.0001 18.75 15.2101 19.46 15.5801 20.06C15.6701 20.22 15.7801 20.37 15.9001 20.51L14.0701 21.52C12.9301 22.16 11.0701 22.16 9.93011 21.52L4.59012 18.56C3.38012 17.89 2.39014 16.21 2.39014 14.83V9.17C2.39014 7.79 3.38012 6.11002 4.59012 5.44002L9.93011 2.48C11.0701 1.84 12.9301 1.84 14.0701 2.48L19.4101 5.44002C20.6201 6.11002 21.6101 7.79 21.6101 9.17Z"
-                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <div class="flex flex-col gap-y-3 w-full">
-                <h1 class="font-bold text-base text-[#5C5959]">additional information</h1>
-                <div class="flex flex-col">
-                    <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">designer</h1>
-                        <div class="flex w-1/2">
-                            <div class="inline-block border border-kBlack">
-                                <select name="" id=""></select>
-                            </div>
-                        </div>
-                    </div>
+    <div class="flex gap-x-3 p-3 border border-kBlack">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M11.02 19.5H7.5C6.88 19.5 6.33 19.48 5.84 19.41C3.21 19.12 2.5 17.88 2.5 14.5V9.5C2.5 6.12 3.21 4.88 5.84 4.59C6.33 4.52 6.88 4.5 7.5 4.5H10.96"
+                stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+                d="M15.02 4.5H16.5C17.12 4.5 17.67 4.52 18.16 4.59C20.79 4.88 21.5 6.12 21.5 9.5V14.5C21.5 17.88 20.79 19.12 18.16 19.41C17.67 19.48 17.12 19.5 16.5 19.5H15.02"
+                stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15 2V22" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 8.5V15.5" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        <div class="flex flex-col w-full">
+            <div class="flex flex-col gap-y-2 w-1/2">
+                <h1 class="font-bold text-base text-[#5C5959]">confirm details</h1>
+                <div class="flex items-center">
+                    <h1 class="font-bold text-base w-1/2">designer:</h1>
+                    <select name="" id="" class="w-1/2">
+                        <option value="">test</option>
+                    </select>
                 </div>
-                <div class="flex flex-col">
-                    <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">request form</h1>
-                        <div class="flex flex-col gap-y-1 w-1/2">
-                            <a href="" class="hover:underline">request 129430</a>
-                            <p class="normal-case">12 August, 2024</p>
-                        </div>
-                    </div>
+                <div class="flex items-center">
+                    <h1 class="font-bold text-base w-1/2">final design:</h1>
+                    <input type="file" name="" id="" class="w-1/2">
                 </div>
-                <div class="flex flex-col">
-                    <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">total quantity:</h1>
-                        <div class="flex w-1/2">
-                            <a href="" class="hover:underline">3</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex gap-x-3 justify-end">
-                    <button class="p-2 border border-kBlack">cancel request</button>
-                    <button class="text-kWhite p-2 bg-kblack">confirm request</button>
+                <div class="flex items-center">
+                    <h1 class="font-bold text-base w-1/2">generate link:</h1>
+                    <button class="p-2 bg-[#5C5959] text-kWhite">generate confirmation link</button>
                 </div>
             </div>
+            <div class="flex justify-end">
+                <div class="inline-block">
+                    <button class="border border-kBlack bg-kWhite text-kBlack p-2">cancel request</button>
+                    <button class="bg-kBlack text-kWhite p-2">confirm request</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
