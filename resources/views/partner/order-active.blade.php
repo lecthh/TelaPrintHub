@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="flex gap-x-6">
+    <div class="flex gap-x-4">
         <div class="inline-block w-full">
             <table class="table-auto border border-kBlack w-full">
                 <thead>
@@ -164,7 +164,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="w-[500px] h-[500px] bg-kViolet border border-kBlack">
+        <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
         </div>
     </div>
 
