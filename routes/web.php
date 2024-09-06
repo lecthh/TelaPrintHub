@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -65,3 +66,5 @@ Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 Route::middleware("auth")->group(function () {
     Route::get('/catalog', [AdminController::class, "catalog"])->name('catalog');
 });
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(PreventBackHistory::class);

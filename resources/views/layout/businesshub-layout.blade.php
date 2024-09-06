@@ -38,7 +38,7 @@
                     <a href="" class="text-lg font-semibold">account</a>
                 </li>
                 <li>
-                    <a href="" class="text-lg font-semibold">logout</a>
+                    <a href="{{ route('logout') }}" class="text-lg font-semibold">logout</a>
                 </li>
             </ul>
         </div>
