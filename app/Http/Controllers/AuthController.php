@@ -44,6 +44,9 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($credentials)) {
+            $admin = Auth::guard('admin')->user();
+            $company = DB::table('designer_company')->where('admin_ID', $admin->admin_ID)->first();
+            Session::put('admin', $company);
             return redirect()->intended('catalog');
         } else {
             return redirect()->back()->withErrors(['error' => 'Invalid email or password']);

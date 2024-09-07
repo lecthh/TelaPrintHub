@@ -2,12 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\OrderPlacement;
+
+use function Laravel\Prompts\table;
 
 class AdminController extends Controller
 {
     public function catalog()
     {
-        return view('partner.catalog');
+        $admin = session('admin');
+        return view('partner.catalog', compact('admin'));
+    }
+
+    public function orderPendingTable()
+    {
+        $admin = session('admin');
+
+        $pendingOrders = OrderPlacement::whereHas('order', function ($query) {
+            $query->whereNull('order_confirmation_ID');
+        })
+            ->whereHas('order.designerCompany', function ($query) use ($admin) {
+                $query->where('designer_ID', $admin->designer_ID);
+            })
+            ->with(['order' => function ($query) {
+                $query->select('order_ID', 'user_details_ID');
+            }, 'userDetails' => function ($query) {
+                $query->select('user_details_ID', 'name', 'email', 'contact_information');
+            }])
+            ->get();
+        return view('partner.pending.view', compact('admin', 'pendingOrders'));
+    }
+
+    public function orderPendingTablePost() {}
+
+    public function orderPending()
+    {
+        $admin = session('admin');
+        return view('partner.pending.order', compact('admin'));
     }
 }
