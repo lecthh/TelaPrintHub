@@ -119,7 +119,6 @@ class UserController extends Controller
             'phone_number.required' => 'You need to provide your phone number.',
             'contact-method.required' => 'You need to select atleast one preffered mode of Communication.',
         ]);
-
         $tempImagePath = $request->session()->get('uploaded_image');
 
         if ($tempImagePath && file_exists($tempImagePath)) {

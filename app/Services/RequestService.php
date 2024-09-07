@@ -15,12 +15,12 @@ class RequestService
     public function createOrder($selectedCategory, $selectedCompany, $request, $imagepath)
     {
         $fullName = $request['first_name'] . ' ' . $request['last_name'];
-
+        $fullPhoneNumber = $request['country_code'] . $request['phone_number'];
         $userDetails = UserDetails::create([
             'user_details_ID' => (string) Uuid::generate(4),
             'name' => $fullName,
             'email' => $request['email'],
-            'contact_information' => $request['phone_number'],
+            'contact_information' => $fullPhoneNumber,
         ]);
 
         $selectedCommunicationMethods = $request['contact-method'];
