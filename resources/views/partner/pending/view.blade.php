@@ -36,8 +36,10 @@
         </thead>
         <tbody>
             @foreach($pendingOrders as $orderPlacement)
-            <tr class="hover:bg-gray-100 cursor-pointer">
-                <td class="p-2 border border-kBlack text-center"><input type="checkbox" name="" id=""></td>
+            <tr class="hover:bg-gray-100 cursor-pointer" data-url="{{ route('order-pending-details', ['order_placement_ID' => $orderPlacement->order_placement_ID]) }}">
+                <td class="p-2 border border-kBlack text-center">
+                    <input type="checkbox" name="selected_orders[]" value="{{ $orderPlacement->order->order_ID }}">
+                </td>
                 <td class="p-2 border border-kBlack capitalize">{{ $orderPlacement->created_at->format('d F, Y') }}</td>
                 <td class="p-2 border border-kBlack uppercase">{{ $orderPlacement->order->order_ID }}</td>
                 <td class="p-2 border border-kBlack capitalize">{{ $orderPlacement->userDetails->name }}</td>
@@ -47,6 +49,7 @@
             @endforeach
         </tbody>
     </table>
+
 
 
     <div class="flex justify-end">
@@ -59,4 +62,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const rows = document.querySelectorAll('tr[data-url]');
+
+        rows.forEach(row => {
+            row.addEventListener('click', function() {
+                window.location.href = row.getAttribute('data-url');
+            });
+        });
+    });
+</script>
+
 @endsection
