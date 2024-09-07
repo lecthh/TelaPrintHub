@@ -15,7 +15,7 @@ class RequestService
     public function createOrder($selectedCategory, $selectedCompany, $request, $imagepath)
     {
         $fullName = $request['first_name'] . ' ' . $request['last_name'];
-        $fullPhoneNumber = $request['country_code'] . $request['phone_number'];
+        $fullPhoneNumber = $request['country_code'] . ' ' . $request['phone_number'];
         $userDetails = UserDetails::create([
             'user_details_ID' => (string) Uuid::generate(4),
             'name' => $fullName,

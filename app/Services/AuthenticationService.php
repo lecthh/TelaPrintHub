@@ -24,7 +24,7 @@ class AuthenTicationService
     public function registerDesignerCompany(array $data)
     {
 
-        $fullPhoneNumber = $data['country_code'] . $data['phone_number'];
+        $fullPhoneNumber = $data['country_code'] . ' ' . $data['phone_number'];
 
         $admin = Admin::create([
             'admin_ID' => (string) Uuid::generate(4),
