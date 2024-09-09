@@ -35,8 +35,8 @@
                     stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">customer reference</h1>
-                <h1 class="text-base font-bold uppercase">GULF SHIP HANDLER</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Customer reference</h1>
+                <h1 class="text-base font-bold uppercase">{{ $orderPlacement->userDetails->name }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -50,8 +50,8 @@
                     stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">mobile number</h1>
-                <h1 class="text-base font-bold uppercase">0937 432 8439</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Mobile number</h1>
+                <h1 class="text-base font-bold uppercase">{{ $orderPlacement->userDetails->contact_information }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -64,8 +64,8 @@
                     stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">email</h1>
-                <h1 class="text-base font-bold normal-case">gulf@gmail.com</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Email</h1>
+                <h1 class="text-base font-bold normal-case">{{ $orderPlacement->userDetails->email }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -78,8 +78,8 @@
                     stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">apparel</h1>
-                <h1 class="text-base font-bold normal-case">Sportswear</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Apparel</h1>
+                <h1 class="text-base font-bold normal-case">{{$orderPlacement->order->apparelCategory->name}}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3">
@@ -103,13 +103,13 @@
             </svg>
 
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">date</h1>
-                <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Date</h1>
+                <h1 class="text-base font-bold normal-case">{{ $orderPlacement->created_at->format('d F, Y') }}</h1>
             </div>
         </div>
     </div>
 
-    <div class="flex gap-x-4">
+    <!-- <div class="flex gap-x-4">
         <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
         </div>
         <div class="inline-block w-full">
@@ -160,7 +160,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> -->
 
     <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
         <div class="flex gap-x-3 p-3">

@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderConfirmedController;
+use App\Http\Controllers\OrderPendingController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\PreventBackHistory;
@@ -52,10 +54,7 @@ Route::get('/order-pending-x', function () {
     return view('designer.pending.order');
 })->name('order-pending-x');
 
-Route::get('/order/pending', [AdminController::class, "orderPendingTable"])->name('order-pending');
 
-Route::get('/order/pending/details/{order_placement_ID}', [AdminController::class, "orderPending"])->name('order-pending-details');
-Route::post('/order/pending/details', [AdminController::class, "orderPendingPost"])->name('order-pending-details-post');
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');
@@ -77,6 +76,14 @@ Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 
 Route::middleware("auth")->group(function () {
     Route::get('/catalog', [AdminController::class, "catalog"])->name('catalog');
+
+    Route::get('/order/pending', [OrderPendingController::class, "orderPendingTable"])->name('order-pending');
+
+    Route::get('/order/pending/details/{order_placement_ID}', [OrderPendingController::class, "orderPending"])->name('order-pending-details');
+    Route::post('/order/pending/details', [OrderPendingController::class, "orderPendingPost"])->name('order-pending-details-post');
+
+    Route::get('/order/confirmed', [OrderConfirmedController::class, "orderConfirmedTable"])->name('order-confirmed');
+    Route::get('/order/confirmed/details/{order_placement_ID}', [OrderConfirmedController::class, "orderConfirmed"])->name('order-confirmed-details');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(PreventBackHistory::class);
