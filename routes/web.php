@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -27,22 +28,33 @@ Route::get('/confirm', function () {
 })->name('order-confirmation');
 
 // temporary for front end reasons
-Route::get('/orders', function () {
-    return view('partner.order');
-})->name('order-confirmation');
-
-Route::get('/order-confirm-reqs', function () {
-    return view('partner.order-confirm-req');
-})->name('order-confirm-reqs');
-
-Route::get('/order-pending', function () {
-    return view('partner.order-pending');
-})->name('order-pending');
-
 Route::get('/order-active', function () {
-    return view('partner.order-active');
+    return view('designer.active.view');
 })->name('order-active');
 
+Route::get('/order-active-x', function () {
+    return view('designer.active.order');
+})->name('order-active-x');
+
+Route::get('/order-confirmed', function () {
+    return view('designer.confirmed.view');
+})->name('order-confirmed');
+
+Route::get('/order-confirmed-x', function () {
+    return view('designer.confirmed.order');
+})->name('order-confirmed-x');
+
+Route::get('/order-pending', function () {
+    return view('designer.pending.view');
+})->name('order-pending');
+
+Route::get('/order-pending-x', function () {
+    return view('designer.pending.order');
+})->name('order-pending-x');
+
+Route::get('/order/pending', [AdminController::class, "orderPendingTable"])->name('order-pending');
+
+Route::get('/order/pending/details/{order_placement_ID}', [AdminController::class, "orderPending"])->name('order-pending-details');
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');
@@ -65,3 +77,5 @@ Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 Route::middleware("auth")->group(function () {
     Route::get('/catalog', [AdminController::class, "catalog"])->name('catalog');
 });
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(PreventBackHistory::class);

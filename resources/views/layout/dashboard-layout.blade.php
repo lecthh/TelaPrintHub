@@ -1,5 +1,5 @@
 @vite('resources/css/app.css')
-<h1 class="font-bold text-xl normal-case">Hello, Company Name!</h1>
+<h1 class="font-bold text-xl normal-case">Hello, {{$admin->name}}</h1>
 <div class="flex gap-x-3 p-3 bg-kWhite border border-kBlack justify-between">
     <a href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

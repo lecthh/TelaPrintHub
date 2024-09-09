@@ -19,8 +19,9 @@ class MailService
             now()->addMinutes(60),
             ['token' => $token, 'email' => $admin->email]
         );
+        $name = $admin->name;
 
-        Mail::send('mail.verify', ['url' => $url], function ($message) use ($admin) {
+        Mail::send('mail.verify', ['url' => $url, 'name' => $name], function ($message) use ($admin) {
             $message->to($admin->email);
             $message->subject('Set Your Password');
         });

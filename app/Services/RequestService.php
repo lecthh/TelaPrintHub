@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
 use App\Models\UserDetails;
 use GuzzleHttp\Psr7\Request;
@@ -12,15 +13,16 @@ use Webpatser\Uuid\Uuid;
 
 class RequestService
 {
-    public function createOrder($selectedCategory, $selectedCompany, $request, $imagepath)
+    public function createOrder($selectedCategory, $selectedCompany, $request, $newImagePaths)
     {
-        $fullName = $request['first_name'] . ' ' . $request['last_name'];
 
+        $fullName = $request['first_name'] . ' ' . $request['last_name'];
+        $fullPhoneNumber = $request['country_code'] . ' ' . $request['phone_number'];
         $userDetails = UserDetails::create([
             'user_details_ID' => (string) Uuid::generate(4),
             'name' => $fullName,
             'email' => $request['email'],
-            'contact_information' => $request['phone_number'],
+            'contact_information' => $fullPhoneNumber,
         ]);
 
         $selectedCommunicationMethods = $request['contact-method'];
@@ -45,16 +47,21 @@ class RequestService
             'customization_details_ID' => null,
             'print_type_ID' => null,
             'estimated_delivery_date' => null,
-            'order_design' => $imagepath,
         ]);
 
-        OrderPlacement::create([
+        $orderPlacement = OrderPlacement::create([
             'order_placement_ID' => (string) Uuid::generate(4),
             'user_details_ID' => $userDetails->user_details_ID,
             'order_ID' => $order->order_ID,
             'order_placement_status_ID' => 1,
-            'order_design' => $imagepath,
         ]);
+
+        foreach ($newImagePaths as $imagePath) {
+            OrderDesignsPending::create([
+                'order_placement_ID' => $orderPlacement->order_placement_ID,
+                'file_path' => $imagePath,
+            ]);
+        }
 
         Session::flash('request-confirmed', [
             'email' => $request['email'],
