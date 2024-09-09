@@ -7,6 +7,10 @@
         <div class="flex flex-col gap-y-4">
             <label for="image" class="text-kBlack text-base font-medium">Upload an Image</label>
             <input type="file" name="image" id="image" accept="image/*" class="file-input w-full border rounded p-2 text-kBlack">
+
+            <label for="description">
+                <textarea name="" id="description" rows="5" cols="80"></textarea>
+            </label>
         </div>
 
         <div class="inline-flex justify-end">

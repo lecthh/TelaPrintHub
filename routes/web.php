@@ -29,27 +29,27 @@ Route::get('/confirm', function () {
 
 // temporary for front end reasons
 Route::get('/order-active', function () {
-    return view('partner.active.view');
+    return view('designer.active.view');
 })->name('order-active');
 
 Route::get('/order-active-x', function () {
-    return view('partner.active.order');
+    return view('designer.active.order');
 })->name('order-active-x');
 
 Route::get('/order-confirmed', function () {
-    return view('partner.confirmed.view');
+    return view('designer.confirmed.view');
 })->name('order-confirmed');
 
 Route::get('/order-confirmed-x', function () {
-    return view('partner.confirmed.order');
+    return view('designer.confirmed.order');
 })->name('order-confirmed-x');
 
 Route::get('/order-pending', function () {
-    return view('partner.pending.view');
+    return view('designer.pending.view');
 })->name('order-pending');
 
 Route::get('/order-pending-x', function () {
-    return view('partner.pending.order');
+    return view('designer.pending.order');
 })->name('order-pending-x');
 
 Route::get('/order/pending', [AdminController::class, "orderPendingTable"])->name('order-pending');
