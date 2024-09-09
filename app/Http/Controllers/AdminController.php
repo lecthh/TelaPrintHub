@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function catalog()
     {
         $admin = session('admin');
-        return view('partner.catalog', compact('admin'));
+        return view('designer.catalog', compact('admin'));
     }
 
     public function orderPendingTable()
@@ -31,10 +31,8 @@ class AdminController extends Controller
                 $query->select('user_details_ID', 'name', 'email', 'contact_information');
             }])
             ->get();
-        return view('partner.pending.view', compact('admin', 'pendingOrders'));
+        return view('designer.pending.view', compact('admin', 'pendingOrders'));
     }
-
-    public function orderPendingTablePost() {}
 
     public function orderPending($order_placement_ID)
     {
@@ -44,6 +42,6 @@ class AdminController extends Controller
             ->where('order_placement_ID', $order_placement_ID)
             ->firstOrFail();
 
-        return view('partner.pending.order', compact('admin', 'orderPlacement'));
+        return view('designer.pending.order', compact('admin', 'orderPlacement'));
     }
 }

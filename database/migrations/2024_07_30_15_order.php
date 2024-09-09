@@ -24,6 +24,7 @@ return new class extends Migration
             $table->dateTime('estimated_delivery_date')->nullable();
             $table->string('final_order_design')->nullable();
             $table->integer('price')->nullable();
+            $table->string('description')->nullable();
 
             $table->timestamps();
 

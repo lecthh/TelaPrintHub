@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" name="uploadedImagePath" value="{{$uploadedImagePath}}">
+        <input type="hidden" name="uploadedImages" value="{{ json_encode($uploadedImages) }}">
     </form>
 
     <div class="flex flex-col flex-grow px-6 py-3 gap-y-6 lowercase w-1/2">
@@ -109,11 +109,15 @@
         <div class="flex flex-col gap-y-7">
             <div class="flex flex-col gap-y-2">
                 <h1 class="text-lg font-semibold">order details</h1>
-                <div class="w-[500px] h-[300px] border border-kBlack bg-kViolet overflow-hidden">
-                    @if($uploadedImagePath)
-                    <img src="{{ asset($uploadedImagePath) }}" alt="Uploaded Image" class="w-full h-full object-cover border">
+                <div class="flex gap-x-4">
+                    @if(!empty($uploadedImages))
+                    @foreach($uploadedImages as $image)
+                    <div class="w-[150px] h-[150px] border border-kBlack bg-kViolet overflow-hidden">
+                        <img src="{{ asset($image) }}" alt="Uploaded Image" class="w-full h-full object-cover border">
+                    </div>
+                    @endforeach
                     @else
-                    <p class="text-red-700 text-base">Error Uploading image, Please retry the customization process again</p>
+                    <p class="text-red-700 text-base">Error Uploading images, please retry the customization process again.</p>
                     @endif
                 </div>
             </div>
@@ -129,6 +133,7 @@
             </div>
         </div>
     </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 @endsection

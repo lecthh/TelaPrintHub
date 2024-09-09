@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('user_details_ID');
             $table->string('order_ID');
             $table->unsignedBigInteger('order_placement_status_ID');
-            $table->string('order_design')->nullable();
             $table->timestamps();
 
             $table->foreign('user_details_ID')->references('user_details_ID')->on('user_details');

@@ -5,11 +5,11 @@
     <form method="POST" action="{{ route('request-apparel-customization-post') }}" enctype="multipart/form-data" class="flex flex-col gap-y-10">
         @csrf
         <div class="flex flex-col gap-y-4">
-            <label for="image" class="text-kBlack text-base font-medium">Upload an Image</label>
-            <input type="file" name="image" id="image" accept="image/*" class="file-input w-full border rounded p-2 text-kBlack">
+            <label for="images" class="text-kBlack text-base font-medium">Upload Images</label>
+            <input type="file" name="images[]" id="images" accept="image/*" class="file-input w-full border rounded p-2 text-kBlack" multiple>
 
             <label for="description">
-                <textarea name="" id="description" rows="5" cols="80"></textarea>
+                <textarea name="description" id="description" rows="5" cols="80" placeholder="Enter your description here"></textarea>
             </label>
         </div>
 
