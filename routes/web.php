@@ -55,6 +55,7 @@ Route::get('/order-pending-x', function () {
 Route::get('/order/pending', [AdminController::class, "orderPendingTable"])->name('order-pending');
 
 Route::get('/order/pending/details/{order_placement_ID}', [AdminController::class, "orderPending"])->name('order-pending-details');
+Route::post('/order/pending/details', [AdminController::class, "orderPendingPost"])->name('order-pending-details-post');
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');

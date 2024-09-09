@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Admin;
+use App\Models\OrderPlacement;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
@@ -27,5 +28,16 @@ class MailService
         });
     }
 
-    public function sendConfirmationEmail() {}
+    public function sendOrderPendingMail(OrderPlacement $orderPlacement)
+    {
+        $designerName = $orderPlacement->order->designerCompany->name;
+        $userName = $orderPlacement->userDetails->name;
+
+        $userEmail = $orderPlacement->userDetails->email;
+
+        Mail::send('mail.confirmation', ['Designer' => $designerName, 'name' => $userName], function ($message) use ($userEmail) {
+            $message->to($userEmail)
+                ->subject('Your Order From Tel-A Has Been Confirmed!');
+        });
+    }
 }

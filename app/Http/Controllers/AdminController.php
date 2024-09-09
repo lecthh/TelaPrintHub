@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
+use App\Services\OrderPendingService;
+use Illuminate\Http\Request;
 
-use function Laravel\Prompts\table;
 
 class AdminController extends Controller
 {
+
+    protected $orderPendingService;
+
+    public function __construct(OrderPendingService $orderPendingService)
+    {
+        $this->orderPendingService = $orderPendingService;
+    }
+
     public function catalog()
     {
         $admin = session('admin');
@@ -20,9 +29,10 @@ class AdminController extends Controller
     {
         $admin = session('admin');
 
-        $pendingOrders = OrderPlacement::whereHas('order', function ($query) {
-            $query->whereNull('order_confirmation_ID');
-        })
+        $pendingOrders = OrderPlacement::where('order_placement_status_ID', 1)
+            ->whereHas('order', function ($query) {
+                $query->whereNull('order_confirmation_ID');
+            })
             ->whereHas('order.designerCompany', function ($query) use ($admin) {
                 $query->where('designer_ID', $admin->designer_ID);
             })
@@ -32,8 +42,10 @@ class AdminController extends Controller
                 $query->select('user_details_ID', 'name', 'email', 'contact_information');
             }])
             ->get();
+
         return view('designer.pending.view', compact('admin', 'pendingOrders'));
     }
+
 
     public function orderPending($order_placement_ID)
     {
@@ -47,5 +59,15 @@ class AdminController extends Controller
             ->get();
 
         return view('designer.pending.order', compact('admin', 'orderPlacement', 'Images'));
+    }
+
+    public function orderPendingPost(Request $request)
+    {
+        $request->validate([
+            'orderPlacementID' => 'required',
+        ]);
+
+        $this->orderPendingService->confirmPendingOrder($request->input('orderPlacementID'));
+        return redirect()->route('order-pending');
     }
 }
