@@ -51,6 +51,9 @@ Route::get('/order-pending-x', function () {
     return view('designer.pending.order');
 })->name('order-pending-x');
 
+Route::get('/profile', function () {
+    return view('designer.profile');
+})->name('profile');
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');

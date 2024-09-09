@@ -193,7 +193,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">total quantity:</h1>
+                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">final design:</h1>
                         <div class="flex w-1/2">
                             <input type="file" name="" id="">
                         </div>
