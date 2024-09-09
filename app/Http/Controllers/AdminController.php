@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
 
 use function Laravel\Prompts\table;
@@ -42,6 +43,9 @@ class AdminController extends Controller
             ->where('order_placement_ID', $order_placement_ID)
             ->firstOrFail();
 
-        return view('designer.pending.order', compact('admin', 'orderPlacement'));
+        $Images = OrderDesignsPending::where('order_placement_ID', $orderPlacement->order_placement_ID)
+            ->get();
+
+        return view('designer.pending.order', compact('admin', 'orderPlacement', 'Images'));
     }
 }

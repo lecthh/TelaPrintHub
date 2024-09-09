@@ -6,7 +6,10 @@
         @csrf
         <div class="flex flex-col gap-y-4">
             <label for="images" class="text-kBlack text-base font-medium">Upload Images</label>
-            <input type="file" name="images[]" id="images" accept="image/*" class="file-input w-full border rounded p-2 text-kBlack" multiple>
+            <input type="file" name="images[]" id="images" accept="image/*" class="file-input w-full border rounded p-2 text-kBlack" multiple onchange="displayFiles()">
+
+            <ul id="file-list" class="mt-2">
+            </ul>
 
             <label for="description">
                 <textarea name="description" id="description" rows="5" cols="80" placeholder="Enter your description here"></textarea>
@@ -20,6 +23,7 @@
         </div>
     </form>
 </div>
+
 @if($errors->any())
 <div class="text-red-500 text-sm">
     @foreach($errors->all() as $error)
@@ -27,5 +31,30 @@
     @endforeach
 </div>
 @endif
+
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+<script>
+    function displayFiles() {
+        const input = document.getElementById('images');
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = '';
+
+        if (input.files) {
+            Array.from(input.files).forEach(file => {
+
+                const listItem = document.createElement('li');
+                listItem.textContent = file.name;
+
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.width = 100;
+                img.height = 100;
+                img.style.marginRight = '10px';
+
+                listItem.prepend(img);
+                fileList.appendChild(listItem);
+            });
+        }
+    }
+</script>
 @endsection

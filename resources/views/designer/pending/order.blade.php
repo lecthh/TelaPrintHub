@@ -111,6 +111,11 @@
 
     <div class="flex w-full gap-x-3">
         <div class="w-[610px] h-[400px] border border-kBlack bg-kViolet">
+            @if($Images->isNotEmpty())
+            <img src="{{ asset($Images->first()->file_path) }}" alt="Large Image" class="w-full h-full object-cover cursor-pointer" onclick="openModal('{{ asset($Images->first()->file_path) }}')">
+            @else
+            <p class="text-center text-gray-500">No images available</p>
+            @endif
         </div>
 
         <div class="flex flex-col flex-grow gap-y-3">
@@ -128,18 +133,26 @@
             </div>
             <div class="flex flex-col gap-y-2 h-full">
                 <h1 class="font-bold">description</h1>
-                <p class="p-2 border border-kBlack w-full h-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                @if($orderPlacement->order->description == null)
+                <p class="p-2 border text-red-500 border-kBlack w-full h-full">No additional information provided</p>
+                @else
+                <p class="p-2 border border-kBlack w-full h-full">{{$orderPlacement->order->description}}</p>
+                @endif
             </div>
             <div class="flex flex-col gap-y-2 h-full">
                 <h1 class="font-bold">images</h1>
                 <div class="flex gap-x-2">
+                    @php
+                    $smallImages = $Images->slice(1, 2); // Get the next 2 images for small display
+                    @endphp
+                    @foreach($smallImages as $image)
                     <div class="w-[135px] h-[150px] border border-kBlack bg-kViolet">
+                        <img src="{{ asset($image->file_path) }}" alt="Small Image" class="w-full h-full object-cover cursor-pointer" onclick="openModal('{{ asset($image->file_path) }}')">
                     </div>
-                    <div class="w-[135px] h-[150px] border border-kBlack  bg-kViolet">
-                    </div>
-                    <div class="w-[135px] h-[150px] border border-kBlack  bg-kViolet">
-                    </div>
+                    @endforeach
+
                 </div>
+
             </div>
         </div>
     </div>
@@ -163,4 +176,19 @@
         </div>
     </div>
 </div>
+
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
+<script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+</script>
 @endsection
