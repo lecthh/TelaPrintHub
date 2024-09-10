@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderDesignsConfirmed;
 use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
+use App\Models\Sizes;
+use App\Models\UserDetails;
+use App\Models\UserPreferredCommunication;
 use App\Services\OrderConfirmedService;
 use Illuminate\Http\Request;
 
@@ -18,7 +22,11 @@ class OrderConfirmedController extends Controller
     public function orderConfirmedTable()
     {
         $admin = session('admin');
-        $confirmedOrders = OrderPlacement::where('order_placement_status_ID', 2)
+        $confirmedOrders = OrderPlacement::where(function ($query) {
+            $query->where('order_placement_status_ID', 2)
+                ->orWhere('order_placement_status_ID', 3)
+                ->orWhere('order_placement_status_ID', 4);
+        })
             ->whereHas('order', function ($query) {
                 $query->whereNull('order_confirmation_ID');
             })
@@ -34,6 +42,7 @@ class OrderConfirmedController extends Controller
 
         return view('designer.confirmed.view', compact('admin', 'confirmedOrders'));
     }
+
 
     public function orderConfirmed($order_placement_ID)
     {
@@ -65,6 +74,34 @@ class OrderConfirmedController extends Controller
         $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
             ->where('order_placement_ID', $order_placement_ID)
             ->firstOrFail();
-        return view('mail.order-confirmation', ['token' => $token, 'orderPlacement' => $orderPlacement]);
+
+        $user = UserDetails::find($orderPlacement->user_details_ID);
+        $preferredModesOfCommunication = $user->preferredCommunications;
+
+        $sizes = Sizes::pluck('name')->map(function ($size) {
+            return $size;
+        })->toArray();
+
+        $images = OrderDesignsConfirmed::where('order_ID', $orderPlacement->order->order_ID)->get();
+
+        return view('mail.order-confirmation', compact('token', 'orderPlacement', 'preferredModesOfCommunication', 'images', 'sizes'));
+    }
+
+
+    public function showConfirmationLinkPost(Request $request)
+    {
+
+        $request->validate([
+            'orderPlacementID' => 'required',
+            'name.*' => 'required|string|max:255',
+            't-shirt-size.*' => 'required|in:xxs,xs,s,m,l,xl,xxl',
+            'jersey-number.*' => 'nullable|integer',
+            'short-number.*' => 'nullable|integer',
+            'short-size.*' => 'nullable|in:xxs,xs,s,m,l,xl,xxl',
+            'pocket.*' => 'nullable|boolean',
+            'remarks.*' => 'nullable|string|max:500'
+        ]);
+        dd($request->all());
+        return redirect()->route('home');
     }
 }

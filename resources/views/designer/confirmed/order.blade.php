@@ -108,8 +108,8 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="flex gap-x-4">
+    @if($orderPlacement->order_placement_status_ID == 4)
+    <div class="flex gap-x-4">
         <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
         </div>
         <div class="inline-block w-full">
@@ -137,7 +137,7 @@
                         <td class="text-base border-r border-kBlack p-2"></td>
                         <td class="text-base border-r border-kBlack p-2"></td>
                     </tr>
-                    <tr class="border-b border-kBlack">
+                    <tr c lass="border-b border-kBlack">
                         <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
                         <td class="text-base border-r border-kBlack p-2 normal-case">Joel</td>
                         <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
@@ -160,7 +160,8 @@
                 </tbody>
             </table>
         </div>
-    </div> -->
+    </div>
+    @endif
     <form action="{{ route('order-confirmed-details-post')}}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="flex flex-col gap-x-3 p-3 border border-kBlack">

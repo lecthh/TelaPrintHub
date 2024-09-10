@@ -89,5 +89,6 @@ Route::middleware("auth")->group(function () {
 });
 
 Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedController::class, 'showConfirmationLink'])->name('confirmation-link');
+Route::post('/confirmation-link', [OrderConfirmedController::class, 'showConfirmationLinkPost'])->name('confirmation-link-post');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(PreventBackHistory::class);

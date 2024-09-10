@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('customization_details', function (Blueprint $table) {
             $table->string('customization_details_ID')->primary();
             $table->string('remarks');
-            $table->string('sizes_ID')->nullable();
+            $table->unsignedBigInteger('sizes_ID');
             $table->string('name');
             $table->string('number')->nullable();
             $table->integer('quantity');
