@@ -34,10 +34,10 @@
                                 <tr class="font-bold text-lg">
                                     <th class="border-l border-t border-b border-kBlack p-2">no</th>
                                     <th class="border-l border-t border-b border-kBlack p-2">shirt name</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">size</th>
                                     @if($orderPlacement->order->apparel_category_ID == 5)
                                     <th class="border-l border-t border-b border-kBlack p-2">jersey #</th>
                                     @endif
-                                    <th class="border-l border-t border-b border-kBlack p-2">size</th>
                                     @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
                                     <th class="border-l border-t border-b border-kBlack p-2">short #</th>
                                     <th class="border-l border-t border-b border-kBlack p-2">size</th>
@@ -74,12 +74,11 @@
         </form>
 
         <div class="flex flex-col gap-y-6 px-6 py-3 w-1/2 lowercase mr-3">
-            <h1 class="font-bold text-lg">order specifications</h1>
+            <h1 class="font-bold text-lg">Order specifications</h1>
             <div class="flex flex-col gap-y-1">
                 <h1 class="font-bold text-base normal-case">ORDER NO: {{$orderPlacement->order->order_ID}}</h1>
                 <div class="w-[400px] h-[300px] bg-kViolet border">
                     <img src="{{ asset($images->first()->file_path) }}" alt="Large Image" class="w-full h-full">
-
                 </div>
             </div>
             <div class="flex flex-col gap-y-1">
@@ -172,7 +171,7 @@
             {
                 label: "size",
                 type: "select",
-                name: "t-shirt-size[]",
+                name: "t_shirt_size[]",
                 options: sizes
             }
         ];
@@ -181,7 +180,7 @@
             columns.push({
                 label: "jersey #",
                 type: "text",
-                name: "jersey-number[]"
+                name: "jersey_number[]"
             });
         }
 
@@ -189,11 +188,11 @@
             columns.push({
                 label: "short #",
                 type: "text",
-                name: "short-number[]"
+                name: "short_number[]"
             }, {
                 label: "size",
                 type: "select",
-                name: "short-size[]",
+                name: "short_size[]",
                 options: sizes
             });
         }

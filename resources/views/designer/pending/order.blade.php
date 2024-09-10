@@ -150,7 +150,6 @@
                         <img src="{{ asset($image->file_path) }}" alt="Small Image" class="w-full h-full object-cover cursor-pointer" onclick="openModal('{{ asset($image->file_path) }}')">
                     </div>
                     @endforeach
-
                 </div>
 
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomizationDetails;
 use App\Models\OrderDesignsConfirmed;
 use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
@@ -47,24 +48,38 @@ class OrderConfirmedController extends Controller
     public function orderConfirmed($order_placement_ID)
     {
         $admin = session('admin');
-
         $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
             ->where('order_placement_ID', $order_placement_ID)
             ->firstOrFail();
 
+        if ($orderPlacement->order_placement_status_ID == 4) {
+            $final_design = OrderDesignsConfirmed::where('order_ID', $orderPlacement->order->order_ID)->first();
+            $customizationDetails = CustomizationDetails::where('order_ID', $orderPlacement->order->order_ID)->get();
+            return view('designer.confirmed.order', compact('admin', 'orderPlacement', 'final_design', 'customizationDetails'));
+        }
 
         return view('designer.confirmed.order', compact('admin', 'orderPlacement'));
     }
 
     public function orderConfirmedPost(Request $request)
     {
-        $request->validate([
-            'images' => 'required',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg',
-            'printer_id' => 'required',
-            'orderPlacementID' => 'required',
-        ]);
-        $this->orderConfirmedService->UpdateOrder($request);
+        if ($request->status == 0) {
+            $request->validate([
+                'images' => 'required',
+                'images.*' => 'required|image|mimes:jpeg,png,jpg',
+                'printer_id' => 'required',
+                'orderPlacementID' => 'required',
+                'status' => 'required'
+            ]);
+            $this->orderConfirmedService->UpdateOrder($request);
+        } else {
+            $request->validate([
+                'orderPlacementID' => 'required',
+                'status' => 'required'
+            ]);
+            $this->orderConfirmedService->ActivateOrder($request);
+        }
+
 
         return redirect()->route('order-confirmed');
     }
@@ -94,14 +109,14 @@ class OrderConfirmedController extends Controller
         $request->validate([
             'orderPlacementID' => 'required',
             'name.*' => 'required|string|max:255',
-            't-shirt-size.*' => 'required|in:xxs,xs,s,m,l,xl,xxl',
-            'jersey-number.*' => 'nullable|integer',
-            'short-number.*' => 'nullable|integer',
-            'short-size.*' => 'nullable|in:xxs,xs,s,m,l,xl,xxl',
+            't_shirt_size.*' => 'required|in:xxs,xs,s,m,l,xl,xxl',
+            'jersey_number.*' => 'nullable|integer',
+            'short_number.*' => 'nullable|integer',
+            'short_size.*' => 'nullable|in:xxs,xs,s,m,l,xl,xxl',
             'pocket.*' => 'nullable|boolean',
             'remarks.*' => 'nullable|string|max:500'
         ]);
-        dd($request->all());
+        $this->orderConfirmedService->addCustomizationDetails($request);
         return redirect()->route('home');
     }
 }

@@ -111,52 +111,51 @@
     @if($orderPlacement->order_placement_status_ID == 4)
     <div class="flex gap-x-4">
         <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
+            <img src="{{ asset($final_design->file_path) }}" alt="Large Image" class="w-full h-full">
         </div>
         <div class="inline-block w-full">
             <table class="table-auto border border-kBlack w-full">
                 <thead>
                     <tr class="border-b border-kBlack">
-                        <td class="text-lg font-bold border-r border-kBlack p-2 text-center">no</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">shirt name</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">jersey #</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">size</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">short #</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">size</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">pocket</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">remarks</td>
+                        <th class="border-l border-t border-b border-kBlack p-2">no</th>
+                        <th class="border-l border-t border-b border-kBlack p-2">shirt name</th>
+                        <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                        @if($orderPlacement->order->apparel_category_ID == 5)
+                        <th class="border-l border-t border-b border-kBlack p-2">jersey #</th>
+                        @endif
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
+                        <th class="border-l border-t border-b border-kBlack p-2">short #</th>
+                        <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                        @endif
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4 || $orderPlacement->order->apparel_category_ID == 2)
+                        <th class="border-l border-t border-b border-kBlack p-2">pocket</th>
+                        @endif
+                        <th class="border border-kBlack p-2">remarks</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($customizationDetails as $index => $customization)
                     <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Alexis</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
+                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">{{ $index + 1 }}</td>
+                        <td class="text-base border-r border-kBlack p-2 normal-case">{{ $customization->name }}</td>
+                        <td class="text-base border-r border-kBlack p-2 uppercase">{{ $customization->size->name }}</td>
+
+                        @if($orderPlacement->order->apparel_category_ID == 5)
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->jersey_number }}</td>
+                        @endif
+
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->short_number }}</td>
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->short_size }}</td>
+                        @endif
+
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4 || $orderPlacement->order->apparel_category_ID == 2)
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->has_pocket ? 'Yes' : 'No' }}</td>
+                        @endif
+
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->remarks }}</td>
                     </tr>
-                    <tr c lass="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Joel</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Cyber</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -183,6 +182,7 @@
                 </svg>
                 <div class="flex flex-col gap-y-3 w-full">
                     <h1 class="font-bold text-base text-[#5C5959]">Confirm details</h1>
+                    @if($orderPlacement->order_placement_status_ID == 3)
                     <div class="flex flex-col">
                         <div class="flex flex-grow">
                             <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Printer:</h1>
@@ -194,6 +194,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="flex flex-col">
                         <div class="flex flex-grow">
                             <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Final Design:</h1>
@@ -207,14 +208,18 @@
                         <div class="flex flex-grow">
                             <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Send link:</h1>
                             <div class="flex w-1/2">
-                                <button class="p-2 bg-[#5C5959] text-kWhite">generate confirmation link</button>
+                                <button type="submit" class="p-2 bg-[#5C5959] text-kWhite">generate and Send confirmation link</button>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="status" value="0">
+                    @elseif($orderPlacement->order_placement_status_ID == 4)
                     <div class="flex gap-x-3 justify-end">
                         <button class="p-2 border border-kBlack">cancel request</button>
                         <button type="submit" class="text-kWhite p-2 bg-kblack">activate order</button>
+                        <input type="hidden" name="status" value="1">
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

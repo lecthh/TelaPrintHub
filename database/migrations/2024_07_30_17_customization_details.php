@@ -19,7 +19,12 @@ return new class extends Migration
             $table->string('number')->nullable();
             $table->integer('quantity');
             $table->string('order_ID');
+            $table->string('short_size')->nullable();
+            $table->string('short_number')->nullable();
+            $table->string('jersey_number')->nullable();
+            $table->boolean('has_pocket')->nullable();
             $table->timestamps();
+
 
             $table->foreign('order_ID')->references('order_ID')->on('order')->onDelete('cascade');
             $table->foreign('sizes_ID')->references('sizes_ID')->on('sizes');

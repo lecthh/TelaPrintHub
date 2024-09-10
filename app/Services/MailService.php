@@ -59,4 +59,16 @@ class MailService
                 ->subject('Your Design Has been Finalized!');
         });
     }
+
+    public function sendOrderActivation(OrderPlacement $orderPlacement)
+    {
+        $designerName = $orderPlacement->order->designerCompany->name;
+        $userName = $orderPlacement->userDetails->name;
+        $userEmail = $orderPlacement->userDetails->email;
+
+        Mail::send('mail.orderActivation', ['Designer' => $designerName, 'name' => $userName], function ($message) use ($userEmail) {
+            $message->to($userEmail)
+                ->subject('Your Order Has Been Activated!');
+        });
+    }
 }
