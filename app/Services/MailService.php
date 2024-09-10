@@ -13,7 +13,7 @@ class MailService
 
     public function sendVerificationEmail(Admin $admin)
     {
-        $token = Str::random(60);
+        $token = Str::random(16);
 
         $url = URL::temporarySignedRoute(
             'setpassword',
@@ -38,6 +38,25 @@ class MailService
         Mail::send('mail.confirmation', ['Designer' => $designerName, 'name' => $userName], function ($message) use ($userEmail) {
             $message->to($userEmail)
                 ->subject('Your Order From Tel-A Has Been Confirmed!');
+        });
+    }
+
+    public function sendConfirmationLink(OrderPlacement $orderPlacement)
+    {
+        $designerName = $orderPlacement->order->designerCompany->name;
+        $userName = $orderPlacement->userDetails->name;
+        $order_placement_ID = $orderPlacement->order_placement_ID;
+        $userEmail = $orderPlacement->userDetails->email;
+
+        $token = Str::random(16);
+        $url = URL::temporarySignedRoute(
+            'confirmation-link',
+            now()->addDays(3),
+            ['order_placement_ID' => $order_placement_ID, 'token' => $token,]
+        );
+        Mail::send('mail.confirmationLink', ['Designer' => $designerName, 'name' => $userName, 'url' => $url], function ($message) use ($userEmail) {
+            $message->to($userEmail)
+                ->subject('Your Design Has been Finalized!');
         });
     }
 }

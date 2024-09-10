@@ -83,7 +83,11 @@ Route::middleware("auth")->group(function () {
     Route::post('/order/pending/details', [OrderPendingController::class, "orderPendingPost"])->name('order-pending-details-post');
 
     Route::get('/order/confirmed', [OrderConfirmedController::class, "orderConfirmedTable"])->name('order-confirmed');
+
     Route::get('/order/confirmed/details/{order_placement_ID}', [OrderConfirmedController::class, "orderConfirmed"])->name('order-confirmed-details');
+    Route::post('/order/confirmed/details', [OrderConfirmedController::class, "orderConfirmedPost"])->name('order-confirmed-details-post');
 });
+
+Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedController::class, 'showConfirmationLink'])->name('confirmation-link');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(PreventBackHistory::class);

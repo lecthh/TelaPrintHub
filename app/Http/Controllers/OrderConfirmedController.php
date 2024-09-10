@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
+use App\Services\OrderConfirmedService;
 use Illuminate\Http\Request;
 
 class OrderConfirmedController extends Controller
 {
+    protected $orderConfirmedService;
+
+    public function __construct(OrderConfirmedService $orderConfirmedService)
+    {
+        $this->orderConfirmedService = $orderConfirmedService;
+    }
     public function orderConfirmedTable()
     {
         $admin = session('admin');
@@ -36,11 +43,28 @@ class OrderConfirmedController extends Controller
             ->where('order_placement_ID', $order_placement_ID)
             ->firstOrFail();
 
-        $Images = OrderDesignsPending::where('order_placement_ID', $orderPlacement->order_placement_ID)
-            ->get();
 
-        return view('designer.confirmed.order', compact('admin', 'orderPlacement', 'Images'));
+        return view('designer.confirmed.order', compact('admin', 'orderPlacement'));
     }
 
-    public function orderConfirmedPost(Request $request) {}
+    public function orderConfirmedPost(Request $request)
+    {
+        $request->validate([
+            'images' => 'required',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg',
+            'printer_id' => 'required',
+            'orderPlacementID' => 'required',
+        ]);
+        $this->orderConfirmedService->UpdateOrder($request);
+
+        return redirect()->route('order-confirmed');
+    }
+
+    public function showConfirmationLink($order_placement_ID, $token)
+    {
+        $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
+            ->where('order_placement_ID', $order_placement_ID)
+            ->firstOrFail();
+        return view('mail.order-confirmation', ['token' => $token, 'orderPlacement' => $orderPlacement]);
+    }
 }
