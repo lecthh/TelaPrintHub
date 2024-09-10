@@ -35,14 +35,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="hover:bg-gray-100 cursor-pointer">
-                <td class="p-2 border border-kBlack text-center"><input type="checkbox" name="" id=""></td>
-                <td class="p-2 border border-kBlack capitalize">13 August, 2024</td>
-                <td class="p-2 border border-kBlack uppercase">TELAPH-43759</td>
-                <td class="p-2 border border-kBlack capitalize">Jane Doe</td>
-                <td class="p-2 border border-kBlack capitalize">+63 9864 572 8427</td>
-                <td class="p-2 border border-kBlack lowercase">jane@gmail.com</td>
+            @foreach($ActiveOrders as $orderPlacement)
+            <tr class="hover:bg-gray-100 cursor-pointer" data-url="{{ route('order-pending-details', ['order_placement_ID' => $orderPlacement->order_placement_ID]) }}">
+                <td class="p-2 border border-kBlack text-center">
+                    <input type="checkbox" name="selected_orders[]" value="{{ $orderPlacement->order->order_ID }}">
+                </td>
+                <td class="p-2 border border-kBlack capitalize">{{ $orderPlacement->order->orderConfirmation->created_at->format('d F, Y') }}</td>
+                <td class="p-2 border border-kBlack uppercase">{{ $orderPlacement->order->order_ID }}</td>
+                <td class="p-2 border border-kBlack capitalize">{{ $orderPlacement->userDetails->name }}</td>
+                <td class="p-2 border border-kBlack capitalize">{{ $orderPlacement->userDetails->contact_information }}</td>
+                <td class="p-2 border border-kBlack lowercase">{{ $orderPlacement->userDetails->email }}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="flex justify-end">

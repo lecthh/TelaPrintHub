@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\CustomizationDetails;
 use App\Models\Order;
+use App\Models\OrderConfirmation;
 use App\Models\OrderDesignsConfirmed;
 use App\Models\OrderPlacement;
 use App\Models\Sizes;
@@ -59,6 +60,11 @@ class OrderConfirmedService
         $orderPlacement = OrderPlacement::where('order_placement_ID', $orderPlacementID)->firstOrFail();
         $orderPlacement->order_placement_status_ID = 5;
         $orderPlacement->save();
+        $confirmation = OrderConfirmation::create([
+            'order_confirmation_ID' => (string) Uuid::generate(4),
+        ]);
+        $orderPlacement->order->order_confirmation_ID = $confirmation->order_confirmation_ID;
+        $orderPlacement->order->save();
         $this->mailService->sendOrderActivation($orderPlacement);
     }
 

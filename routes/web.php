@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderActiveController;
 use App\Http\Controllers\OrderConfirmedController;
 use App\Http\Controllers\OrderPendingController;
 use App\Http\Controllers\PasswordController;
@@ -86,6 +87,8 @@ Route::middleware("auth")->group(function () {
 
     Route::get('/order/confirmed/details/{order_placement_ID}', [OrderConfirmedController::class, "orderConfirmed"])->name('order-confirmed-details');
     Route::post('/order/confirmed/details', [OrderConfirmedController::class, "orderConfirmedPost"])->name('order-confirmed-details-post');
+
+    Route::get('/order/active', [OrderActiveController::class, "orderActiveTable"])->name('order-active');
 });
 
 Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedController::class, 'showConfirmationLink'])->name('confirmation-link');

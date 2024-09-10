@@ -183,6 +183,11 @@
                 <div class="flex flex-col gap-y-3 w-full">
                     <h1 class="font-bold text-base text-[#5C5959]">Confirm details</h1>
                     @if($orderPlacement->order_placement_status_ID == 3)
+                    <div class="flex flex-col gap-y-3">
+                        <h1 class="text-base font-bold text-red-500 ]">Waiting for user reply</h1>
+                    </div>
+                    @endif
+                    @if($orderPlacement->order_placement_status_ID == 2)
                     <div class="flex flex-col">
                         <div class="flex flex-grow">
                             <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Printer:</h1>
@@ -194,7 +199,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="flex flex-col">
                         <div class="flex flex-grow">
                             <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Final Design:</h1>
@@ -203,7 +207,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="flex flex-col">
                         <div class="flex flex-grow">
                             <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Send link:</h1>
