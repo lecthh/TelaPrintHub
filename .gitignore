@@ -5,6 +5,8 @@
 /public/storage
 /public/orderdesigns
 /public/FinalDesigns
+/public/DesignerGallery
+/public/logo
 /public/temp
 /storage/*.key
 /vendor

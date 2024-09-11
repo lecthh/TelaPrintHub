@@ -46,12 +46,13 @@
                 <input type="file" name="images[]" id="images" accept="image/*" class="hidden" multiple>
             </div>
             <div class="flex gap-x-3" id="previewImages">
-                @if(!$designerGallery)
+                @if($designerGallery)
 
                 @foreach($designerGallery as $gallery)
-                <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet">
-                    <img src="{{ asset($gallery->file_path) }}" alt="" srcset="">
+                <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet overflow-hidden">
+                    <img src="{{ asset($gallery->file_path) }}" alt="" class="w-full h-full object-cover">
                 </div>
+
                 @endforeach
                 @else
                 <div class="text-red-500">No pictures found, please add sample pictures</div>
@@ -76,7 +77,7 @@
                 <div class="flex justify-between normal-case font-semibold">
                     <label>Mobile no:</label>
                     <h1 id="number" contenteditable="true">{{ $designerCompany->contact_details }}</h1>
-                    <input type="hidden" name="number_hidden" id="number_hidden" value="{{ $designerCompany->contact_details }}">
+                    <input type="hidden" name="contact_details" id="contact_details" value="{{ $designerCompany->contact_details }}">
                 </div>
             </div>
         </div>
@@ -106,6 +107,14 @@
         </div>
     </div>
 </form>
+@if($errors->any())
+<div class="text-red-500 text-sm">
+    @foreach($errors->all() as $error)
+    <p>{{ $error }}</p>
+    @endforeach
+</div>
+@endif
+
 @endsection
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -125,7 +134,7 @@
         const aboutHidden = document.getElementById('about_hidden');
         const nameHidden = document.getElementById('name_hidden');
         const emailHidden = document.getElementById('email_hidden');
-        const numberHidden = document.getElementById('number_hidden');
+        const numberHidden = document.getElementById('contact_details');
 
         const discardButton = document.getElementById('discardButton');
         const updateButton = document.getElementById('updateButton');
@@ -134,11 +143,9 @@
         const imagesInput = document.getElementById('images');
         const previewImagesContainer = document.getElementById('previewImages');
 
-        // Store original gallery images state
         const originalGalleryImages = Array.from(previewImagesContainer.querySelectorAll('img')).map(img => img.src);
 
         discardButton.addEventListener('click', () => {
-            // Revert text areas and fields
             aboutTextArea.value = originalAboutText;
             nameField.innerText = originalName;
             emailField.innerText = originalEmail;
@@ -149,21 +156,17 @@
             emailHidden.value = originalEmail;
             numberHidden.value = originalNumber;
 
-            // Revert profile picture
             profilePicPreview.src = originalProfilePicSrc;
-
-            // Clear the file inputs
             profilePicInput.value = '';
             imagesInput.value = '';
 
-            // Revert gallery images
             previewImagesContainer.innerHTML = '';
             originalGalleryImages.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'object-cover');
                 const wrapper = document.createElement('div');
-                wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'overflow-hidden');
                 wrapper.appendChild(img);
                 previewImagesContainer.appendChild(wrapper);
             });
@@ -191,8 +194,6 @@
 
         if (imagesInput && previewImagesContainer) {
             imagesInput.addEventListener('change', function(event) {
-                previewImagesContainer.innerHTML = '';
-
                 const files = event.target.files;
                 if (files.length > 0) {
                     for (const file of files) {
@@ -200,9 +201,9 @@
                         reader.onload = function(e) {
                             const img = document.createElement('img');
                             img.src = e.target.result;
-                            img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                            img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'object-cover');
                             const wrapper = document.createElement('div');
-                            wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                            wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'overflow-hidden');
                             wrapper.appendChild(img);
                             previewImagesContainer.appendChild(wrapper);
                         };
