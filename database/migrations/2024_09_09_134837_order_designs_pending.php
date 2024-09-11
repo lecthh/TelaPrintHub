@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_confirmation', function (Blueprint $table) {
-            $table->string('order_confirmation_ID')->primary();
+        Schema::create('order_designs_pending', function (Blueprint $table) {
+            $table->id();
+            $table->string('order_placement_ID');
+            $table->string('file_path');
             $table->timestamps();
+
+            $table->foreign('order_placement_ID')->references('order_placement_ID')->on('order_placement')->onDelete('cascade');
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_confirmation');
+        Schema::dropIfExists('order_designs_pending');
     }
 };

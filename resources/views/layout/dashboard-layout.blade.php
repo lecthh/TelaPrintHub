@@ -1,5 +1,5 @@
 @vite('resources/css/app.css')
-<h1 class="font-bold text-xl normal-case">Hello, Company Name!</h1>
+<h1 class="font-bold text-xl normal-case">Hello, {{$admin->name}}</h1>
 <div class="flex gap-x-3 p-3 bg-kWhite border border-kBlack justify-between">
     <a href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
             <h1 class="text-xl font-bold">&#8369 200.00</h1>
         </div>
     </a>
-    <a href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
+    <a href="{{ route('order-active') }}" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
                 stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -42,10 +42,10 @@
         </svg>
         <div class="flex flex-col gap-y-3">
             <h1 class="text-base font-bold text-[#5C5959]">active orders</h1>
-            <h1 class="text-xl font-bold">10</h1>
+            <h1 class="text-xl font-bold">{{ $orderActiveCount }}</h1>
         </div>
     </a>
-    <a href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
+    <a href="{{ route('order-pending') }}" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
                 stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -64,10 +64,10 @@
         </svg>
         <div class="flex flex-col gap-y-3">
             <h1 class="text-base font-bold text-[#5C5959]">pending requests</h1>
-            <h1 class="text-xl font-bold">5</h1>
+            <h1 class="text-xl font-bold">{{ $orderPendingCount }}</h1>
         </div>
     </a>
-    <a href="" class="flex flex-grow gap-x-3 p-3 border-kBlack">
+    <a href="{{ route('order-confirmed') }}" class="flex flex-grow gap-x-3 p-3 border-kBlack">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 15.2V9C2 5.5 4 4 7 4H17C20 4 22 5.5 22 9V15C22 18.5 20 20 17 20H8.5" stroke="#171717"
                 stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -86,7 +86,7 @@
         </svg>
         <div class="flex flex-col gap-y-3">
             <h1 class="text-base font-bold text-[#5C5959]">confirmed requests</h1>
-            <h1 class="text-xl font-bold">3</h1>
+            <h1 class="text-xl font-bold"> {{ $orderConfirmedCount }}</h1>
         </div>
     </a>
 </div>

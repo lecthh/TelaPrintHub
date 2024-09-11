@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PreferredCommunicationType extends Model
+class Sizes extends Model
 {
-    protected $table = 'preferred_communication_type';
+    use HasFactory;
 
-    protected $primaryKey = 'preferred_communication_type_ID';
-
-    public $incrementing = true;
-
+    protected $table = 'sizes';
+    protected $primaryKey = 'sizes_ID';
     public $timestamps = false;
 
     protected $fillable = ['name'];

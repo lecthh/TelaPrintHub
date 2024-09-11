@@ -23,7 +23,8 @@
     </nav>
 
     <div class="flex gap-x-6 justify-around">
-        <form class="flex flex-col gap-y-6 px-6 py-3 w-1/2">
+        <form action="{{ route('confirmation-link-post') }}" method="post" class="flex flex-col gap-y-6 px-6 py-3 w-1/2">
+            @csrf
             <div class="flex flex-col gap-y-6 px-6 py-3">
                 <h1 class="lowercase font-bold text-xl">order confirmation</h1>
                 <div class="flex flex-col gap-y-7">
@@ -33,11 +34,17 @@
                                 <tr class="font-bold text-lg">
                                     <th class="border-l border-t border-b border-kBlack p-2">no</th>
                                     <th class="border-l border-t border-b border-kBlack p-2">shirt name</th>
-                                    <th class="border-l border-t border-b border-kBlack p-2">jersey #</th>
                                     <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                                    @if($orderPlacement->order->apparel_category_ID == 5)
+                                    <th class="border-l border-t border-b border-kBlack p-2">jersey #</th>
+                                    @endif
+                                    @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
                                     <th class="border-l border-t border-b border-kBlack p-2">short #</th>
                                     <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                                    @endif
+                                    @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4 || $orderPlacement->order->apparel_category_ID == 2)
                                     <th class="border-l border-t border-b border-kBlack p-2">pocket</th>
+                                    @endif
                                     <th class="border border-kBlack p-2">remarks</th>
                                 </tr>
                             </thead>
@@ -48,8 +55,9 @@
                         </table>
                     </div>
                     <div class="inline-block">
-                        <button class="bg-kBlack text-kWhite p-2" type="button" onclick="addRow()">+ add row</button>
+                        <button class="bg-kBlack text-kWhite p-2" type="button" onclick="addRow(this.dataset.categoryId)" data-category-id="{{ $orderPlacement->order->apparel_category_ID }}">+ add row</button>
                     </div>
+
                 </div>
             </div>
 
@@ -58,7 +66,7 @@
                     please check the details if they are correct and final. once you confirm the list of orders, we will not be liable for any mistakes or errors.
                 </p>
             </div>
-
+            <input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">
             <div class="flex flex-grow flex-col px-6">
                 <button type="submit" class="p-2 bg-kBlack text-kWhite">confirm</button>
             </div>
@@ -66,29 +74,32 @@
         </form>
 
         <div class="flex flex-col gap-y-6 px-6 py-3 w-1/2 lowercase mr-3">
-            <h1 class="font-bold text-lg">order specifications</h1>
+            <h1 class="font-bold text-lg">Order specifications</h1>
             <div class="flex flex-col gap-y-1">
-                <h1 class="font-bold text-base normal-case">ORDER NO: TELA-PH939KJF</h1>
+                <h1 class="font-bold text-base normal-case">ORDER NO: {{$orderPlacement->order->order_ID}}</h1>
                 <div class="w-[400px] h-[300px] bg-kViolet border">
+                    <img src="{{ asset($images->first()->file_path) }}" alt="Large Image" class="w-full h-full" onclick="openModal('{{  asset($images->first()->file_path)  }}')">
                 </div>
             </div>
             <div class="flex flex-col gap-y-1">
                 <h1 class="text-base font-semibold">contact details</h1>
                 <div class="flex justify-between">
                     <h1>customer name:</h1>
-                    <h1 class="normal-case">Jane Doe</h1>
+                    <h1 class="normal-case">{{ $orderPlacement->userDetails->name }} </h1>
                 </div>
                 <div class="flex justify-between">
                     <h1>email address:</h1>
-                    <h1 class="normal-case">jane@gmail.com</h1>
+                    <h1 class="normal-case">{{ $orderPlacement->userDetails->email }} </h1>
                 </div>
                 <div class="flex justify-between">
                     <h1>phone number:</h1>
-                    <h1 class="normal-case">+63986 834 2374</h1>
+                    <h1 class="normal-case">{{ $orderPlacement->userDetails->contact_information }}</h1>
                 </div>
                 <div class="flex justify-between">
-                    <h1>mode of communication:</h1>
-                    <h1 class="normal-case">WhatsApp</h1>
+                    <h1>Mode of communication:</h1>
+                    @foreach($preferredModesOfCommunication as $mode)
+                    <h1 class="normal-case">{{ $mode->name }}</h1>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -128,55 +139,147 @@
         </a>
     </ul>
 </footer>
+@if($errors->any())
+<div class="text-red-500 text-sm">
+    @foreach($errors->all() as $error)
+    <p>{{ $error }}</p>
+    @endforeach
+</div>
+@endif
+
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
+<script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+</script>
 
 </html>
 <script src="https://kit.fontawesome.com/d3c4f3f1ff.js" crossorigin="anonymous"></script>
 <script>
-    function addRow() {
+    const sizes = @json($sizes);
+
+    function addRow(apparelCategoryID) {
         const tableBody = document.getElementById('orderTable');
-        const rowCount = tableBody.rows.length
+        const rowCount = tableBody.rows.length - 1;
 
         const newRow = tableBody.insertRow();
 
-        for (let i = 0; i < 8; i++) {
-            const newCell = newRow.insertCell(i);
+        const columns = [{
+                label: "no",
+                type: "text",
+                className: "font-bold text-center"
+            },
+            {
+                label: "shirt name",
+                type: "text",
+                name: "name[]"
+            },
+            {
+                label: "size",
+                type: "select",
+                name: "t_shirt_size[]",
+                options: sizes
+            }
+        ];
+
+        if (apparelCategoryID == 5) {
+            columns.push({
+                label: "jersey #",
+                type: "text",
+                name: "jersey_number[]"
+            });
+        }
+
+        if (apparelCategoryID == 5 || apparelCategoryID == 4) {
+            columns.push({
+                label: "short #",
+                type: "text",
+                name: "short_number[]"
+            }, {
+                label: "size",
+                type: "select",
+                name: "short_size[]",
+                options: sizes
+            });
+        }
+
+        if (apparelCategoryID == 5 || apparelCategoryID == 4 || apparelCategoryID == 2) {
+            columns.push({
+                label: "pocket",
+                type: "checkbox",
+                name: "pocket[]"
+            });
+        }
+
+        columns.push({
+            label: "remarks",
+            type: "text",
+            name: "remarks[]"
+        });
+
+        columns.forEach((column, index) => {
+            const newCell = newRow.insertCell(index);
             newCell.className = 'border-l border-b border-kBlack p-2 items-center justify-center';
 
-            if (i === 0) {
-                newCell.className += ' font-bold text-center';
-                newCell.textContent = rowCount;
-            } else if (i === 3 || i === 5) {
-                newCell.className = 'border-l border-b border-kBlack';
-                const select = document.createElement('select');
-                select.className = 'border-none p-2 focus:ring-0';
-
-                const sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
-                sizes.forEach(size => {
-                    const option = document.createElement('option');
-                    option.value = size.toLowerCase();
-                    option.textContent = size;
-                    select.appendChild(option);
-                });
-
-                newCell.appendChild(select);
-            } else if (i == 6) {
-                newCell.className = 'border-l border-b border-kBlack flex justify-center items-center h-[48px]';
-                const input = document.createElement('input');
-                input.type = 'checkbox';
-                input.className = 'h-5 w-5';
-
-                newCell.appendChild(input);
+            if (index === 0) {
+                newCell.textContent = rowCount + 1;
             } else {
-                newCell.className = 'border-l border-b border-kBlack';
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.className = 'w-[100px] border-none p-2 focus:ring-0';
-                newCell.appendChild(input);
+                let element;
+                switch (column.type) {
+                    case 'select':
+                        element = document.createElement('select');
+                        element.className = 'border-none p-2 focus:ring-0';
+                        element.name = column.name;
+                        column.options.forEach(optionValue => {
+                            const option = document.createElement('option');
+                            option.value = optionValue.toLowerCase();
+                            option.textContent = optionValue;
+                            element.appendChild(option);
+                        });
+                        break;
+                    case 'checkbox':
+                        if (apparelCategoryID == 5 || apparelCategoryID == 4 || apparelCategoryID == 2) {
+                            const hiddenInput = document.createElement('input');
+                            hiddenInput.type = 'hidden';
+                            hiddenInput.name = column.name;
+                            hiddenInput.value = '0';
+                            newCell.appendChild(hiddenInput);
+
+                            element = document.createElement('input');
+                            element.type = 'checkbox';
+                            element.className = 'h-5 w-5';
+                            element.name = column.name;
+                            element.value = '1';
+
+                            element.addEventListener('change', function() {
+                                hiddenInput.disabled = this.checked;
+                            });
+                        }
+                        break;
+                    default:
+                        element = document.createElement('input');
+                        element.type = 'text';
+                        element.className = 'w-[100px] border-none p-2 focus:ring-0';
+                        element.name = column.name;
+                        break;
+                }
+                if (element) {
+                    newCell.appendChild(element);
+                }
             }
 
-            if (i === 7) {
+            if (index === columns.length - 1) {
                 newCell.className += ' border-r';
             }
-        }
+        });
     }
 </script>

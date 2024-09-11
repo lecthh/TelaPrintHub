@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customization_details', function (Blueprint $table) {
-            $table->string('customization_details_ID')->primary();
-            $table->text('description');
-            $table->string('sizes_ID')->nullable();
-            $table->string('name');
-            $table->string('number')->nullable();
-            $table->integer('quantity');
+        Schema::create('order_designs_confirmed', function (Blueprint $table) {
+            $table->id();
             $table->string('order_ID');
+            $table->string('file_path');
             $table->timestamps();
 
             $table->foreign('order_ID')->references('order_ID')->on('order')->onDelete('cascade');
-            $table->foreign('sizes_ID')->references('sizes_ID')->on('sizes');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customization_details');
+        Schema::dropIfExists('order_designs_confirmed');
     }
 };

@@ -26,6 +26,7 @@ class Order extends Model
         'estimated_delivery_date',
         'final_order_design',
         'price',
+        'description',
     ];
 
     public function userDetails()

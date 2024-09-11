@@ -1,4 +1,4 @@
-@extends('layout.designer-layout')
+@extends('layout.businesshub-layout')
 @vite('resources/css/app.css')
 
 @section('content')
@@ -36,7 +36,7 @@
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">customer reference</h1>
-                <h1 class="text-base font-bold uppercase">GULF SHIP HANDLER</h1>
+                <h1 class="text-base font-bold uppercase"> {{ $orderPlacement->userDetails->name }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -51,7 +51,7 @@
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">mobile number</h1>
-                <h1 class="text-base font-bold uppercase">0937 432 8439</h1>
+                <h1 class="text-base font-bold uppercase"> {{ $orderPlacement->userDetails->contact_information }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -65,7 +65,7 @@
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">email</h1>
-                <h1 class="text-base font-bold normal-case">gulf@gmail.com</h1>
+                <h1 class="text-base font-bold normal-case">{{ $orderPlacement->userDetails->email }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -79,7 +79,7 @@
             </svg>
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">apparel</h1>
-                <h1 class="text-base font-bold normal-case">Sportswear</h1>
+                <h1 class="text-base font-bold normal-case">{{$orderPlacement->order->apparelCategory->name}}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3">
@@ -104,13 +104,18 @@
 
             <div class="flex flex-col gap-y-3">
                 <h1 class="text-base font-bold text-[#5C5959]">date</h1>
-                <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
+                <h1 class="text-base font-bold normal-case">{{ $orderPlacement->created_at->format('d F, Y') }}</h1>
             </div>
         </div>
     </div>
 
     <div class="flex w-full gap-x-3">
         <div class="w-[610px] h-[400px] border border-kBlack bg-kViolet">
+            @if($Images->isNotEmpty())
+            <img src="{{ asset($Images->first()->file_path) }}" alt="Large Image" class="w-full h-full object-cover cursor-pointer" onclick="openModal('{{ asset($Images->first()->file_path) }}')">
+            @else
+            <p class="text-center text-gray-500">No images available</p>
+            @endif
         </div>
 
         <div class="flex flex-col flex-grow gap-y-3">
@@ -128,45 +133,65 @@
             </div>
             <div class="flex flex-col gap-y-2 h-full">
                 <h1 class="font-bold">description</h1>
-                <p class="p-2 border border-kBlack w-full h-full">Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit.</p>
+                @if($orderPlacement->order->description == null)
+                <p class="p-2 border text-red-500 border-kBlack w-full h-full">No additional information provided</p>
+                @else
+                <p class="p-2 border border-kBlack w-full h-full">{{$orderPlacement->order->description}}</p>
+                @endif
             </div>
             <div class="flex flex-col gap-y-2 h-full">
                 <h1 class="font-bold">images</h1>
                 <div class="flex gap-x-2">
+                    @php
+                    $smallImages = $Images->slice(1, 2); // Get the next 2 images for small display
+                    @endphp
+                    @foreach($smallImages as $image)
                     <div class="w-[135px] h-[150px] border border-kBlack bg-kViolet">
+                        <img src="{{ asset($image->file_path) }}" alt="Small Image" class="w-full h-full object-cover cursor-pointer" onclick="openModal('{{ asset($image->file_path) }}')">
                     </div>
-                    <div class="w-[135px] h-[150px] border border-kBlack  bg-kViolet">
-                    </div>
-                    <div class="w-[135px] h-[150px] border border-kBlack  bg-kViolet">
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <form method="POST" action="{{ route('order-pending-details-post') }}">
+        <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
+            <div class="flex gap-x-3 p-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.02 19.5H7.5C6.88 19.5 6.33 19.48 5.84 19.41C3.21 19.12 2.5 17.88 2.5 14.5V9.5C2.5 6.12 3.21 4.88 5.84 4.59C6.33 4.52 6.88 4.5 7.5 4.5H10.96" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M15.02 4.5H16.5C17.12 4.5 17.67 4.52 18.16 4.59C20.79 4.88 21.5 6.12 21.5 9.5V14.5C21.5 17.88 20.79 19.12 18.16 19.41C17.67 19.48 17.12 19.5 16.5 19.5H15.02" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M15 2V22" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M8 8.5V15.5" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+                @csrf
+                <input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">
+                <div class="flex flex-col gap-y-3 w-full">
+                    <h1 class="font-bold text-base text-[#5C5959]">action</h1>
+                    <div class="flex gap-x-3 justify-end">
+                        <button class="p-2 border border-kBlack">cancel request</button>
+                        <button type="submit" class="text-kWhite p-2 bg-kblack">confirm request</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
-        <div class="flex gap-x-3 p-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M11.02 19.5H7.5C6.88 19.5 6.33 19.48 5.84 19.41C3.21 19.12 2.5 17.88 2.5 14.5V9.5C2.5 6.12 3.21 4.88 5.84 4.59C6.33 4.52 6.88 4.5 7.5 4.5H10.96"
-                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M15.02 4.5H16.5C17.12 4.5 17.67 4.52 18.16 4.59C20.79 4.88 21.5 6.12 21.5 9.5V14.5C21.5 17.88 20.79 19.12 18.16 19.41C17.67 19.48 17.12 19.5 16.5 19.5H15.02"
-                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M15 2V22" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M8 8.5V15.5" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-
-            <div class="flex flex-col gap-y-3 w-full">
-                <h1 class="font-bold text-base text-[#5C5959]">action</h1>
-                <div class="flex gap-x-3 justify-end">
-                    <button class="p-2 border border-kBlack">cancel request</button>
-                    <button class="text-kWhite p-2 bg-kblack">confirm request</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
+
+
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
+<script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+</script>
 @endsection

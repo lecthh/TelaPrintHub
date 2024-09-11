@@ -35,8 +35,8 @@
                     stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">customer reference</h1>
-                <h1 class="text-base font-bold uppercase">GULF SHIP HANDLER</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Customer reference</h1>
+                <h1 class="text-base font-bold uppercase">{{ $orderPlacement->userDetails->name }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -50,8 +50,8 @@
                     stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">mobile number</h1>
-                <h1 class="text-base font-bold uppercase">0937 432 8439</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Mobile number</h1>
+                <h1 class="text-base font-bold uppercase">{{ $orderPlacement->userDetails->contact_information }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -64,8 +64,8 @@
                     stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">email</h1>
-                <h1 class="text-base font-bold normal-case">gulf@gmail.com</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Email</h1>
+                <h1 class="text-base font-bold normal-case">{{ $orderPlacement->userDetails->email }}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -78,8 +78,8 @@
                     stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">apparel</h1>
-                <h1 class="text-base font-bold normal-case">Sportswear</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Apparel</h1>
+                <h1 class="text-base font-bold normal-case">{{$orderPlacement->order->apparelCategory->name}}</h1>
             </div>
         </div>
         <div href="" class="flex flex-grow gap-x-3 p-3">
@@ -103,116 +103,151 @@
             </svg>
 
             <div class="flex flex-col gap-y-3">
-                <h1 class="text-base font-bold text-[#5C5959]">date</h1>
-                <h1 class="text-base font-bold normal-case">13 August, 2024</h1>
+                <h1 class="text-base font-bold text-[#5C5959]">Date</h1>
+                <h1 class="text-base font-bold normal-case">{{ $orderPlacement->created_at->format('d F, Y') }}</h1>
             </div>
         </div>
     </div>
-
+    @if($orderPlacement->order_placement_status_ID == 4)
     <div class="flex gap-x-4">
         <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
+            <img src="{{ asset($final_design->file_path) }}" alt="Large Image" class="w-full h-full" onclick="openModal('{{ asset($final_design->file_path)  }}')">
         </div>
         <div class="inline-block w-full">
             <table class="table-auto border border-kBlack w-full">
                 <thead>
                     <tr class="border-b border-kBlack">
-                        <td class="text-lg font-bold border-r border-kBlack p-2 text-center">no</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">shirt name</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">jersey #</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">size</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">short #</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">size</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">pocket</td>
-                        <td class="text-lg font-bold border-r border-kBlack p-2">remarks</td>
+                        <th class="border-l border-t border-b border-kBlack p-2">no</th>
+                        <th class="border-l border-t border-b border-kBlack p-2">shirt name</th>
+                        <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                        @if($orderPlacement->order->apparel_category_ID == 5)
+                        <th class="border-l border-t border-b border-kBlack p-2">jersey #</th>
+                        @endif
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
+                        <th class="border-l border-t border-b border-kBlack p-2">short #</th>
+                        <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                        @endif
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4 || $orderPlacement->order->apparel_category_ID == 2)
+                        <th class="border-l border-t border-b border-kBlack p-2">pocket</th>
+                        @endif
+                        <th class="border border-kBlack p-2">remarks</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($customizationDetails as $index => $customization)
                     <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Alexis</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
+                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">{{ $index + 1 }}</td>
+                        <td class="text-base border-r border-kBlack p-2 normal-case">{{ $customization->name }}</td>
+                        <td class="text-base border-r border-kBlack p-2 uppercase">{{ $customization->size->name }}</td>
+
+                        @if($orderPlacement->order->apparel_category_ID == 5)
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->jersey_number }}</td>
+                        @endif
+
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->short_number }}</td>
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->short_size }}</td>
+                        @endif
+
+                        @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4 || $orderPlacement->order->apparel_category_ID == 2)
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->has_pocket ? 'Yes' : 'No' }}</td>
+                        @endif
+
+                        <td class="text-base border-r border-kBlack p-2">{{ $customization->remarks }}</td>
                     </tr>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Joel</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
-                    <tr class="border-b border-kBlack">
-                        <td class="text-base border-r border-kBlack p-2 text-center font-bold">1</td>
-                        <td class="text-base border-r border-kBlack p-2 normal-case">Cyber</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">10</td>
-                        <td class="text-base border-r border-kBlack p-2 uppercase">M</td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                        <td class="text-base border-r border-kBlack p-2"></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
-    <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
-        <div class="flex gap-x-3 p-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M22.9999 17.91C23.0199 18.66 22.8199 19.37 22.4599 19.98C22.2599 20.34 21.9899 20.6701 21.6899 20.9401C20.9999 21.5801 20.0899 21.9701 19.0799 22.0001C17.6199 22.0301 16.3299 21.2801 15.6199 20.1301C15.2399 19.5401 15.0099 18.8301 14.9999 18.0801C14.9699 16.8201 15.5299 15.6801 16.4299 14.9301C17.1099 14.3701 17.9699 14.0201 18.9099 14.0001C21.1199 13.9501 22.9499 15.7 22.9999 17.91Z"
-                    stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M17.4399 18.0298L18.45 18.9897L20.5399 16.9697" stroke="#171717" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M3.17017 7.44043L12.0002 12.5504L20.7701 7.4704" stroke="#171717" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M12.0002 21.61V12.54" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path
-                    d="M21.6101 9.17V14.83C21.6101 14.88 21.6101 14.92 21.6001 14.97C20.9001 14.36 20.0001 14 19.0001 14C18.0601 14 17.1901 14.33 16.5001 14.88C15.5801 15.61 15.0001 16.74 15.0001 18C15.0001 18.75 15.2101 19.46 15.5801 20.06C15.6701 20.22 15.7801 20.37 15.9001 20.51L14.0701 21.52C12.9301 22.16 11.0701 22.16 9.93011 21.52L4.59012 18.56C3.38012 17.89 2.39014 16.21 2.39014 14.83V9.17C2.39014 7.79 3.38012 6.11002 4.59012 5.44002L9.93011 2.48C11.0701 1.84 12.9301 1.84 14.0701 2.48L19.4101 5.44002C20.6201 6.11002 21.6101 7.79 21.6101 9.17Z"
-                    stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <div class="flex flex-col gap-y-3 w-full">
-                <h1 class="font-bold text-base text-[#5C5959]">confirm details</h1>
-                <div class="flex flex-col">
-                    <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">printer:</h1>
-                        <div class="flex flex-col gap-y-1 w-1/2">
-                            <select name="" id="">
-                                <option value="">VanJam</option>
-                            </select>
+    @endif
+    <form action="{{ route('order-confirmed-details-post')}}" enctype="multipart/form-data" method="post">
+        @csrf
+        <div class="flex flex-col gap-x-3 p-3 border border-kBlack">
+            <div class="flex gap-x-3 p-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M22.9999 17.91C23.0199 18.66 22.8199 19.37 22.4599 19.98C22.2599 20.34 21.9899 20.6701 21.6899 20.9401C20.9999 21.5801 20.0899 21.9701 19.0799 22.0001C17.6199 22.0301 16.3299 21.2801 15.6199 20.1301C15.2399 19.5401 15.0099 18.8301 14.9999 18.0801C14.9699 16.8201 15.5299 15.6801 16.4299 14.9301C17.1099 14.3701 17.9699 14.0201 18.9099 14.0001C21.1199 13.9501 22.9499 15.7 22.9999 17.91Z"
+                        stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M17.4399 18.0298L18.45 18.9897L20.5399 16.9697" stroke="#171717" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3.17017 7.44043L12.0002 12.5504L20.7701 7.4704" stroke="#171717" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12.0002 21.61V12.54" stroke="#171717" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M21.6101 9.17V14.83C21.6101 14.88 21.6101 14.92 21.6001 14.97C20.9001 14.36 20.0001 14 19.0001 14C18.0601 14 17.1901 14.33 16.5001 14.88C15.5801 15.61 15.0001 16.74 15.0001 18C15.0001 18.75 15.2101 19.46 15.5801 20.06C15.6701 20.22 15.7801 20.37 15.9001 20.51L14.0701 21.52C12.9301 22.16 11.0701 22.16 9.93011 21.52L4.59012 18.56C3.38012 17.89 2.39014 16.21 2.39014 14.83V9.17C2.39014 7.79 3.38012 6.11002 4.59012 5.44002L9.93011 2.48C11.0701 1.84 12.9301 1.84 14.0701 2.48L19.4101 5.44002C20.6201 6.11002 21.6101 7.79 21.6101 9.17Z"
+                        stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div class="flex flex-col gap-y-3 w-full">
+                    <h1 class="font-bold text-base text-[#5C5959]">Confirm details</h1>
+                    @if($orderPlacement->order_placement_status_ID == 3)
+                    <div class="flex flex-col gap-y-3">
+                        <h1 class="text-base font-bold text-red-500 ]">Waiting for user reply</h1>
+                    </div>
+                    @endif
+                    @if($orderPlacement->order_placement_status_ID == 2)
+                    <div class="flex flex-col">
+                        <div class="flex flex-grow">
+                            <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Printer:</h1>
+                            <div class="flex flex-col gap-y-1 w-1/2">
+                                <select name="printer_id" id="">
+                                    <option value="12345-6789">VanJam</option>
+                                    <option value="54321-9865">CoolPrintersClub</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex flex-col">
-                    <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">final design:</h1>
-                        <div class="flex w-1/2">
-                            <input type="file" name="" id="">
+                    <div class="flex flex-col">
+                        <div class="flex flex-grow">
+                            <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Final Design:</h1>
+                            <div class="flex w-1/2">
+                                <input type="file" name="images[]" id="images" accept="image/*" class="file-input w-full rounded p-2 text-kBlack" multiple>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex flex-col">
-                    <div class="flex flex-grow">
-                        <h1 class="flex flex-grow font-bold text-kBlack w-1/2">generate link:</h1>
-                        <div class="flex w-1/2">
-                            <button class="p-2 bg-[#5C5959] text-kWhite">generate confirmation link</button>
+                    <div class="flex flex-col">
+                        <div class="flex flex-grow">
+                            <h1 class="flex flex-grow font-bold text-kBlack w-1/2">Send link:</h1>
+                            <div class="flex w-1/2">
+                                <button type="submit" class="p-2 bg-[#5C5959] text-kWhite">generate and Send confirmation link</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex gap-x-3 justify-end">
-                    <button class="p-2 border border-kBlack">cancel request</button>
-                    <button class="text-kWhite p-2 bg-kblack">activate order</button>
+                    <input type="hidden" name="status" value="0">
+                    @elseif($orderPlacement->order_placement_status_ID == 4)
+                    <div class="flex gap-x-3 justify-end">
+                        <button class="p-2 border border-kBlack">cancel request</button>
+                        <button type="submit" class="text-kWhite p-2 bg-kblack">activate order</button>
+                        <input type="hidden" name="status" value="1">
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
-    </div>
+        <input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">
+    </form>
 </div>
+@if($errors->any())
+<div class="text-red-500 text-sm">
+    @foreach($errors->all() as $error)
+    <p>{{ $error }}</p>
+    @endforeach
+</div>
+@endif
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
+<script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+</script>
 @endsection

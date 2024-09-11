@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_confirmation', function (Blueprint $table) {
-            $table->string('order_confirmation_ID')->primary();
+        Schema::create('designer_gallery', function (Blueprint $table) {
+            $table->id();
+            $table->string('designer_ID');
+            $table->string('file_path');
             $table->timestamps();
+            $table->foreign('designer_ID')->references('designer_ID')->on('designer_company')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_confirmation');
+        Schema::dropIfExists('designer_gallery');
     }
 };
