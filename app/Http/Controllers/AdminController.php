@@ -8,6 +8,6 @@ class AdminController extends Controller
 {
     public function catalog()
     {
-        return view('partner.catalog');
+        return view('designer.catalog');
     }
 }
