@@ -47,7 +47,6 @@ class OrderConfirmedController extends Controller
 
     public function orderConfirmed($order_placement_ID)
     {
-        $admin = session('admin');
         $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
             ->where('order_placement_ID', $order_placement_ID)
             ->firstOrFail();
@@ -55,10 +54,10 @@ class OrderConfirmedController extends Controller
         if ($orderPlacement->order_placement_status_ID == 4) {
             $final_design = OrderDesignsConfirmed::where('order_ID', $orderPlacement->order->order_ID)->first();
             $customizationDetails = CustomizationDetails::where('order_ID', $orderPlacement->order->order_ID)->get();
-            return view('designer.confirmed.order', compact('admin', 'orderPlacement', 'final_design', 'customizationDetails'));
+            return view('designer.confirmed.order', compact('orderPlacement', 'final_design', 'customizationDetails'));
         }
 
-        return view('designer.confirmed.order', compact('admin', 'orderPlacement'));
+        return view('designer.confirmed.order', compact('orderPlacement'));
     }
 
     public function orderConfirmedPost(Request $request)

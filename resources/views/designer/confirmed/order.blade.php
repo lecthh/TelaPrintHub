@@ -111,7 +111,7 @@
     @if($orderPlacement->order_placement_status_ID == 4)
     <div class="flex gap-x-4">
         <div class="w-[800px] h-[300px] bg-kViolet border border-kBlack">
-            <img src="{{ asset($final_design->file_path) }}" alt="Large Image" class="w-full h-full">
+            <img src="{{ asset($final_design->file_path) }}" alt="Large Image" class="w-full h-full" onclick="openModal('{{ asset($final_design->file_path)  }}')">
         </div>
         <div class="inline-block w-full">
             <table class="table-auto border border-kBlack w-full">
@@ -236,7 +236,10 @@
     @endforeach
 </div>
 @endif
-
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
 <script>
     function openModal(src) {
         document.getElementById('modalImage').src = src;

@@ -16,7 +16,6 @@ class AdminController extends Controller
 
     public function catalog()
     {
-        $admin = session('admin');
-        return view('designer.catalog', compact('admin'));
+        return view('designer.catalog');
     }
 }

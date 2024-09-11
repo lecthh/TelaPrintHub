@@ -78,7 +78,7 @@
             <div class="flex flex-col gap-y-1">
                 <h1 class="font-bold text-base normal-case">ORDER NO: {{$orderPlacement->order->order_ID}}</h1>
                 <div class="w-[400px] h-[300px] bg-kViolet border">
-                    <img src="{{ asset($images->first()->file_path) }}" alt="Large Image" class="w-full h-full">
+                    <img src="{{ asset($images->first()->file_path) }}" alt="Large Image" class="w-full h-full" onclick="openModal('{{  asset($images->first()->file_path)  }}')">
                 </div>
             </div>
             <div class="flex flex-col gap-y-1">
@@ -146,6 +146,21 @@
     @endforeach
 </div>
 @endif
+
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
+<script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+</script>
 
 </html>
 <script src="https://kit.fontawesome.com/d3c4f3f1ff.js" crossorigin="anonymous"></script>

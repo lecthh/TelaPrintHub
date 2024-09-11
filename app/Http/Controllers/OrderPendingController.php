@@ -41,7 +41,6 @@ class OrderPendingController extends Controller
 
     public function orderPending($order_placement_ID)
     {
-        $admin = session('admin');
 
         $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
             ->where('order_placement_ID', $order_placement_ID)
@@ -50,7 +49,7 @@ class OrderPendingController extends Controller
         $Images = OrderDesignsPending::where('order_placement_ID', $orderPlacement->order_placement_ID)
             ->get();
 
-        return view('designer.pending.order', compact('admin', 'orderPlacement', 'Images'));
+        return view('designer.pending.order', compact('orderPlacement', 'Images'));
     }
 
     public function orderPendingPost(Request $request)

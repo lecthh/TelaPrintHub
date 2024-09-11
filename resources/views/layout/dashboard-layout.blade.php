@@ -42,7 +42,7 @@
         </svg>
         <div class="flex flex-col gap-y-3">
             <h1 class="text-base font-bold text-[#5C5959]">active orders</h1>
-            <h1 class="text-xl font-bold">10</h1>
+            <h1 class="text-xl font-bold">{{ $orderActiveCount }}</h1>
         </div>
     </a>
     <a href="" class="flex flex-grow gap-x-3 p-3 border-r border-kBlack">
@@ -64,7 +64,7 @@
         </svg>
         <div class="flex flex-col gap-y-3">
             <h1 class="text-base font-bold text-[#5C5959]">pending requests</h1>
-            <h1 class="text-xl font-bold">5</h1>
+            <h1 class="text-xl font-bold">{{ $orderPendingCount }}</h1>
         </div>
     </a>
     <a href="" class="flex flex-grow gap-x-3 p-3 border-kBlack">
@@ -86,7 +86,7 @@
         </svg>
         <div class="flex flex-col gap-y-3">
             <h1 class="text-base font-bold text-[#5C5959]">confirmed requests</h1>
-            <h1 class="text-xl font-bold">3</h1>
+            <h1 class="text-xl font-bold"> {{ $orderConfirmedCount }}</h1>
         </div>
     </a>
 </div>
