@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomizationDetails;
+use App\Models\OrderDesignsConfirmed;
 use App\Models\OrderPlacement;
 use Illuminate\Http\Request;
 
@@ -32,5 +34,17 @@ class OrderActiveController extends Controller
             ->get();
 
         return view('designer.active.view', compact('admin', 'ActiveOrders'));
+    }
+
+    public function orderActive($order_placement_ID)
+    {
+        $admin = session('admin');
+        $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
+            ->where('order_placement_ID', $order_placement_ID)
+            ->firstOrFail();
+
+        $final_design = OrderDesignsConfirmed::where('order_ID', $orderPlacement->order->order_ID)->first();
+        $customizationDetails = CustomizationDetails::where('order_ID', $orderPlacement->order->order_ID)->get();
+        return view('designer.active.order', compact('admin', 'orderPlacement', 'final_design', 'customizationDetails'));
     }
 }

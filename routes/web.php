@@ -89,6 +89,8 @@ Route::middleware("auth")->group(function () {
     Route::post('/order/confirmed/details', [OrderConfirmedController::class, "orderConfirmedPost"])->name('order-confirmed-details-post');
 
     Route::get('/order/active', [OrderActiveController::class, "orderActiveTable"])->name('order-active');
+
+    Route::get('/order/active/details/{order_placement_ID}', [OrderActiveController::class, "orderActive"])->name('order-active-details');
 });
 
 Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedController::class, 'showConfirmationLink'])->name('confirmation-link');

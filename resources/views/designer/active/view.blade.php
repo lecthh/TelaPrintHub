@@ -36,7 +36,7 @@
         </thead>
         <tbody>
             @foreach($ActiveOrders as $orderPlacement)
-            <tr class="hover:bg-gray-100 cursor-pointer" data-url="{{ route('order-pending-details', ['order_placement_ID' => $orderPlacement->order_placement_ID]) }}">
+            <tr class="hover:bg-gray-100 cursor-pointer" data-url="{{ route('order-active-details', ['order_placement_ID' => $orderPlacement->order_placement_ID]) }}">
                 <td class="p-2 border border-kBlack text-center">
                     <input type="checkbox" name="selected_orders[]" value="{{ $orderPlacement->order->order_ID }}">
                 </td>
@@ -59,4 +59,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const rows = document.querySelectorAll('tr[data-url]');
+
+        rows.forEach(row => {
+            row.addEventListener('click', function() {
+                window.location.href = row.getAttribute('data-url');
+            });
+        });
+    });
+</script>
 @endsection
