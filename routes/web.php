@@ -51,7 +51,7 @@ Route::get('/order-pending-x', function () {
     return view('designer.pending.order');
 })->name('order-pending-x');
 
-Route::get('/profile', function () {
+Route::get('/profile-x', function () {
     return view('designer.profile');
 })->name('profile');
 

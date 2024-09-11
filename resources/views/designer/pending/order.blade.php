@@ -1,4 +1,4 @@
-@extends('layout.businesshub-layout')
+@extends('layout.designer-layout')
 @vite('resources/css/app.css')
 
 @section('content')
