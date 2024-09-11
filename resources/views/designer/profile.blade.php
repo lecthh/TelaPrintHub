@@ -2,46 +2,60 @@
 @vite('resources/css/app.css')
 
 @section('content')
-<h1 class="font-bold text-xl normal-case">Hello, Designer!</h1>
-<form action="" class="flex border border-kBlack bg-kWhite p-3 gap-x-3">
-    <label for="profile_pic_update" class="min-w-[200px]">
-        <img src="/img/profile.jpg" alt="" class="w-[200px] h-[200px] rounded-full border border-kBlack">
-        <input type="file" name="profile_pic" id="profile_pic_update" hidden>
-    </label>
+<h1 class="font-bold text-xl normal-case">Hello, {{$admin->name}}</h1>
+<form action="{{ route('profile-post') }}" method="post" enctype="multipart/form-data" class="flex border border-kBlack bg-kWhite p-3 gap-x-3">
+    @csrf
+    <div class="flex flex-col items-center">
+        @if($designerCompany->logo == null)
+        <label for="profile_pic_update" class="min-w-[200px] cursor-pointer">
+            <img id="profilePicPreview" src="/img/no-profile.jpg" alt="Profile Picture" class="w-[200px] h-[200px] rounded-full border border-kBlack">
+        </label>
+        @else
+        <label for="profile_pic_update" class="min-w-[200px] cursor-pointer">
+            <img id="profilePicPreview" src="{{ asset($designerCompany->logo) }}" alt="Profile Picture" class="w-[200px] h-[200px] rounded-full border border-kBlack">
+        </label>
+        @endif
+        <label for="profile_pic_update" class="cursor-pointer text-blue-500 hover:underline mt-2">
+            Update Profile
+        </label>
+        <input type="file" name="profile_pic" id="profile_pic_update" hidden accept="image/*">
+    </div>
+
     <div class="flex flex-col gap-y-5 flex-grow">
         <div class="flex flex-col border border-kBlack p-3 gap-y-3">
             <div class="flex justify-between">
-                <h1 class="text-lg font-bold normal-case text-[#5C5959]">About Jane Doe</h1>
+                <h1 class="text-lg font-bold normal-case text-[#5C5959]">About {{ $admin->name }}</h1>
             </div>
-            <textarea class="flex border-none" rows="5" id="about" placeholder="Tell us about yourself">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, recusandae molestiae alias provident sint itaque. Eos odio maiores velit voluptas, deserunt modi quo impedit repellat est soluta, quis laboriosam sed?</textarea>
+            <textarea class="flex border-none" rows="5" id="about" placeholder="Tell us about yourself">{{$designerCompany->description}}</textarea>
+            <input type="hidden" name="about_hidden" id="about_hidden" value="{{ $designerCompany->description }}">
         </div>
         <div class="flex flex-col border border-kBlack p-3 gap-y-3">
             <div class="flex justify-between">
-                <h1 class="text-lg font-bold normal-case text-[#5C5959]">Jane's Gallery</h1>
-                <button>
+                <h1 class="text-lg font-bold normal-case text-[#5C5959]">{{ $admin->name }} Gallery</h1>
+                <label for="images" class="cursor-pointer">
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.03125 8.5H11.5312" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M6.03125 16.5H8.03125" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10.5312 16.5H14.5312" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M22.0312 12.03V16.11C22.0312 19.62 21.1412 20.5 17.5912 20.5H6.47125C2.92125 20.5 2.03125 19.62 2.03125 16.11V7.89C2.03125 4.38 2.92125 3.5 6.47125 3.5H14.5312"
-                            stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M19.1115 4.13031L15.4015 7.84031C15.2615 7.98031 15.1215 8.26031 15.0915 8.46031L14.8915 9.88031C14.8215 10.3903 15.1815 10.7503 15.6915 10.6803L17.1115 10.4803C17.3115 10.4503 17.5915 10.3103 17.7315 10.1703L21.4415 6.46031C22.0815 5.82031 22.3815 5.08031 21.4415 4.14031C20.4915 3.19031 19.7515 3.49031 19.1115 4.13031Z"
-                            stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M18.5811 4.66016C18.9011 5.79016 19.7811 6.67016 20.9011 6.98016" stroke="#171717"
-                            stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2.03125 8.5H11.5312" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6.03125 16.5H8.03125" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.5312 16.5H14.5312" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22.0312 12.03V16.11C22.0312 19.62 21.1412 20.5 17.5912 20.5H6.47125C2.92125 20.5 2.03125 19.62 2.03125 16.11V7.89C2.03125 4.38 2.92125 3.5 6.47125 3.5H14.5312" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M19.1115 4.13031L15.4015 7.84031C15.2615 7.98031 15.1215 8.26031 15.0915 8.46031L14.8915 9.88031C14.8215 10.3903 15.1815 10.7503 15.6915 10.6803L17.1115 10.4803C17.3115 10.4503 17.5915 10.3103 17.7315 10.1703L21.4415 6.46031C22.0815 5.82031 22.3815 5.08031 21.4415 4.14031C20.4915 3.19031 19.7515 3.49031 19.1115 4.13031Z" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M18.5811 4.66016C18.9011 5.79016 19.7811 6.67016 20.9011 6.98016" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                </button>
+                </label>
+
+                <input type="file" name="images[]" id="images" accept="image/*" class="hidden" multiple>
             </div>
-            <div class="flex gap-x-3">
-                <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet"></div>
-                <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet"></div>
-                <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet"></div>
+            <div class="flex gap-x-3" id="previewImages">
+                @if(!$designerGallery)
+
+                @foreach($designerGallery as $gallery)
+                <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet">
+                    <img src="{{ asset($gallery->file_path) }}" alt="" srcset="">
+                </div>
+                @endforeach
+                @else
+                <div class="text-red-500">No pictures found, please add sample pictures</div>
+                @endif
             </div>
         </div>
         <div class="flex flex-col border border-kBlack p-3 gap-y-3">
@@ -50,16 +64,19 @@
             </div>
             <div class="flex flex-col gap-y-1 w-1/2">
                 <div class="flex justify-between normal-case font-semibold">
-                    <h1>Name:</h1>
-                    <h1 id="name" contenteditable="true">Jane Doe</h1>
+                    <label>Name:</label>
+                    <h1 id="name" contenteditable="true">{{ $designerCompany->name }}</h1>
+                    <input type="hidden" name="name_hidden" id="name_hidden" value="{{ $designerCompany->name }}">
                 </div>
                 <div class="flex justify-between normal-case font-semibold">
-                    <h1>Email:</h1>
-                    <h1 id="email" contenteditable="true">jane@gmail.com</h1>
+                    <label>Email:</label>
+                    <h1 id="email" contenteditable="true">{{ $designerCompany->email }}</h1>
+                    <input type="hidden" name="email_hidden" id="email_hidden" value="{{ $designerCompany->email }}">
                 </div>
                 <div class="flex justify-between normal-case font-semibold">
-                    <h1>Mobile no:</h1>
-                    <h1 id="number" contenteditable="true">+63 0954 234 2345</h1>
+                    <label>Mobile no:</label>
+                    <h1 id="number" contenteditable="true">{{ $designerCompany->contact_details }}</h1>
+                    <input type="hidden" name="number_hidden" id="number_hidden" value="{{ $designerCompany->contact_details }}">
                 </div>
             </div>
         </div>
@@ -81,8 +98,8 @@
                 <div class="flex flex-col gap-y-3 w-full">
                     <h1 class="font-bold text-base text-[#5C5959]">action</h1>
                     <div class="flex gap-x-3 justify-end">
-                        <button class="p-2 border border-kBlack" id="discardButton">discard changes</button>
-                        <button class="text-kWhite p-2 bg-kblack" id="updateButton">update changes</button>
+                        <button class="p-2 border border-kBlack" id="discardButton" type="button">discard changes</button>
+                        <button class="text-kWhite p-2 bg-kblack" id="updateButton" type="submit">update changes</button>
                     </div>
                 </div>
             </div>
@@ -97,20 +114,102 @@
         const originalEmail = document.getElementById('email').innerText;
         const originalNumber = document.getElementById('number').innerText;
 
+        const profilePicPreview = document.getElementById('profilePicPreview');
+        const originalProfilePicSrc = profilePicPreview.src;
+
         const aboutTextArea = document.getElementById('about');
         const nameField = document.getElementById('name');
         const emailField = document.getElementById('email');
         const numberField = document.getElementById('number');
 
-        const discardButton = document.getElementById('discardButton');
-        const updateButton =document.getElementById('updateButton');
+        const aboutHidden = document.getElementById('about_hidden');
+        const nameHidden = document.getElementById('name_hidden');
+        const emailHidden = document.getElementById('email_hidden');
+        const numberHidden = document.getElementById('number_hidden');
 
-        //discard
+        const discardButton = document.getElementById('discardButton');
+        const updateButton = document.getElementById('updateButton');
+
+        const profilePicInput = document.getElementById('profile_pic_update');
+        const imagesInput = document.getElementById('images');
+        const previewImagesContainer = document.getElementById('previewImages');
+
+        // Store original gallery images state
+        const originalGalleryImages = Array.from(previewImagesContainer.querySelectorAll('img')).map(img => img.src);
+
         discardButton.addEventListener('click', () => {
+            // Revert text areas and fields
             aboutTextArea.value = originalAboutText;
             nameField.innerText = originalName;
-            emailField.innterText =originalEmail;
+            emailField.innerText = originalEmail;
             numberField.innerText = originalNumber;
+
+            aboutHidden.value = originalAboutText;
+            nameHidden.value = originalName;
+            emailHidden.value = originalEmail;
+            numberHidden.value = originalNumber;
+
+            // Revert profile picture
+            profilePicPreview.src = originalProfilePicSrc;
+
+            // Clear the file inputs
+            profilePicInput.value = '';
+            imagesInput.value = '';
+
+            // Revert gallery images
+            previewImagesContainer.innerHTML = '';
+            originalGalleryImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                wrapper.appendChild(img);
+                previewImagesContainer.appendChild(wrapper);
+            });
         });
+
+        updateButton.addEventListener('click', (e) => {
+            aboutHidden.value = aboutTextArea.value;
+            nameHidden.value = nameField.innerText;
+            emailHidden.value = emailField.innerText;
+            numberHidden.value = numberField.innerText;
+        });
+
+        if (profilePicInput && profilePicPreview) {
+            profilePicInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        profilePicPreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        if (imagesInput && previewImagesContainer) {
+            imagesInput.addEventListener('change', function(event) {
+                previewImagesContainer.innerHTML = '';
+
+                const files = event.target.files;
+                if (files.length > 0) {
+                    for (const file of files) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                            const wrapper = document.createElement('div');
+                            wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet');
+                            wrapper.appendChild(img);
+                            previewImagesContainer.appendChild(wrapper);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+        }
     });
 </script>

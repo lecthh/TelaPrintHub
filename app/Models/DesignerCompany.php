@@ -25,7 +25,6 @@ class DesignerCompany extends Model
         'is_verified',
     ];
 
-
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'admin_ID', 'admin_ID');

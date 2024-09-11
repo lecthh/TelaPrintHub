@@ -94,6 +94,9 @@ Route::middleware("auth")->group(function () {
     Route::get('/order/active', [OrderActiveController::class, "orderActiveTable"])->name('order-active');
 
     Route::get('/order/active/details/{order_placement_ID}', [OrderActiveController::class, "orderActive"])->name('order-active-details');
+
+    Route::get('/profile', [AdminController::class, "profile"])->name('profile');
+    Route::post('/profile', [AdminController::class, "profilePost"])->name('profile-post');
 });
 
 Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedController::class, 'showConfirmationLink'])->name('confirmation-link');
