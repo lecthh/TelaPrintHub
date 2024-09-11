@@ -23,7 +23,7 @@
 
             <div class="flex flex-col gap-y-5 normal-case">
                 <ul class="flex flex-col gap-y-2">
-                    <a href="" class="hover:bg-gray-200 hover:rounded-md p-2">
+                    <a href="{{ route('catalog') }}" class="hover:bg-gray-200 hover:rounded-md p-2">
                         <li class="flex gap-x-2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
