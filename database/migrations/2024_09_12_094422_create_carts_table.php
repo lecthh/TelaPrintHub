@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone_number');
             $table->string('country_code');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="flex gap-x-6">
-    <form method="POST" action="{{ route('request-finalization-post') }}" class="flex flex-col flex-grow px-6 py-3 gap-y-6 lowercase w-1/2">
+    <form id="finalizationForm" method="POST" action="{{ route('request-finalization-post') }}" class="flex flex-col flex-grow px-6 py-3 gap-y-6 lowercase w-1/2">
         @csrf
         <div class="flex flex-col gap-y-6 px-6 py-3">
             <h1 class="text-xl font-bold">request a print</h1>
@@ -70,7 +70,7 @@
 
             <div class="inline-flex justify-start">
                 <button type="submit" class="btn btn-primary">Confirm Order</button>
-                <button type="submit" formaction="{{ route('save-to-cart') }}" class="btn btn-secondary">Save to Cart as Draft</button>
+                <button type="button" id="saveToCartButton" class="btn btn-secondary">Save to Cart as Draft</button>
             </div>
         </div>
 
@@ -128,10 +128,66 @@
                     <h1 class="text-lg font-bold flex flex-grow">apparel:</h1>
                     <h1 class="text-lg normal-case flex flex-grow text-end">{{ $selectedCategory->name }}</h1>
                 </div>
+                <div class="flex">
+                    <h1 class="text-lg font-bold flex flex-grow">description:</h1>
+                    <textarea name="description" id="description" class="w-full">{{ session('description') }}</textarea>
+                </div>                
             </div>
         </div>
     </div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+@include('modals.cart-saved')
+
+@if(Session::has('cart-saved'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('order-draft');
+            var closeButtons = document.querySelectorAll('[data-modal-hide="order-draft"]');
+
+            modal.classList.remove('hidden');
+
+            closeButtons.forEach(function(button) {
+                button.onclick = function() {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+@endif
+
+<script>
+    document.getElementById('saveToCartButton').addEventListener('click', function() {
+        var form = document.getElementById('finalizationForm');
+        var formData = new FormData(form);
+
+        fetch('{{ route('save-to-cart') }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                var modal = document.getElementById('order-draft');
+                modal.classList.remove('hidden');
+            } else {
+                alert('Failed to save to cart.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while saving to cart.');
+        });
+    });
+</script>
 @endsection

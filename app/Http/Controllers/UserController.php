@@ -179,6 +179,7 @@ class UserController extends Controller
             'uploaded_images' => session('uploaded_images'),
             'selected_company' => session('selected_company'),
             'selected_category' => session('selected_category'),
+            'description' => session('description'),
         ]);
     
         // Log the request data
@@ -188,6 +189,7 @@ class UserController extends Controller
         $uploadedImages = session('uploaded_images');
         $selectedCompany = session('selected_company');
         $selectedCategory = session('selected_category');
+        $description = session('description');
     
         // Extract relevant fields from the stdClass objects
         $selectedCompanyName = $selectedCompany ? $selectedCompany->name : null;
@@ -213,9 +215,15 @@ class UserController extends Controller
         $cart->email = $email;
         $cart->phone_number = $phoneNumber;
         $cart->country_code = $countryCode;
+        $cart->description = $description;
         $cart->save();
     
-        return redirect()->route('cart.index')->with('success', 'Draft saved to cart.');
+        // Flash the session message
+        Session::flash('cart-saved', 'Draft saved to cart.');
+    
+        return response()->json(['success' => true]);
+
+        return redirect()->route('home');
     }
 
     public function viewCart()
