@@ -173,16 +173,16 @@
         const rows = tableBody.getElementsByTagName('tr');
 
         for (let i = 0; i < rows.length; i++) {
-            const firstCell = rows[i].cells[0]; // Get the first cell (for numbering)
-            if (firstCell && i > 0) { // Skip the header row (assuming it's the first row)
-                firstCell.textContent = i; // Update the number, starting from 1
+            const firstCell = rows[i].cells[0];
+            if (firstCell && i > 0) {
+                firstCell.textContent = i;
             }
         }
     }
 
     function addRow(apparelCategoryID) {
         const tableBody = document.getElementById('orderTable');
-        const rowCount = tableBody.rows.length - 1; // Subtract 1 to account for the header row
+        const rowCount = tableBody.rows.length - 1;
 
         const newRow = tableBody.insertRow();
 
