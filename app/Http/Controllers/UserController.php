@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApparelCategory;
+use App\Models\DesignerCompany;
 use App\Services\RequestService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,20 +24,21 @@ class UserController extends Controller
         $designerCompanies = collect();
 
         if ($selectedCategory) {
-            $designerCompanies = DB::table('designer_company')
-                ->join('designer_company_apparel_category', 'designer_company.designer_ID', '=', 'designer_company_apparel_category.designer_ID')
-                ->join('apparel_category', 'designer_company_apparel_category.apparel_category_ID', '=', 'apparel_category.apparel_category_ID')
-                ->where('apparel_category.name', $selectedCategory)
-                ->select('designer_company.*')
-                ->distinct()
-                ->get();
+            $apparelCategory = ApparelCategory::where('name', $selectedCategory)->first();
 
-            $apparelCategory = DB::table('apparel_category')->where('name', $selectedCategory)->first();
+            if ($apparelCategory) {
+                $designerCompanies = DesignerCompany::with('gallery')
+                    ->whereHas('apparelCategories', function ($query) use ($apparelCategory) {
+                        $query->where('designer_company_apparel_category.apparel_category_ID', $apparelCategory->apparel_category_ID);
+                    })->get();
+            }
         }
+        $categories = ApparelCategory::pluck('name', 'apparel_category_ID');
 
-        $categories = DB::table('apparel_category')->pluck('name', 'apparel_category_ID');
         return view('request.request-company-selection', compact('designerCompanies', 'categories', 'selectedCategory'));
     }
+
+
 
     public function requestCompanySelectionPost(Request $request)
     {

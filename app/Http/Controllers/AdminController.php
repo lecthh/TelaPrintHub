@@ -32,6 +32,7 @@ class AdminController extends Controller
 
         $designerCompany = DesignerCompany::where('admin_id', $admin->admin_ID)->first();
         $designerGallery = DesignerGallery::where('designer_id', $designerCompany->designer_ID)->get();
+        dd($designerGallery);
         return view('designer.profile', compact('admin', 'designerCompany', 'designerGallery'));
     }
 
