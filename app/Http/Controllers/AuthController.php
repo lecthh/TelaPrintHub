@@ -46,12 +46,19 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $admin = Auth::guard('admin')->user();
             $company = DB::table('designer_company')->where('admin_ID', $admin->admin_ID)->first();
-            Session::put('admin', $company);
-            return redirect()->intended('catalog');
+            if ($admin->admin_type_ID == 2) {
+                Session::put('admin', $company);
+                return redirect()->route('catalog');
+            } elseif ($admin->admin_type_ID == 1) {
+                Session::put('admin', $company);
+                return redirect()->route('printer-catalog');
+            }
+            return redirect()->route('home');
         } else {
             return redirect()->back()->withErrors(['error' => 'Invalid email or password']);
         }
     }
+
 
     public function register()
     {
@@ -61,6 +68,7 @@ class AuthController extends Controller
 
     public function registerPost(Request $request)
     {
+
         $validated = $request->validate([
             'partner-type' => 'required|string',
             'company_name' => 'required|string|max:255|unique:Admin,name',
@@ -80,7 +88,11 @@ class AuthController extends Controller
             'phone_number.unique' => 'Phone number is already in use.',
         ]);
 
-        $this->authService->registerDesignerCompany($validated);
+        if ($request->input('partner-type') == 'designer') {
+            $this->authService->registerDesignerCompany($validated);
+        } else {
+            $this->authService->registerPrinterCompany($validated);
+        }
 
         Session::flash('partnership', [
             'status' => true,
