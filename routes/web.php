@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderActiveController;
 use App\Http\Controllers\OrderConfirmedController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderPendingController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
@@ -66,7 +67,7 @@ Route::get('/catalog-printer', function () {
 
 Route::get('/catalog-orders', function () {
     return view('printer.orders.view');
-})->name('printer-orders'); 
+})->name('printer-orders');
 
 Route::get('/catalog-order-x', function () {
     return view('printer.orders.order');

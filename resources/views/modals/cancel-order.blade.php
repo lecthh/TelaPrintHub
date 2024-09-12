@@ -1,3 +1,4 @@
+@csrf
 <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
   <div class="relative max-h-full w-full max-w-2xl rounded-lg bg-white p-4 shadow dark:bg-gray-700">
     <div class="flex items-center justify-between rounded-t border-b p-4 md:p-5 dark:border-gray-600">
@@ -11,16 +12,16 @@
     </div>
     <div class="space-y-4 p-4 md:p-5">
       <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">Please state the reason:</p>
-      <textarea name="" id="" rows="5" class="border-kBlack w-full border p-2"></textarea>
+      <textarea name="reasonCancellation" id="reasonCancellation" rows="5" class="border-kBlack w-full border p-2 " required></textarea>
       <p class="text-base">The customer will receive an email informing them that their order has been canceled.</p>
     </div>
     <div class="flex items-center justify-end rounded-b border-t border-gray-200 p-4 md:p-5 dark:border-gray-600">
       <button data-modal-hide="default-modal" type="button" class="bg-kBlack text-kWhite flex items-center justify-around gap-x-2 rounded-md p-3 text-lg font-semibold">
         <p>Cancel</p>
       </button>
-      <button data-modal-hide="default-modal" type="button" class="bg-kBlack text-kWhite flex items-center justify-around gap-x-2 rounded-md p-3 text-lg font-semibold">
+      <button type="submit" class="bg-kBlack text-kWhite flex items-center justify-around gap-x-2 rounded-md p-3 text-lg font-semibold">
         <p>Confirm</p>
       </button>
     </div>
   </div>
-</div>
+  <input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">

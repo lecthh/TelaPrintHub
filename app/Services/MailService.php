@@ -71,4 +71,12 @@ class MailService
                 ->subject('Your Order Has Been Activated!');
         });
     }
+
+    public function sendPendingCancellationEmail($email, $reason, $designerEmail, $name)
+    {
+        Mail::send('mail.order-pending-cancellation', ['reason' => $reason, 'designerEmail' => $designerEmail, 'name' => $name], function ($message) use ($email) {
+            $message->to($email)
+                ->subject('Your Osrder Has Been Cancelled');
+        });
+    }
 }

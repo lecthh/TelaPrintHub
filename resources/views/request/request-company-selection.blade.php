@@ -155,7 +155,6 @@
                 <div class="flex flex-col gap-y-2">
                     <h1 class="text-base font-semibold">company gallery</h1>
                     <div id="companyGalleryContainer" class="flex gap-x-2">
-                        <!-- This is where the images will go -->
                     </div>
                 </div>
                 <div class="flex flex-col gap-y-3">
