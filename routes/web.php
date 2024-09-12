@@ -78,6 +78,12 @@ Route::get('/printer-profile', function () {
 })->name('printer-profile');
 
 
+//printer catalog for users
+Route::get('/production-catalog', function () {
+    return view('production-catalog');
+})->name('production-catalog');
+
+
 //admin
 Route::get('/admin', function () {
     return view('admin.dashboard');

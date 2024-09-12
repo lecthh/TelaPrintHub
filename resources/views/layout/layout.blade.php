@@ -169,6 +169,9 @@
     <a href="">
       <li>request a print</li>
     </a>
+    <a href="{{ route('production-catalog') }}" class="text-kBlack">
+      <li>production companies</li>
+    </a>
     <a href="{{ route('login') }}" class="text-kViolet">
       <li>business hub</li>
     </a>
