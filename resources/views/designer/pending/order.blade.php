@@ -1,4 +1,4 @@
-@extends('layout.businesshub-layout')
+@extends('layout.designer-layout')
 @vite('resources/css/app.css')
 
 @section('content')
@@ -170,7 +170,7 @@
                 <div class="flex flex-col gap-y-3 w-full">
                     <h1 class="font-bold text-base text-[#5C5959]">action</h1>
                     <div class="flex gap-x-3 justify-end">
-                        <button class="p-2 border border-kBlack">cancel request</button>
+                        <button class="p-2 border border-kBlack" type="button" onclick="openCancelOrderModal()">cancel request</button>
                         <button type="submit" class="text-kWhite p-2 bg-kblack">confirm request</button>
                     </div>
                 </div>
@@ -178,20 +178,42 @@
         </div>
     </form>
 </div>
+<form action="{{ route('order-pending-details-post') }}" method="post">
+    @include('modals.cancel-order')
+</form>
 
-
-<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center " onclick="closeModal(event)">
     <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
     <img id="modalImage" class="max-w-full max-h-full">
 </div>
+
+
+
 <script>
+    const cancelOrderModal = document.getElementById('default-modal');
+
     function openModal(src) {
         document.getElementById('modalImage').src = src;
         document.getElementById('imageModal').classList.remove('hidden');
+        console.log("clixked")
+
     }
 
     function closeModal() {
         document.getElementById('imageModal').classList.add('hidden');
     }
+
+    function openCancelOrderModal() {
+        cancelOrderModal.classList.remove('hidden');
+    }
+
+    document.querySelectorAll('[data-modal-hide]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById(btn.getAttribute('data-modal-hide'));
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
 </script>
 @endsection

@@ -111,7 +111,7 @@
                     @if(!empty($uploadedImages))
                     @foreach($uploadedImages as $image)
                     <div class="w-[150px] h-[150px] border border-kBlack bg-kViolet overflow-hidden">
-                        <img src="{{ asset($image) }}" alt="Uploaded Image" class="w-full h-full object-cover border">
+                        <img src="{{ asset($image) }}" alt="Uploaded Image" class="w-full h-full object-cover border cursor-pointer" onclick="openModal(src)">
                     </div>
                     @endforeach
                     @else
@@ -151,6 +151,10 @@
         </div>
     </div>
 
+</div>
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 @include('modals.cart-saved')
@@ -215,5 +219,16 @@
             }
         });
     });
+</script>
+
+<script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
 </script>
 @endsection

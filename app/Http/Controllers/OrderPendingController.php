@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
 use App\Services\OrderPendingService;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 class OrderPendingController extends Controller
 {
 
     protected $orderPendingService;
+    protected $orderService;
 
-    public function __construct(OrderPendingService $orderPendingService)
+    public function __construct(OrderPendingService $orderPendingService, OrderService $orderService)
     {
         $this->orderPendingService = $orderPendingService;
+        $this->orderService = $orderService;
     }
 
     public function orderPendingTable()
@@ -54,11 +57,21 @@ class OrderPendingController extends Controller
 
     public function orderPendingPost(Request $request)
     {
-        $request->validate([
-            'orderPlacementID' => 'required',
-        ]);
+        if ($request->input('reasonCancellation')) {
+            $request->validate([
+                'orderPlacementID' => 'required',
+                'reasonCancellation' => 'required',
+            ]);
+            $status = 1;
+            $this->orderService->cancelOrder($request->input('orderPlacementID'), $request->input('reasonCancellation'), $status);
+            return redirect()->route('order-pending');
+        } else {
+            $request->validate([
+                'orderPlacementID' => 'required',
+            ]);
 
-        $this->orderPendingService->confirmPendingOrder($request->input('orderPlacementID'));
-        return redirect()->route('order-pending');
+            $this->orderPendingService->confirmPendingOrder($request->input('orderPlacementID'));
+            return redirect()->route('order-pending');
+        }
     }
 }

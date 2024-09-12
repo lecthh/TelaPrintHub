@@ -32,20 +32,21 @@
                         <table class="table-auto">
                             <thead>
                                 <tr class="font-bold text-lg">
-                                    <th class="border-l border-t border-b border-kBlack p-2">no</th>
-                                    <th class="border-l border-t border-b border-kBlack p-2">shirt name</th>
-                                    <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">No</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">Shirt name</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">Size</th>
                                     @if($orderPlacement->order->apparel_category_ID == 5)
-                                    <th class="border-l border-t border-b border-kBlack p-2">jersey #</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">Jersey #</th>
                                     @endif
                                     @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4)
-                                    <th class="border-l border-t border-b border-kBlack p-2">short #</th>
-                                    <th class="border-l border-t border-b border-kBlack p-2">size</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">Short #</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">Size</th>
                                     @endif
                                     @if($orderPlacement->order->apparel_category_ID == 5 || $orderPlacement->order->apparel_category_ID == 4 || $orderPlacement->order->apparel_category_ID == 2)
-                                    <th class="border-l border-t border-b border-kBlack p-2">pocket</th>
+                                    <th class="border-l border-t border-b border-kBlack p-2">Pocket</th>
                                     @endif
-                                    <th class="border border-kBlack p-2">remarks</th>
+                                    <th class="border border-kBlack p-2">Remarks</th>
+                                    <th class="border border-kBlack p-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="orderTable">
@@ -167,6 +168,18 @@
 <script>
     const sizes = @json($sizes);
 
+    function updateRowNumbers() {
+        const tableBody = document.getElementById('orderTable');
+        const rows = tableBody.getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const firstCell = rows[i].cells[0];
+            if (firstCell && i > 0) {
+                firstCell.textContent = i;
+            }
+        }
+    }
+
     function addRow(apparelCategoryID) {
         const tableBody = document.getElementById('orderTable');
         const rowCount = tableBody.rows.length - 1;
@@ -226,6 +239,13 @@
             name: "remarks[]"
         });
 
+        columns.push({
+            label: "action",
+            type: "button",
+            className: "text-center",
+            innerHTML: '<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 100 100"> <path d="M 46 13 C 44.35503 13 43 14.35503 43 16 L 43 18 L 32.265625 18 C 30.510922 18 28.879517 18.922811 27.976562 20.427734 L 26.433594 23 L 23 23 C 20.802666 23 19 24.802666 19 27 C 19 29.197334 20.802666 31 23 31 L 24.074219 31 L 27.648438 77.458984 C 27.88773 80.575775 30.504529 83 33.630859 83 L 66.369141 83 C 69.495471 83 72.11227 80.575775 72.351562 77.458984 L 75.925781 31 L 77 31 C 79.197334 31 81 29.197334 81 27 C 81 24.802666 79.197334 23 77 23 L 73.566406 23 L 72.023438 20.427734 C 71.120481 18.922811 69.489078 18 67.734375 18 L 57 18 L 57 16 C 57 14.35503 55.64497 13 54 13 L 46 13 z"></path></svg>'
+        });
+
         columns.forEach((column, index) => {
             const newCell = newRow.insertCell(index);
             newCell.className = 'border-l border-b border-kBlack p-2 items-center justify-center';
@@ -265,6 +285,17 @@
                             });
                         }
                         break;
+
+                    case 'button':
+                        element = document.createElement('button');
+                        element.type = 'button';
+                        element.className = 'text-center';
+                        element.innerHTML = column.innerHTML;
+                        element.addEventListener('click', function() {
+                            newRow.remove();
+                            updateRowNumbers();
+                        });
+                        break;
                     default:
                         element = document.createElement('input');
                         element.type = 'text';
@@ -276,7 +307,6 @@
                     newCell.appendChild(element);
                 }
             }
-
             if (index === columns.length - 1) {
                 newCell.className += ' border-r';
             }

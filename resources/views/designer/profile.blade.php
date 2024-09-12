@@ -50,7 +50,7 @@
 
                 @foreach($designerGallery as $gallery)
                 <div class="w-[200px] h-[190px] border border-kBlack bg-kViolet overflow-hidden">
-                    <img src="{{ asset($gallery->file_path) }}" alt="" class="w-full h-full object-cover">
+                    <img src="{{ asset($gallery->file_path) }}" alt="" class="w-full h-full object-cover cursor-pointer" onclick="openModal(src)">
                 </div>
 
                 @endforeach
@@ -114,9 +114,21 @@
     @endforeach
 </div>
 @endif
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+    <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+    <img id="modalImage" class="max-w-full max-h-full">
+</div>
 
 @endsection
 <script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
     document.addEventListener('DOMContentLoaded', () => {
         const originalAboutText = document.getElementById('about').value;
         const originalName = document.getElementById('name').innerText;
@@ -164,7 +176,8 @@
             originalGalleryImages.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'object-cover');
+                img.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'object-cover', 'cursor-pointer');
+                img.onclick = () => openModal(src);
                 const wrapper = document.createElement('div');
                 wrapper.classList.add('w-[200px]', 'h-[190px]', 'border', 'border-kBlack', 'bg-kViolet', 'overflow-hidden');
                 wrapper.appendChild(img);
