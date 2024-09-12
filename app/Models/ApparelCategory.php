@@ -11,7 +11,8 @@ class ApparelCategory extends Model
 
     protected $table = 'apparel_category';
     protected $primaryKey = 'apparel_category_ID';
-    public $timestamps = false;
+    public $incrementing = true;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'apparel_category_ID',

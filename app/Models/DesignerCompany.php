@@ -25,9 +25,18 @@ class DesignerCompany extends Model
         'is_verified',
     ];
 
-
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'admin_ID', 'admin_ID');
+    }
+
+    public function gallery()
+    {
+        return $this->hasMany(DesignerGallery::class, 'designer_ID', 'designer_ID');
+    }
+
+    public function apparelCategories()
+    {
+        return $this->belongsToMany(ApparelCategory::class, 'designer_company_apparel_category', 'designer_ID', 'apparel_category_ID');
     }
 }

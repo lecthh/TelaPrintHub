@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
 
-
         Schema::create('production_company', function (Blueprint $table) {
             $table->string('production_ID')->primary();
             $table->string('admin_ID');

@@ -2,46 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DesignerCompany;
+use App\Models\DesignerGallery;
 use App\Models\Order;
+use App\Models\OrderDesignsPending;
 use App\Models\OrderPlacement;
+use App\Services\OrderPendingService;
+use App\Services\ProfileService;
+use Illuminate\Http\Request;
 
-use function Laravel\Prompts\table;
 
 class AdminController extends Controller
 {
+    protected $profileService;
+
+    public function __construct(ProfileService $profileService)
+    {
+        $this->profileService = $profileService;
+    }
+
     public function catalog()
     {
-        $admin = session('admin');
-        return view('designer.catalog', compact('admin'));
+        return view('designer.catalog');
     }
 
-    public function orderPendingTable()
+    public function profile()
     {
         $admin = session('admin');
 
-        $pendingOrders = OrderPlacement::whereHas('order', function ($query) {
-            $query->whereNull('order_confirmation_ID');
-        })
-            ->whereHas('order.designerCompany', function ($query) use ($admin) {
-                $query->where('designer_ID', $admin->designer_ID);
-            })
-            ->with(['order' => function ($query) {
-                $query->select('order_ID', 'user_details_ID');
-            }, 'userDetails' => function ($query) {
-                $query->select('user_details_ID', 'name', 'email', 'contact_information');
-            }])
-            ->get();
-        return view('designer.pending.view', compact('admin', 'pendingOrders'));
+        $designerCompany = DesignerCompany::where('admin_id', $admin->admin_ID)->first();
+        $designerGallery = DesignerGallery::where('designer_id', $designerCompany->designer_ID)->get();
+        dd($designerGallery);
+        return view('designer.profile', compact('admin', 'designerCompany', 'designerGallery'));
     }
 
-    public function orderPending($order_placement_ID)
+    public function profilePost(Request $request)
     {
         $admin = session('admin');
 
-        $orderPlacement = OrderPlacement::with(['order', 'userDetails'])
-            ->where('order_placement_ID', $order_placement_ID)
-            ->firstOrFail();
+        $request->validate([
+            'name_hidden' => 'nullable',
+            'contact_details_hidden' => 'nullable',
+            'email_hidden' => 'nullable|email',
+            'profile_pic' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+            'about_hidden' => 'nullable',
+            'contact_details' => 'nullable',
+            'images' => 'array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
 
-        return view('designer.pending.order', compact('admin', 'orderPlacement'));
+        $designerCompany = DesignerCompany::where('admin_id', $admin->admin_ID)->first();
+        $this->profileService->updateProfile($request, $designerCompany);
+        return redirect()->route('profile');
     }
 }

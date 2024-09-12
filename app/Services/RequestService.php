@@ -13,7 +13,7 @@ use Webpatser\Uuid\Uuid;
 
 class RequestService
 {
-    public function createOrder($selectedCategory, $selectedCompany, $request, $newImagePaths)
+    public function createOrder($selectedCategory, $selectedCompany, $request, $newImagePaths, $description)
     {
 
         $fullName = $request['first_name'] . ' ' . $request['last_name'];
@@ -47,6 +47,7 @@ class RequestService
             'customization_details_ID' => null,
             'print_type_ID' => null,
             'estimated_delivery_date' => null,
+            'description' => $description,
         ]);
 
         $orderPlacement = OrderPlacement::create([

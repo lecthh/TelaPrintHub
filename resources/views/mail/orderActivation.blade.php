@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Set Your Password</title>
+    <title>Your Order Has Been Activated by Designer {{$Designer}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,22 +26,10 @@
 
         h1 {
             color: #4CAF50;
-            margin-top: 0;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
         }
 
         p {
             margin: 10px 0;
-        }
-
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: bold;
         }
 
         .footer {
@@ -61,10 +49,10 @@
 <body>
     <div class="container">
         <h1>Hello {{$name}},</h1>
-        <h2>Set Your Password</h2>
-        <p>To set your password, please click the link below:</p>
-        <p><a href="{{ $url }}" target="_blank">Set Your Password</a></p>
+        <p>Good day! We are excited to inform you that the designer {{$Designer}} has activated your order.</p>
+        <p>You may now track your order via the order tracker. We encourage you to keep your communication channels open for any further updates.</p>
         <p>If you did not request this, please ignore this email.</p>
+        <p>Thank you for choosing our service!</p>
         <div class="footer">
             <p>Best regards,<br>The Tel-A Team</p>
             <p><a href="https://www.Tel-A.com">Visit our website</a></p>

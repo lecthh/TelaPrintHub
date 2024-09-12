@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApparelCategory;
+use App\Models\DesignerCompany;
 use App\Services\RequestService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,20 +24,21 @@ class UserController extends Controller
         $designerCompanies = collect();
 
         if ($selectedCategory) {
-            $designerCompanies = DB::table('designer_company')
-                ->join('designer_company_apparel_category', 'designer_company.designer_ID', '=', 'designer_company_apparel_category.designer_ID')
-                ->join('apparel_category', 'designer_company_apparel_category.apparel_category_ID', '=', 'apparel_category.apparel_category_ID')
-                ->where('apparel_category.name', $selectedCategory)
-                ->select('designer_company.*')
-                ->distinct()
-                ->get();
+            $apparelCategory = ApparelCategory::where('name', $selectedCategory)->first();
 
-            $apparelCategory = DB::table('apparel_category')->where('name', $selectedCategory)->first();
+            if ($apparelCategory) {
+                $designerCompanies = DesignerCompany::with('gallery')
+                    ->whereHas('apparelCategories', function ($query) use ($apparelCategory) {
+                        $query->where('designer_company_apparel_category.apparel_category_ID', $apparelCategory->apparel_category_ID);
+                    })->get();
+            }
         }
+        $categories = ApparelCategory::pluck('name', 'apparel_category_ID');
 
-        $categories = DB::table('apparel_category')->pluck('name', 'apparel_category_ID');
         return view('request.request-company-selection', compact('designerCompanies', 'categories', 'selectedCategory'));
     }
+
+
 
     public function requestCompanySelectionPost(Request $request)
     {
@@ -73,10 +76,10 @@ class UserController extends Controller
         $request->validate([
             'images' => 'required',
             'images.*' => 'required|image|mimes:jpeg,png,jpg',
+            'description' => 'nullable|string',
         ]);
 
         $uploadedImages = [];
-
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = time() . '-' . $image->getClientOriginalName();
@@ -88,6 +91,9 @@ class UserController extends Controller
 
             $request->session()->put('uploaded_images', $uploadedImages);
         }
+
+        $description = $request->input('description');
+        $request->session()->put('description', $description);
 
         return redirect()->route('request-finalization');
     }
@@ -110,8 +116,7 @@ class UserController extends Controller
     {
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
-
-        // Validate request data
+        $description = Session::get('description');
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -128,8 +133,6 @@ class UserController extends Controller
             'uploadedImages.required' => 'You need to upload at least one image.',
             'contact-method.required' => 'You need to select at least one preferred mode of Communication.',
         ]);
-
-        // Retrieve uploaded images from the session
         $uploadedImages = json_decode($request->input('uploadedImages'), true);
         $newImagePaths = [];
 
@@ -151,7 +154,6 @@ class UserController extends Controller
                         mkdir(public_path('orderdesigns'), 0777, true);
                     }
 
-                    // Move the image to the final destination
                     rename(public_path($tempImagePath), $newImagePath);
 
                     $newImagePaths[] = 'orderdesigns/' . $newImageName;
@@ -163,7 +165,7 @@ class UserController extends Controller
             }
         }
 
-        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $newImagePaths);
+        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $newImagePaths, $description);
 
         return redirect()->route('home');
     }
