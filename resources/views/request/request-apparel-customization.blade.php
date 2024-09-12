@@ -12,7 +12,7 @@
             </ul>
 
             <label for="description">
-                <textarea name="description" id="description" rows="5" cols="80" placeholder="Enter your description here"></textarea>
+                <textarea name="description" id="description" rows="5" cols="80" placeholder="Additional Information Here"></textarea>
             </label>
         </div>
 

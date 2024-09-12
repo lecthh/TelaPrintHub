@@ -111,7 +111,7 @@
             <div class="flex flex-col gap-y-4">
                 <div class="flex gap-x-2">
                     <div class="w-[100px] h-[100px] border border-kBlack bg-kViolet">
-                        <img src="" alt="" srcset="" id="companyLogo" class="w-full h-full">
+                        <img src="" alt="" srcset="" id="companyLogo" class="w-full h-full cursor-pointer" onclick="openModal(src)">
                     </div>
                     <div class="flex flex-col">
                         <h1 id="company-name-2" class="font-bold text-base"></h1>
@@ -242,7 +242,10 @@
     </div>
 
     @endif
-
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+        <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
+        <img id="modalImage" class="max-w-full max-h-full">
+    </div>
     </form>
     @if($errors->any())
     <div class="text-red-500 text-sm">
@@ -254,6 +257,15 @@
 </div>
 </div>
 <script>
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+    }
+
     function updateDescription(id, description, logo, gallery) {
         console.log(id, description, logo, gallery);
 
@@ -277,8 +289,10 @@
             const img = document.createElement('img');
             img.src = item.file_path;
             img.alt = 'Gallery Image';
-            img.classList.add('w-full', 'h-full');
-
+            img.classList.add('w-full', 'h-full', 'object-cover', 'cursor-pointer');
+            img.onclick = function() {
+                openModal(item.file_path);
+            };
             imgDiv.appendChild(img);
             galleryContainer.appendChild(imgDiv);
         });
