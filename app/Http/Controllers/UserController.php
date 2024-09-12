@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ApparelCategory;
 use App\Models\DesignerCompany;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Log;
 use App\Services\RequestService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -135,7 +137,7 @@ class UserController extends Controller
         ]);
         $uploadedImages = json_decode($request->input('uploadedImages'), true);
         $newImagePaths = [];
-
+    
         if ($uploadedImages) {
             foreach ($uploadedImages as $tempImagePath) {
                 if (file_exists(public_path($tempImagePath))) {
@@ -143,30 +145,82 @@ class UserController extends Controller
                     $firstName = $request->input('first_name');
                     $lastName = $request->input('last_name');
                     $imageExtension = pathinfo($tempImagePath, PATHINFO_EXTENSION);
-
+    
                     $sanitizedFirstName = preg_replace('/[^a-zA-Z0-9]/', '-', $firstName);
                     $sanitizedLastName = preg_replace('/[^a-zA-Z0-9]/', '-', $lastName);
-
+    
                     $newImageName = $currentDate . '-' . $sanitizedFirstName . '-' . $sanitizedLastName . '-' . uniqid() . '.' . $imageExtension;
                     $newImagePath = public_path('orderdesigns') . '/' . $newImageName;
-
+    
                     if (!file_exists(public_path('orderdesigns'))) {
                         mkdir(public_path('orderdesigns'), 0777, true);
                     }
-
+    
                     rename(public_path($tempImagePath), $newImagePath);
-
+    
                     $newImagePaths[] = 'orderdesigns/' . $newImageName;
-
+    
                     if (file_exists(public_path($tempImagePath))) {
                         unlink(public_path($tempImagePath));
                     }
                 }
             }
         }
-
+    
         $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $newImagePaths, $description);
-
+    
         return redirect()->route('home');
+    }
+    
+    public function saveToCart(Request $request)
+    {
+        // Log the session data
+        Log::info('Session Data:', [
+            'uploaded_images' => session('uploaded_images'),
+            'selected_company' => session('selected_company'),
+            'selected_category' => session('selected_category'),
+        ]);
+    
+        // Log the request data
+        Log::info('Request Data:', $request->all());
+    
+        // Ensure that the session data is in the correct format
+        $uploadedImages = session('uploaded_images');
+        $selectedCompany = session('selected_company');
+        $selectedCategory = session('selected_category');
+    
+        // Extract relevant fields from the stdClass objects
+        $selectedCompanyName = $selectedCompany ? $selectedCompany->name : null;
+        $selectedCategoryName = $selectedCategory ? $selectedCategory->name : null;
+    
+        // Ensure that the request data is in the correct format
+        $firstName = $request->input('first_name');
+        $lastName = $request->input('last_name');
+        $email = $request->input('email');
+        $phoneNumber = $request->input('phone_number');
+        $countryCode = $request->input('country_code');
+    
+        // Retrieve the uploaded image from the session if available
+        $uploadedImage = $uploadedImages ? $uploadedImages[0] : null; // Assuming the first image is the one to be saved
+    
+        // Create a new Cart instance and save the data
+        $cart = new Cart();
+        $cart->uploaded_image = $uploadedImage;
+        $cart->selected_company = $selectedCompanyName;
+        $cart->selected_category = $selectedCategoryName;
+        $cart->first_name = $firstName;
+        $cart->last_name = $lastName;
+        $cart->email = $email;
+        $cart->phone_number = $phoneNumber;
+        $cart->country_code = $countryCode;
+        $cart->save();
+    
+        return redirect()->route('cart.index')->with('success', 'Draft saved to cart.');
+    }
+
+    public function viewCart()
+    {
+        $cartItems = Cart::all();
+        return view('cart.index', compact('cartItems'));
     }
 }

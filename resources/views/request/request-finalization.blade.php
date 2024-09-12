@@ -69,10 +69,8 @@
             </div>
 
             <div class="inline-flex justify-start">
-                <button type="submit"
-                    class="bg-kBlack font-base flex p-2 justify-around items-center text-kWhite text-base">
-                    <p>confirm</p>
-                </button>
+                <button type="submit" class="btn btn-primary">Confirm Order</button>
+                <button type="submit" formaction="{{ route('save-to-cart') }}" class="btn btn-secondary">Save to Cart as Draft</button>
             </div>
         </div>
 
