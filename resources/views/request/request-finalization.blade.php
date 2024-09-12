@@ -131,7 +131,22 @@
                 <div class="flex">
                     <h1 class="text-lg font-bold flex flex-grow">description:</h1>
                     <textarea name="description" id="description" class="w-full">{{ session('description') }}</textarea>
-                </div>                
+                </div> 
+                <div class="flex">
+                    <h1 class="text-lg font-bold flex flex-grow">order type:</h1>
+                    <div class="flex flex-grow text-end">
+                        <label class="mr-2">
+                            <input type="radio" name="order_type" value="single" checked> Single Order
+                        </label>
+                        <label>
+                            <input type="radio" name="order_type" value="bulk"> Bulk Order
+                        </label>
+                    </div>
+                </div>
+                <div id="bulkQuantityDiv" class="flex hidden">
+                    <h1 class="text-lg font-bold flex flex-grow">estimated quantity:</h1>
+                    <input type="number" name="estimated_quantity" min="10" value="10" class="flex flex-grow text-end">
+                </div>                               
             </div>
         </div>
     </div>
@@ -187,6 +202,17 @@
         .catch(error => {
             console.error('Error:', error);
             alert('An error occurred while saving to cart.');
+        });
+    });
+
+    document.querySelectorAll('input[name="order_type"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var quantityDiv = document.getElementById('bulkQuantityDiv');
+            if (this.value === 'bulk') {
+                quantityDiv.classList.remove('hidden');
+            } else {
+                quantityDiv.classList.add('hidden');
+            }
         });
     });
 </script>
