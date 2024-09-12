@@ -61,6 +61,7 @@
     <img src="/img/landing-5.png" alt="Slide 1" class="object-cover h-full w-auto" />
 </div>
 
+@include('modals.cart-saved')
 @include('modals.partnership')
 @include('modals.request-confirmation')
 
