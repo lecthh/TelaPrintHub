@@ -182,7 +182,7 @@
     @include('modals.cancel-order')
 </form>
 
-<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" onclick="closeModal(event)">
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center " onclick="closeModal(event)">
     <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
     <img id="modalImage" class="max-w-full max-h-full">
 </div>
@@ -195,6 +195,8 @@
     function openModal(src) {
         document.getElementById('modalImage').src = src;
         document.getElementById('imageModal').classList.remove('hidden');
+        console.log("clixked")
+
     }
 
     function closeModal() {

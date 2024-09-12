@@ -10,15 +10,18 @@ use App\Models\Sizes;
 use App\Models\UserDetails;
 use App\Models\UserPreferredCommunication;
 use App\Services\OrderConfirmedService;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 class OrderConfirmedController extends Controller
 {
     protected $orderConfirmedService;
+    protected $orderService;
 
-    public function __construct(OrderConfirmedService $orderConfirmedService)
+    public function __construct(OrderConfirmedService $orderConfirmedService, OrderService $orderService)
     {
         $this->orderConfirmedService = $orderConfirmedService;
+        $this->orderService = $orderService;
     }
     public function orderConfirmedTable()
     {
@@ -62,7 +65,15 @@ class OrderConfirmedController extends Controller
 
     public function orderConfirmedPost(Request $request)
     {
-        if ($request->status == 0) {
+
+        if ($request->input('reasonCancellation')) {
+            $request->validate([
+                'orderPlacementID' => 'required',
+                'reasonCancellation' => 'required',
+            ]);
+            $status = 2;
+            $this->orderService->cancelOrder($request->input('orderPlacementID'), $request->input('reasonCancellation'), $status);
+        } else if ($request->status == 0) {
             $request->validate([
                 'images' => 'required',
                 'images.*' => 'required|image|mimes:jpeg,png,jpg',
@@ -78,7 +89,6 @@ class OrderConfirmedController extends Controller
             ]);
             $this->orderConfirmedService->ActivateOrder($request);
         }
-
 
         return redirect()->route('order-confirmed');
     }

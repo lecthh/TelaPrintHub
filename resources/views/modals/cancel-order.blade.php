@@ -19,9 +19,10 @@
       <button data-modal-hide="default-modal" type="button" class="bg-kBlack text-kWhite flex items-center justify-around gap-x-2 rounded-md p-3 text-lg font-semibold">
         <p>Cancel</p>
       </button>
-      <button type="submit" class="bg-kBlack text-kWhite flex items-center justify-around gap-x-2 rounded-md p-3 text-lg font-semibold">
+      <button type="submit" class="bg-kBlack text-kWhite flex items-center justify-around gap-x-2 rounded-md ml-4 p-3 text-lg font-semibold">
         <p>Confirm</p>
       </button>
     </div>
   </div>
-  <input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">
+</div>
+<input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">

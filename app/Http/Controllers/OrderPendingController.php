@@ -62,7 +62,8 @@ class OrderPendingController extends Controller
                 'orderPlacementID' => 'required',
                 'reasonCancellation' => 'required',
             ]);
-            $this->orderService->cancelPendingOrder($request->input('orderPlacementID'), $request->input('reasonCancellation'));
+            $status = 1;
+            $this->orderService->cancelOrder($request->input('orderPlacementID'), $request->input('reasonCancellation'), $status);
             return redirect()->route('order-pending');
         } else {
             $request->validate([

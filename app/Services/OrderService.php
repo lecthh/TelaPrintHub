@@ -13,7 +13,7 @@ class OrderService
         $this->mailService = $mailService;
     }
 
-    public function cancelPendingOrder($orderPlacementID, $reasonCancellation)
+    public function cancelOrder($orderPlacementID, $reasonCancellation, $status)
     {
         $OrderPlacement = OrderPlacement::find($orderPlacementID);
         $UserEmail = $OrderPlacement->userDetails->email;
@@ -23,6 +23,6 @@ class OrderService
         $OrderPlacement->order->order_status_ID = 2;
         $OrderPlacement->save();
 
-        $this->mailService->sendPendingCancellationEmail($UserEmail, $reasonCancellation, $DesignerEmail, $Name);
+        $this->mailService->sendCancellationEmail($UserEmail, $reasonCancellation, $DesignerEmail, $Name);
     }
 }

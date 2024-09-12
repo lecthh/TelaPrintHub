@@ -216,19 +216,25 @@
                         </div>
                     </div>
                     <input type="hidden" name="status" value="0">
-                    @elseif($orderPlacement->order_placement_status_ID == 4)
-                    <div class="flex gap-x-3 justify-end">
-                        <button class="p-2 border border-kBlack">cancel request</button>
-                        <button type="submit" class="text-kWhite p-2 bg-kblack">activate order</button>
-                        <input type="hidden" name="status" value="1">
-                    </div>
                     @endif
+                    <div class="flex gap-x-3 justify-end">
+                        <button class="p-2 border border-kBlack" type="button" onclick="openCancelOrderModal()">Cancel Request</button>
+                        @if($orderPlacement->order_placement_status_ID == 4)
+                        <button type="submit" class="text-kWhite p-2 bg-kBlack">Activate Order</button>
+                        <input type="hidden" name="status" value="1">
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
         <input type="hidden" name="orderPlacementID" value="{{$orderPlacement->order_placement_ID}}">
     </form>
 </div>
+
+<form action="{{ route('order-confirmed-details-post') }}" method="post">
+    @include('modals.cancel-order')
+</form>
+
 @if($errors->any())
 <div class="text-red-500 text-sm">
     @foreach($errors->all() as $error)
@@ -241,13 +247,30 @@
     <img id="modalImage" class="max-w-full max-h-full">
 </div>
 <script>
+    const cancelOrderModal = document.getElementById('default-modal');
+
     function openModal(src) {
         document.getElementById('modalImage').src = src;
         document.getElementById('imageModal').classList.remove('hidden');
+        console.log("clixked")
+
     }
 
     function closeModal() {
         document.getElementById('imageModal').classList.add('hidden');
     }
+
+    function openCancelOrderModal() {
+        cancelOrderModal.classList.remove('hidden');
+    }
+
+    document.querySelectorAll('[data-modal-hide]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById(btn.getAttribute('data-modal-hide'));
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
 </script>
 @endsection
