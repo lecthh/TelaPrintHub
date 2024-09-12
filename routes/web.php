@@ -59,6 +59,29 @@ Route::get('/profile-x', function () {
     return view('designer.profile');
 })->name('profile');
 
+//printer
+Route::get('/catalog-printer', function () {
+    return view('printer.catalog');
+})->name('printer');
+
+Route::get('/catalog-orders', function () {
+    return view('printer.orders.view');
+})->name('printer-orders'); 
+
+Route::get('/catalog-order-x', function () {
+    return view('printer.orders.order');
+})->name('printer-order');
+
+Route::get('/printer-profile', function () {
+    return view('printer.profile');
+})->name('printer-profile');
+
+
+//admin
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('printer-profile');
+
 
 Route::get('/request-company-selection', [UserController::class, "requestCompanySelection"])->name('request-company-selection');
 Route::post('/request-company-selection', [UserController::class, "requestCompanySelectionPost"])->name('request-company-selection-post');
