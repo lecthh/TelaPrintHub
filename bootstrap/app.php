@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckAdminType;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append([
             PreventBackHistory::class,
+        ]);
+        $middleware->alias([
+            'checkAdminType' => CheckAdminType::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderPendingController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckAdminType;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,9 +62,7 @@ Route::get('/profile-x', function () {
 })->name('profile');
 
 //printer
-Route::get('/catalog-printer', function () {
-    return view('printer.catalog');
-})->name('printer');
+
 
 Route::get('/catalog-orders', function () {
     return view('printer.orders.view');
@@ -111,7 +110,7 @@ Route::post('setpassword', [PasswordController::class, "setPassword"])->name('se
 Route::get('/login', [AuthController::class, "login"])->name('login');
 Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 
-Route::middleware("auth")->group(function () {
+Route::middleware(['auth:admin', 'checkAdminType:2'])->group(function () {
     Route::get('/catalog', [AdminController::class, "catalog"])->name('catalog');
 
     Route::get('/order/pending', [OrderPendingController::class, "orderPendingTable"])->name('order-pending');
@@ -130,6 +129,10 @@ Route::middleware("auth")->group(function () {
 
     Route::get('/profile', [AdminController::class, "profile"])->name('profile');
     Route::post('/profile', [AdminController::class, "profilePost"])->name('profile-post');
+});
+
+Route::middleware(['auth:admin', 'checkAdminType:1'])->group(function () {
+    Route::get('/catalog-printer', [AdminController::class, "productionCatalog"])->name('printer-catalog');
 });
 
 Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedController::class, 'showConfirmationLink'])->name('confirmation-link');

@@ -26,6 +26,11 @@ class AdminController extends Controller
         return view('designer.catalog');
     }
 
+    public function productionCatalog()
+    {
+        return view('printer.catalog');
+    }
+
     public function profile()
     {
         $admin = session('admin');

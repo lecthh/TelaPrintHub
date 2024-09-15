@@ -58,6 +58,20 @@ class AuthenTicationService
         $this->mailService->sendVerificationEmail($admin);
     }
 
+    public function registerPrinterCompany(array $data)
+    {
+        $fullPhoneNumber = $data['country_code'] . ' ' . $data['phone_number'];
+
+        Admin::create([
+            'admin_ID' => (string) Uuid::generate(4),
+            'admin_type_ID' => 1,
+            'name' => $data['company_name'],
+            'email' => $data['email'],
+            'password' => null,
+            'contact_information' => $fullPhoneNumber,
+        ]);
+    }
+
     protected function sendVerificationEmail(Admin $admin)
     {
         $token = Str::random(60);
