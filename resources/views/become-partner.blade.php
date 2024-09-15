@@ -35,39 +35,56 @@
                     <h1 class="text-lg font-bold">select apparel</h1>
                     <div class="flex">
                         <label for="tshirt" class="cursor-pointer">
-                            <input type="checkbox" name="apparel_categories[]" id="tshirt" class="hidden peer" value="1" {{ is_array(old('apparel_categories')) && in_array(1, old('apparel_categories')) ? 'checked' : '' }}>
+                            <input type="checkbox" name="apparel_categories[]" id="tshirt" class="hidden peer" value="1" {{ is_array(old('apparel_categories')) && in_array(1, old('apparel_categories')) ? 'checked' : '' }} onchange="togglePriceInput('tshirt')">
                             <div class="p-[10px] border rounded-l-md border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                                 T-shirt
                             </div>
+                            <div id="tshirt-price" class="hidden mt-2">
+                                <label for="tshirt-price-input" class="block text-sm font-medium text-gray-700">Set base price for T-shirt</label>
+                                <input type="number" name="tshirt_price" id="tshirt-price-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            </div>
                         </label>
                         <label for="hoodie" class="cursor-pointer">
-                            <input type="checkbox" name="apparel_categories[]" id="hoodie" class="hidden peer" value="2" {{ is_array(old('apparel_categories')) && in_array(2, old('apparel_categories')) ? 'checked' : '' }}>
+                            <input type="checkbox" name="apparel_categories[]" id="hoodie" class="hidden peer" value="2" {{ is_array(old('apparel_categories')) && in_array(2, old('apparel_categories')) ? 'checked' : '' }} onchange="togglePriceInput('hoodie')">
                             <div class="p-[10px] border-t border-b border-r border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                                 Hoodie
                             </div>
+                            <div id="hoodie-price" class="hidden mt-2">
+                                <label for="hoodie-price-input" class="block text-sm font-medium text-gray-700">Set base price for Hoodie</label>
+                                <input type="number" name="hoodie_price" id="hoodie-price-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            </div>
                         </label>
                         <label for="poloshirt" class="cursor-pointer">
-                            <input type="checkbox" name="apparel_categories[]" id="poloshirt" class="hidden peer" value="3" {{ is_array(old('apparel_categories')) && in_array(3, old('apparel_categories')) ? 'checked' : '' }}>
+                            <input type="checkbox" name="apparel_categories[]" id="poloshirt" class="hidden peer" value="3" {{ is_array(old('apparel_categories')) && in_array(3, old('apparel_categories')) ? 'checked' : '' }} onchange="togglePriceInput('poloshirt')">
                             <div class="p-[10px] border-t border-b border-r border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                                 Polo shirt
                             </div>
+                            <div id="poloshirt-price" class="hidden mt-2">
+                                <label for="poloshirt-price-input" class="block text-sm font-medium text-gray-700">Set base price for Polo shirt</label>
+                                <input type="number" name="poloshirt_price" id="poloshirt-price-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            </div>
                         </label>
                         <label for="shorts" class="cursor-pointer">
-                            <input type="checkbox" name="apparel_categories[]" id="shorts" class="hidden peer" value="4" {{ is_array(old('apparel_categories')) && in_array(4, old('apparel_categories')) ? 'checked' : '' }}>
+                            <input type="checkbox" name="apparel_categories[]" id="shorts" class="hidden peer" value="4" {{ is_array(old('apparel_categories')) && in_array(4, old('apparel_categories')) ? 'checked' : '' }} onchange="togglePriceInput('shorts')">
                             <div class="p-[10px] border-t border-b border-r border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                                 Shorts
                             </div>
+                            <div id="shorts-price" class="hidden mt-2">
+                                <label for="shorts-price-input" class="block text-sm font-medium text-gray-700">Set base price for Shorts</label>
+                                <input type="number" name="shorts_price" id="shorts-price-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            </div>
                         </label>
                         <label for="sportswear" class="cursor-pointer">
-                            <input type="checkbox" name="apparel_categories[]" id="sportswear" class="hidden peer" value="5 {{ is_array(old('apparel_categories')) && in_array(5, old('apparel_categories')) ? 'checked' : '' }}">
+                            <input type="checkbox" name="apparel_categories[]" id="sportswear" class="hidden peer" value="5" {{ is_array(old('apparel_categories')) && in_array(5, old('apparel_categories')) ? 'checked' : '' }} onchange="togglePriceInput('sportswear')">
                             <div class="p-[10px] border-t border-b border-r rounded-r-md border-kBlack transition hover:bg-kBlack hover:text-kWhite peer-checked:bg-kBlack peer-checked:text-kWhite">
                                 Sportswear
                             </div>
+                            <div id="sportswear-price" class="hidden mt-2">
+                                <label for="sportswear-price-input" class="block text-sm font-medium text-gray-700">Set base price for Sportswear</label>
+                                <input type="number" name="sportswear_price" id="sportswear-price-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            </div>
                         </label>
                     </div>
-                    @error('apparel_categories')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
                 </div>
 
                 <!-- for production -->
@@ -166,5 +183,18 @@
             checkboxes.forEach(checkbox => checkbox.checked = false);
         }
     });
+</script>
+
+<script>
+    function togglePriceInput(id) {
+        const checkbox = document.getElementById(id);
+        const priceInputDiv = document.getElementById(`${id}-price`);
+        
+        if (checkbox.checked) {
+            priceInputDiv.classList.remove('hidden');
+        } else {
+            priceInputDiv.classList.add('hidden');
+        }
+    }
 </script>
 @endsection

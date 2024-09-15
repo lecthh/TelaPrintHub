@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\ValidationException;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class AuthenTicationService
 {
@@ -23,6 +24,8 @@ class AuthenTicationService
 
     public function registerDesignerCompany(array $data)
     {
+
+        Log::info('Registering designer company', $data);
 
         $fullPhoneNumber = $data['country_code'] . ' ' . $data['phone_number'];
 
@@ -40,10 +43,14 @@ class AuthenTicationService
             'designer_ID' => $designerId,
             'admin_ID' => $admin->admin_ID,
             'name' => $data['company_name'],
+            'email' => $data['email'],
             'logo' => $data['logo'] ?? null,
             'contact_details' => $fullPhoneNumber,
-            'email' => $admin->email,
-            'is_verified' => false,
+            'tshirt_price' => $data['prices']['tshirt'],
+            'hoodie_price' => $data['prices']['hoodie'],
+            'poloshirt_price' => $data['prices']['poloshirt'],
+            'shorts_price' => $data['prices']['shorts'],
+            'sportswear_price' => $data['prices']['sportswear'],
         ]);
 
         if (!empty($data['apparel_categories'])) {
@@ -54,6 +61,8 @@ class AuthenTicationService
                 ])->save();
             }
         }
+
+        Log::info('Sending verification email to admin', ['email' => $admin->email]);
 
         $this->mailService->sendVerificationEmail($admin);
     }

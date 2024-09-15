@@ -23,6 +23,11 @@ class DesignerCompany extends Model
         'contact_details',
         'email',
         'is_verified',
+        'tshirt_price',       // Added
+        'hoodie_price',       // Added
+        'poloshirt_price',    // Added
+        'shorts_price',       // Added
+        'sportswear_price',   // Added
     ];
 
     public function admin()

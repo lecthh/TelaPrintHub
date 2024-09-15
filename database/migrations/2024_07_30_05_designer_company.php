@@ -21,6 +21,13 @@ return new class extends Migration
             $table->string('email');
             $table->boolean('is_verified')->default(false);
 
+            // Add columns for apparel category prices
+            $table->decimal('tshirt_price', 8, 2)->nullable();
+            $table->decimal('hoodie_price', 8, 2)->nullable();
+            $table->decimal('poloshirt_price', 8, 2)->nullable();
+            $table->decimal('shorts_price', 8, 2)->nullable();
+            $table->decimal('sportswear_price', 8, 2)->nullable();
+
             $table->timestamps();
 
             $table->foreign('admin_ID')->references('admin_ID')->on('admin');
