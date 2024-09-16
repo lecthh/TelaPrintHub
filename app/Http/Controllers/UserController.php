@@ -61,19 +61,25 @@ class UserController extends Controller
             ->first();
 
         // Construct the price column name dynamically
-        $priceColumn = strtolower($selectedCategory->name) . '_price';
+        $categoryName = strtolower($selectedCategory->name);
+        $priceColumn = $categoryName . '_price';
+
+        // Handle special case for "t-shirt"
+        if ($categoryName === 't-shirt') {
+            $priceColumn = 'tshirt_price';
+        }
 
         // Retrieve the price dynamically
         $price = $selectedCompany->$priceColumn;     
 
-                // Log the selected category, selected company, and price
-                Log::info('Selected Category:', ['category' => $selectedCategory]);
-                Log::info('Selected Company:', ['company' => $selectedCompany]);
-                Log::info('Price:', ['price' => $price]);
+        // Log the selected category, selected company, and price
+        Log::info('Selected Category:', ['category' => $selectedCategory]);
+        Log::info('Selected Company:', ['company' => $selectedCompany]);
+        Log::info('Price:', ['price' => $price]);
 
         Session::put('selected_category', $selectedCategory);
         Session::put('selected_company', $selectedCompany);
-        Session::put('prices', $prices);
+        Session::put('price', $price);
 
         return redirect()->route('request-apparel-customization');
     }

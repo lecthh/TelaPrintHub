@@ -157,7 +157,7 @@
                     <div id="apparelPriceContainer" class="flex gap-x-2">
                         @if(Session::has('price'))
                             <p class="text-base">
-                                {{ ucfirst(Session::get('selected_category')->name) }} Price: ${{ Session::get('prices') ?? 'N/A' }}
+                                {{ ucfirst(Session::get('selected_category')->name) }} Price: ${{ Session::get('price') ?? 'N/A' }}
                             </p>
                         @else
                             <p class="text-base">Price: N/A</p>
