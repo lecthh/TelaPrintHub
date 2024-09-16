@@ -152,21 +152,12 @@
     <span class="absolute top-2 right-2 text-white cursor-pointer text-xl">&times;</span>
     <img id="modalImage" class="max-w-full max-h-full">
 </div>
-<script>
-    function openModal(src) {
-        document.getElementById('modalImage').src = src;
-        document.getElementById('imageModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-        document.getElementById('imageModal').classList.add('hidden');
-    }
-</script>
+<script type="text/javascript" src="{{asset('js/imageModal.js') }}"></script>
 
 </html>
 <script src="https://kit.fontawesome.com/d3c4f3f1ff.js" crossorigin="anonymous"></script>
 <script>
-    const sizes = @json($sizes);
+    const sizes = json($sizes);
 
     function updateRowNumbers() {
         const tableBody = document.getElementById('orderTable');
