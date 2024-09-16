@@ -71,7 +71,7 @@
             </div>
 
             <div class="inline-flex justify-start gap-x-3">
-                <button type="submit" class="btn btn-primary p-2 bg-kBlack text-kWhite">Confirm Order</button>
+                <button type="submit" class="btn btn-primary p-2 bg-kBlack text-kWhite">Place Order</button>
                 <button type="button" id="saveToCartButton" class="btn btn-secondary p-2 border border-kBlack text-kBlack">Save to Cart as Draft</button>
             </div>
         </div>
