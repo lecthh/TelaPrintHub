@@ -64,9 +64,11 @@ class UserController extends Controller
         $categoryName = strtolower($selectedCategory->name);
         $priceColumn = $categoryName . '_price';
 
-        // Handle special case for "t-shirt"
+        // Handle special cases
         if ($categoryName === 't-shirt') {
             $priceColumn = 'tshirt_price';
+        } elseif ($categoryName === 'polo shirt') {
+            $priceColumn = 'poloshirt_price';
         }
 
         // Retrieve the price dynamically
