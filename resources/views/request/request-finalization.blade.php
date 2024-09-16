@@ -135,14 +135,14 @@
                 </div>
                 <div class="flex w-full">
                     <h1 class="text-lg font-bold flex flex-grow w-1/2">Price:</h1>
-                    <h1 class="text-lg normal-case flex flex-grow text-start w-1/2">₱{{ Session::get('price') ?? 'N/A' }}</h1>
+                    <h1 name = "price" id = "price" class="text-lg normal-case flex flex-grow text-start w-1/2">₱{{ Session::get('price') ?? 'N/A' }}</h1>
                 </div>                
                 <div class="flex w-full">
                     <h1 class="text-lg font-bold flex flex-grow w-1/2">description:</h1>
                     <textarea name="description" id="description" class="w-1/2">{{ session('description') }}</textarea>
                 </div>
                 <div class="flex w-full">
-                    <h1 class="text-lg font-bold flex flex-grow w-1/2">order type:</h1>
+                    <h1 class="text-lg font-bold flex flex-grow w-1/2">Order Type:</h1>
                     <div class="flex flex-grow text-end w-1/2">
                         <label class="mr-2">
                             <input type="radio" name="order_type" value="single" checked> Single Order
@@ -197,6 +197,11 @@
         var form = document.getElementById('finalizationForm');
         var formData = new FormData(form);
 
+        // Check if 'order_type' is logged correctly
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]); // Should show 'order_type' in the logs
+        }
+        
         fetch('{{ route('save-to-cart') }}', {
             method: 'POST',
             headers: {

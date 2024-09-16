@@ -194,22 +194,12 @@ class UserController extends Controller
     
     public function saveToCart(Request $request)
     {
-        // Log the session data
-        Log::info('Session Data:', [
-            'uploaded_images' => session('uploaded_images'),
-            'selected_company' => session('selected_company'),
-            'selected_category' => session('selected_category'),
-            'description' => session('description'),
-        ]);
-    
-        // Log the request data
-        Log::info('Request Data:', $request->all());
-    
         // Ensure that the session data is in the correct format
         $uploadedImages = session('uploaded_images');
         $selectedCompany = session('selected_company');
         $selectedCategory = session('selected_category');
         $description = session('description');
+        $price = session('price');
     
         // Extract relevant fields from the stdClass objects
         $selectedCompanyName = $selectedCompany ? $selectedCompany->name : null;
@@ -221,11 +211,13 @@ class UserController extends Controller
         $email = $request->input('email');
         $phoneNumber = $request->input('phone_number');
         $countryCode = $request->input('country_code');
+        $orderType = $request->input('order_type');
+        $estimatedQuantity = $request->input('estimated_quantity');
     
         // Retrieve the uploaded image from the session if available
         $uploadedImage = $uploadedImages ? $uploadedImages[0] : null; // Assuming the first image is the one to be saved
     
-        // Create a new Cart instance and save the data
+        // Create a new Cart instance
         $cart = new Cart();
         $cart->uploaded_image = $uploadedImage;
         $cart->selected_company = $selectedCompanyName;
@@ -236,13 +228,42 @@ class UserController extends Controller
         $cart->phone_number = $phoneNumber;
         $cart->country_code = $countryCode;
         $cart->description = $description;
+        $cart->order_type = $orderType;
+        $cart->price = $price;
+    
+        if ($orderType === 'bulk') {
+            $cart->estimated_quantity = $estimatedQuantity;
+        }
+        else{
+            $cart->estimated_quantity = 1;
+        }
+    
+        Log::info('Order type: ' . $orderType);
+
+        // Log the Cart data before saving
+        Log::info('Cart data being inserted:', [
+            'uploaded_image' => $cart->uploaded_image,
+            'selected_company' => $cart->selected_company,
+            'selected_category' => $cart->selected_category,
+            'first_name' => $cart->first_name,
+            'last_name' => $cart->last_name,
+            'email' => $cart->email,
+            'phone_number' => $cart->phone_number,
+            'country_code' => $cart->country_code,
+            'description' => $cart->description,
+            'order_type' => $cart->order_type,
+            'price' => $cart->price,
+            'estimated_quantity' => $orderType === 'bulk' ? $cart->estimated_quantity : null,
+        ]);
+    
+        // Save the Cart
         $cart->save();
     
         // Flash the session message
         Session::flash('cart-saved', 'Draft saved to cart.');
     
         return response()->json(['success' => true]);
-
+    
         return redirect()->route('home');
     }
 
