@@ -60,8 +60,20 @@ class UserController extends Controller
             ->where('designer_ID', $request->input('selected_company'))
             ->first();
 
+        // Construct the price column name dynamically
+        $priceColumn = strtolower($selectedCategory->name) . '_price';
+
+        // Retrieve the price dynamically
+        $price = $selectedCompany->$priceColumn;     
+
+                // Log the selected category, selected company, and price
+                Log::info('Selected Category:', ['category' => $selectedCategory]);
+                Log::info('Selected Company:', ['company' => $selectedCompany]);
+                Log::info('Price:', ['price' => $price]);
+
         Session::put('selected_category', $selectedCategory);
         Session::put('selected_company', $selectedCompany);
+        Session::put('prices', $prices);
 
         return redirect()->route('request-apparel-customization');
     }

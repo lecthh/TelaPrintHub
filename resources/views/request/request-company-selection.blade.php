@@ -35,7 +35,7 @@
                 @if($selectedCategory)
                 <div class="flex flex-col px-6 py-3 gap-y-6">
                     <div class="flex flex-col gap-y-3">
-                        <h1 class="text-lg font-bold">Choose a Printing Company</h1>
+                        <h1 class="text-lg font-bold">Choose a Designer</h1>
                         @if($designerCompanies->isEmpty())
                         <p class="text-red-700 text-base">No companies are offering this apparel.</p>
                         @else
@@ -152,6 +152,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex flex-col gap-y-2">
+                    <h1 class="text-base font-semibold">Apparel Price</h1>
+                    <div id="apparelPriceContainer" class="flex gap-x-2">
+                        @if(Session::has('price'))
+                            <p class="text-base">
+                                {{ ucfirst(Session::get('selected_category')->name) }} Price: ${{ Session::get('prices') ?? 'N/A' }}
+                            </p>
+                        @else
+                            <p class="text-base">Price: N/A</p>
+                        @endif
+                    </div>
+                </div>                
                 <div class="flex flex-col gap-y-2">
                     <h1 class="text-base font-semibold">company gallery</h1>
                     <div id="companyGalleryContainer" class="flex gap-x-2">
