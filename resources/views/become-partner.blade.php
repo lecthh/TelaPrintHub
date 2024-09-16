@@ -141,8 +141,9 @@
                 </div>
 
                 <div class="inline-block">
-                    <button class="bg-kBlack text-kWhite p-3" type="submit">confirm</button>
+                    <button id="submitButton" class="bg-kBlack text-kWhite p-3" type="button">confirm</button>
                 </div>
+
             </form>
         </div>
     </div>
@@ -197,4 +198,29 @@
         }
     }
 </script>
+
+<script>
+    document.getElementById('submitButton').addEventListener('click', function() {
+        const checkedApparel = document.querySelectorAll('input[name="apparel_categories[]"]:checked');
+        let isValid = true;
+
+        checkedApparel.forEach(apparel => {
+            const priceInputDiv = document.getElementById(`${apparel.id}-price`);
+            const priceInput = priceInputDiv.querySelector('input[type="number"]');
+            
+            if (!priceInput.value) {
+                isValid = false;
+                priceInput.classList.add('border-red-500');
+                alert(`Please set a base price for ${apparel.nextElementSibling.innerText}.`);
+            } else {
+                priceInput.classList.remove('border-red-500');
+            }
+        });
+
+        if (isValid) {
+            document.querySelector('form').submit();
+        }
+    });
+</script>
+
 @endsection
