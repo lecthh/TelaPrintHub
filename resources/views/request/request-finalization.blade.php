@@ -134,6 +134,10 @@
                     <h1 class="text-lg normal-case flex flex-grow text-start w-1/2">{{ $selectedCategory->name }}</h1>
                 </div>
                 <div class="flex w-full">
+                    <h1 class="text-lg font-bold flex flex-grow w-1/2">Price:</h1>
+                    <h1 class="text-lg normal-case flex flex-grow text-start w-1/2">₱{{ Session::get('price') ?? 'N/A' }}</h1>
+                </div>                
+                <div class="flex w-full">
                     <h1 class="text-lg font-bold flex flex-grow w-1/2">description:</h1>
                     <textarea name="description" id="description" class="w-1/2">{{ session('description') }}</textarea>
                 </div>
