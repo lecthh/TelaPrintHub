@@ -237,6 +237,8 @@ class UserController extends Controller
         else{
             $cart->estimated_quantity = 1;
         }
+
+        $cart->total_price = $cart->price * $cart->estimated_quantity;
     
         Log::info('Order type: ' . $orderType);
 
@@ -254,6 +256,7 @@ class UserController extends Controller
             'order_type' => $cart->order_type,
             'price' => $cart->price,
             'estimated_quantity' => $orderType === 'bulk' ? $cart->estimated_quantity : null,
+            'total_price' => $cart->total_price,
         ]);
     
         // Save the Cart
