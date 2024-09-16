@@ -35,6 +35,11 @@
             </tr>
         </thead>
         <tbody>
+            @if($confirmedOrders->isEmpty())
+            <tr>
+                <td colspan="6" class="text-center p-2 text-red-500">No Confirmed Orders</td>
+            </tr>
+            @else
             @foreach($confirmedOrders as $orderPlacement)
             <tr class="hover:bg-gray-100 cursor-pointer" data-url="{{ route('order-confirmed-details', ['order_placement_ID' => $orderPlacement->order_placement_ID]) }}">
                 <td class="p-2 border border-kBlack text-center">
@@ -47,6 +52,7 @@
                 <td class="p-2 border border-kBlack lowercase">{{ $orderPlacement->userDetails->email }}</td>
             </tr>
             @endforeach
+            @endif
         </tbody>
     </table>
     <div class="flex justify-end">
