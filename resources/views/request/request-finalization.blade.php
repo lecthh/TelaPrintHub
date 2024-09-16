@@ -193,37 +193,6 @@
 @endif
 
 <script>
-    document.getElementById('saveToCartButton').addEventListener('click', function () {
-        var form = document.getElementById('finalizationForm');
-        var formData = new FormData(form);
-
-        // Check if 'order_type' is logged correctly
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]); // Should show 'order_type' in the logs
-        }
-        
-        fetch('{{ route('save-to-cart') }}', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    var modal = document.getElementById('order-draft');
-                    modal.classList.remove('hidden');
-                } else {
-                    alert('Failed to save to cart.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while saving to cart.');
-            });
-    });
-
     document.querySelectorAll('input[name="order_type"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
             var quantityDiv = document.getElementById('bulkQuantityDiv');
@@ -234,6 +203,61 @@
             }
         });
     });
+</script>
+
+<script>
+    document.getElementById('saveToCartButton').addEventListener('click', function () {
+        var form = document.getElementById('finalizationForm');
+        var formData = new FormData(form);
+
+        // Explicitly set the value of the selected 'order_type' radio button
+        var selectedOrderType = document.querySelector('input[name="order_type"]:checked').value;
+        formData.set('order_type', selectedOrderType);
+
+        // Check if the selected order type is 'bulk', and add 'estimated_quantity' if it is
+        if (selectedOrderType === 'bulk') {
+            var estimatedQuantity = document.querySelector('input[name="estimated_quantity"]').value;
+            
+            // Validate that estimatedQuantity is at least 10
+            if (estimatedQuantity < 10) {
+                alert('The estimated quantity must be at least 10.');
+                return; // Prevent form submission if the quantity is less than 10
+            }
+
+            formData.set('estimated_quantity', estimatedQuantity);
+        } else {
+            // Optionally remove 'estimated_quantity' if it was previously set
+            formData.delete('estimated_quantity');
+        }
+
+        // Debugging: Log the formData values
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]);
+        }
+
+        fetch('{{ route('save-to-cart') }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                var modal = document.getElementById('order-draft');
+                modal.classList.remove('hidden');
+            } else {
+                alert('Failed to save to cart.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while saving to cart.');
+        });
+    });
+
+
 </script>
 
 <script>
