@@ -14,6 +14,7 @@ class OrderStatusTypeSeeder extends Seeder
     {
         $statuses = [
             ['name' => 'Waiting for Order Placement Verification'],
+            ['name' => 'Order Placement Cancelled']
             // TODO: Add more order status types here
 
         ];

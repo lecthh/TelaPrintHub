@@ -9,7 +9,7 @@ class PreferredCommunicationType extends Model
 {
     protected $table = 'preferred_communication_type';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'preferred_communication_type_ID';
 
     public $incrementing = true;
 

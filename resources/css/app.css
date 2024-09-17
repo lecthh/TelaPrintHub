@@ -4,3 +4,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+    
+    /* This will animate the dropdown menu */
+.animate-dropdown {
+    transition: height 0.3s ease;
+}
+
+/* Initial hidden state for submenus */
+.hidden {
+    display: none;
+}
+
+/* Add smooth transition to SVG rotation */
+.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_confirmation', function (Blueprint $table) {
             $table->string('order_confirmation_ID')->primary();
-            $table->dateTime('confirmation_date');
+            $table->timestamps();
         });
     }
 

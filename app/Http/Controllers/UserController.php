@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApparelCategory;
+use App\Models\DesignerCompany;
 use App\Services\RequestService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,20 +24,21 @@ class UserController extends Controller
         $designerCompanies = collect();
 
         if ($selectedCategory) {
-            $designerCompanies = DB::table('designer_company')
-                ->join('designer_company_apparel_category', 'designer_company.designer_ID', '=', 'designer_company_apparel_category.designer_ID')
-                ->join('apparel_category', 'designer_company_apparel_category.apparel_category_ID', '=', 'apparel_category.apparel_category_ID')
-                ->where('apparel_category.name', $selectedCategory)
-                ->select('designer_company.*')
-                ->distinct()
-                ->get();
+            $apparelCategory = ApparelCategory::where('name', $selectedCategory)->first();
 
-            $apparelCategory = DB::table('apparel_category')->where('name', $selectedCategory)->first();
+            if ($apparelCategory) {
+                $designerCompanies = DesignerCompany::with('gallery')
+                    ->whereHas('apparelCategories', function ($query) use ($apparelCategory) {
+                        $query->where('designer_company_apparel_category.apparel_category_ID', $apparelCategory->apparel_category_ID);
+                    })->get();
+            }
         }
+        $categories = ApparelCategory::pluck('name', 'apparel_category_ID');
 
-        $categories = DB::table('apparel_category')->pluck('name', 'apparel_category_ID');
         return view('request.request-company-selection', compact('designerCompanies', 'categories', 'selectedCategory'));
     }
+
+
 
     public function requestCompanySelectionPost(Request $request)
     {
@@ -70,21 +73,31 @@ class UserController extends Controller
 
     public function requestApparelCustomizationPost(Request $request)
     {
-
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'images' => 'required',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg',
+            'description' => 'nullable|string',
         ]);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('temp'), $imageName);
-            $imagePath = 'temp/' . $imageName;
-            $request->session()->put('uploaded_image', $imagePath);
+        $uploadedImages = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '-' . $image->getClientOriginalName();
+                $image->move(public_path('temp'), $imageName);
+
+                $imagePath = 'temp/' . $imageName;
+                $uploadedImages[] = $imagePath;
+            }
+
+            $request->session()->put('uploaded_images', $uploadedImages);
         }
+
+        $description = $request->input('description');
+        $request->session()->put('description', $description);
 
         return redirect()->route('request-finalization');
     }
+
 
 
     public function requestFinalization()
@@ -94,22 +107,22 @@ class UserController extends Controller
         $countryCodes = DB::table('country_codes')->get();
         $preferredCommunicationsType = DB::table('preferred_communication_type')->get();
 
-        $uploadedImagePath = Session::get('uploaded_image');
+        $uploadedImages = Session::get('uploaded_images', []);
 
-        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes', 'uploadedImagePath', 'preferredCommunicationsType'));
+        return view('request.request-finalization', compact('selectedCategory', 'selectedCompany', 'countryCodes', 'uploadedImages', 'preferredCommunicationsType'));
     }
 
     public function requestFinalizationPost(Request $request)
     {
         $selectedCategory = Session::get('selected_category');
         $selectedCompany = Session::get('selected_company');
-
+        $description = Session::get('description');
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
-            'uploadedImagePath' => 'required',
+            'uploadedImages' => 'required',
             'contact-method' => 'required',
         ], [
             'first_name.required' => 'You need to provide your first name.',
@@ -117,38 +130,42 @@ class UserController extends Controller
             'email.required' => 'You need to provide your email address.',
             'email.email' => 'You need to provide a valid email address.',
             'phone_number.required' => 'You need to provide your phone number.',
-            'contact-method.required' => 'You need to select atleast one preffered mode of Communication.',
+            'uploadedImages.required' => 'You need to upload at least one image.',
+            'contact-method.required' => 'You need to select at least one preferred mode of Communication.',
         ]);
+        $uploadedImages = json_decode($request->input('uploadedImages'), true);
+        $newImagePaths = [];
 
-        $tempImagePath = $request->session()->get('uploaded_image');
+        if ($uploadedImages) {
+            foreach ($uploadedImages as $tempImagePath) {
+                if (file_exists(public_path($tempImagePath))) {
+                    $currentDate = date('Y-m-d');
+                    $firstName = $request->input('first_name');
+                    $lastName = $request->input('last_name');
+                    $imageExtension = pathinfo($tempImagePath, PATHINFO_EXTENSION);
 
-        if ($tempImagePath && file_exists($tempImagePath)) {
+                    $sanitizedFirstName = preg_replace('/[^a-zA-Z0-9]/', '-', $firstName);
+                    $sanitizedLastName = preg_replace('/[^a-zA-Z0-9]/', '-', $lastName);
 
-            $currentDate = date('Y-m-d');
-            $email = $request->input('email');
-            $phoneNumber = $request->input('phone_number');
-            $imageExtension = pathinfo($tempImagePath, PATHINFO_EXTENSION);
+                    $newImageName = $currentDate . '-' . $sanitizedFirstName . '-' . $sanitizedLastName . '-' . uniqid() . '.' . $imageExtension;
+                    $newImagePath = public_path('orderdesigns') . '/' . $newImageName;
 
-            $sanitizedEmail = preg_replace('/[^a-zA-Z0-9]/', '-', $email);
-            $sanitizedPhoneNumber = preg_replace('/[^a-zA-Z0-9]/', '-', $phoneNumber);
+                    if (!file_exists(public_path('orderdesigns'))) {
+                        mkdir(public_path('orderdesigns'), 0777, true);
+                    }
 
-            $newImageName = $currentDate . '-' . $sanitizedEmail . '-' . $sanitizedPhoneNumber . '.' . $imageExtension;
-            $newImagePath = public_path('orderdesigns') . '/' . $newImageName;
+                    rename(public_path($tempImagePath), $newImagePath);
 
-            if (!file_exists(public_path('orderdesigns'))) {
-                mkdir(public_path('orderdesigns'), 0777, true);
+                    $newImagePaths[] = 'orderdesigns/' . $newImageName;
+
+                    if (file_exists(public_path($tempImagePath))) {
+                        unlink(public_path($tempImagePath));
+                    }
+                }
             }
-            rename($tempImagePath, $newImagePath);
-
-            if (file_exists($tempImagePath)) {
-                unlink($tempImagePath);
-            }
-            $imagePath = 'orderdesigns/' . $newImageName;
-        } else {
-            $imagePath = null;
         }
 
-        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $imagePath);
+        $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $newImagePaths, $description);
 
         return redirect()->route('home');
     }

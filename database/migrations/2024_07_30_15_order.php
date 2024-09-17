@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('customization_details_ID')->nullable();
             $table->string('print_type_ID')->nullable();
             $table->dateTime('estimated_delivery_date')->nullable();
-            $table->string('final_order_design')->nullable();
             $table->integer('price')->nullable();
+            $table->string('description')->nullable();
 
             $table->timestamps();
 
@@ -33,7 +33,6 @@ return new class extends Migration
             $table->foreign('order_confirmation_ID')->references('order_confirmation_ID')->on('order_confirmation');
             $table->foreign('order_status_ID')->references('order_status_ID')->on('order_status_type');
             $table->foreign('apparel_category_ID')->references('apparel_category_ID')->on('apparel_category');
-            $table->foreign('customization_details_ID')->references('customization_details_ID')->on('customization_details');
             $table->foreign('print_type_ID')->references('print_type_ID')->on('print_type');
         });
     }

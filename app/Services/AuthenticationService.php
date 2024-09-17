@@ -24,7 +24,7 @@ class AuthenTicationService
     public function registerDesignerCompany(array $data)
     {
 
-        $fullPhoneNumber = $data['country_code'] . $data['phone_number'];
+        $fullPhoneNumber = $data['country_code'] . ' ' . $data['phone_number'];
 
         $admin = Admin::create([
             'admin_ID' => (string) Uuid::generate(4),
@@ -56,6 +56,20 @@ class AuthenTicationService
         }
 
         $this->mailService->sendVerificationEmail($admin);
+    }
+
+    public function registerPrinterCompany(array $data)
+    {
+        $fullPhoneNumber = $data['country_code'] . ' ' . $data['phone_number'];
+
+        Admin::create([
+            'admin_ID' => (string) Uuid::generate(4),
+            'admin_type_ID' => 1,
+            'name' => $data['company_name'],
+            'email' => $data['email'],
+            'password' => null,
+            'contact_information' => $fullPhoneNumber,
+        ]);
     }
 
     protected function sendVerificationEmail(Admin $admin)
