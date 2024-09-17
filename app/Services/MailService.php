@@ -22,6 +22,8 @@ class MailService
         );
         $name = $admin->name;
 
+        $admin->update(['reset_token' => $token]);
+        $admin->save();
         Mail::send('mail.verify', ['url' => $url, 'name' => $name], function ($message) use ($admin) {
             $message->to($admin->email);
             $message->subject('Set Your Password');

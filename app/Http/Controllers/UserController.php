@@ -72,7 +72,7 @@ class UserController extends Controller
         }
 
         // Retrieve the price dynamically
-        $price = $selectedCompany->$priceColumn;     
+        $price = $selectedCompany->$priceColumn;
 
         // Log the selected category, selected company, and price
         Log::info('Selected Category:', ['category' => $selectedCategory]);
@@ -157,7 +157,7 @@ class UserController extends Controller
         ]);
         $uploadedImages = json_decode($request->input('uploadedImages'), true);
         $newImagePaths = [];
-    
+
         if ($uploadedImages) {
             foreach ($uploadedImages as $tempImagePath) {
                 if (file_exists(public_path($tempImagePath))) {
@@ -165,33 +165,33 @@ class UserController extends Controller
                     $firstName = $request->input('first_name');
                     $lastName = $request->input('last_name');
                     $imageExtension = pathinfo($tempImagePath, PATHINFO_EXTENSION);
-    
+
                     $sanitizedFirstName = preg_replace('/[^a-zA-Z0-9]/', '-', $firstName);
                     $sanitizedLastName = preg_replace('/[^a-zA-Z0-9]/', '-', $lastName);
-    
+
                     $newImageName = $currentDate . '-' . $sanitizedFirstName . '-' . $sanitizedLastName . '-' . uniqid() . '.' . $imageExtension;
                     $newImagePath = public_path('orderdesigns') . '/' . $newImageName;
-    
+
                     if (!file_exists(public_path('orderdesigns'))) {
                         mkdir(public_path('orderdesigns'), 0777, true);
                     }
-    
+
                     rename(public_path($tempImagePath), $newImagePath);
-    
+
                     $newImagePaths[] = 'orderdesigns/' . $newImageName;
-    
+
                     if (file_exists(public_path($tempImagePath))) {
                         unlink(public_path($tempImagePath));
                     }
                 }
             }
         }
-    
+
         $this->requestService->createOrder($selectedCategory, $selectedCompany, $request->all(), $newImagePaths, $description);
-    
+
         return redirect()->route('home');
     }
-    
+
     public function saveToCart(Request $request)
     {
         // Ensure that the session data is in the correct format
@@ -200,11 +200,11 @@ class UserController extends Controller
         $selectedCategory = session('selected_category');
         $description = session('description');
         $price = session('price');
-    
+
         // Extract relevant fields from the stdClass objects
         $selectedCompanyName = $selectedCompany ? $selectedCompany->name : null;
         $selectedCategoryName = $selectedCategory ? $selectedCategory->name : null;
-    
+
         // Ensure that the request data is in the correct format
         $firstName = $request->input('first_name');
         $lastName = $request->input('last_name');
@@ -213,10 +213,10 @@ class UserController extends Controller
         $countryCode = $request->input('country_code');
         $orderType = $request->input('order_type');
         $estimatedQuantity = $request->input('estimated_quantity');
-    
+
         // Retrieve the uploaded image from the session if available
         $uploadedImage = $uploadedImages ? $uploadedImages[0] : null; // Assuming the first image is the one to be saved
-    
+
         // Create a new Cart instance
         $cart = new Cart();
         $cart->uploaded_image = $uploadedImage;
@@ -230,16 +230,15 @@ class UserController extends Controller
         $cart->description = $description;
         $cart->order_type = $orderType;
         $cart->price = $price;
-    
+
         if ($orderType === 'bulk') {
             $cart->estimated_quantity = $estimatedQuantity;
-        }
-        else{
+        } else {
             $cart->estimated_quantity = 1;
         }
 
         $cart->total_price = $cart->price * $cart->estimated_quantity;
-    
+
         Log::info('Order type: ' . $orderType);
 
         // Log the Cart data before saving
@@ -258,15 +257,15 @@ class UserController extends Controller
             'estimated_quantity' => $orderType === 'bulk' ? $cart->estimated_quantity : null,
             'total_price' => $cart->total_price,
         ]);
-    
+
         // Save the Cart
         $cart->save();
-    
+
         // Flash the session message
         Session::flash('cart-saved', 'Draft saved to cart.');
-    
+
         return response()->json(['success' => true]);
-    
+
         return redirect()->route('home');
     }
 

@@ -104,9 +104,6 @@ Route::get('/cart', [UserController::class, 'viewCart'])->name('cart.index');
 Route::get('/become-a-partner', [AuthController::class, "register"])->name('become-a-partner');
 Route::post('/become-a-partner', [AuthController::class, "registerPost"])->name('become-a-partner.post');
 
-Route::get('setpassword/{token}', [PasswordController::class, "showSetPasswordForm"])->name('setpassword');
-Route::post('setpassword', [PasswordController::class, "setPassword"])->name('setpassword.post');
-
 Route::get('/login', [AuthController::class, "login"])->name('login');
 Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');
 
@@ -139,3 +136,6 @@ Route::get('/confirmation-link/{order_placement_ID}/{token}', [OrderConfirmedCon
 Route::post('/confirmation-link', [OrderConfirmedController::class, 'showConfirmationLinkPost'])->name('confirmation-link-post');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(PreventBackHistory::class);
+
+Route::get('setpassword/{token}', [PasswordController::class, "showSetPasswordForm"])->name('setpassword')->middleware(PreventBackHistory::class);
+Route::post('setpassword', [PasswordController::class, "setPassword"])->name('setpassword.post')->middleware(PreventBackHistory::class);

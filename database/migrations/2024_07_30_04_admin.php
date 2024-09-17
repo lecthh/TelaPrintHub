@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->boolean('is_verified')->default(false);
             $table->string('contact_information')->nullable();
+            $table->string('reset_token')->nullable();
             $table->timestamps();
 
             $table->foreign('admin_type_ID')->references('admin_type_ID')->on('admin_type');

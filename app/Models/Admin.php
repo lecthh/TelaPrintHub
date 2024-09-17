@@ -23,6 +23,7 @@ class Admin extends Authenticatable
         'is_verified',
         'email',
         'contact_information',
+        'reset_token',
     ];
 
     public function adminType()

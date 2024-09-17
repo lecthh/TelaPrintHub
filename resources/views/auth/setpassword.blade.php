@@ -18,57 +18,49 @@
     <form method="POST" action="{{ route('setpassword.post') }}"
         class="flex flex-col px-6 py-8 border border-kBlack justify-center items-center text-center gap-y-3">
         @csrf
-        <h1 class="text-xl font-bold">create password</h1>
+        <h1 class="text-xl font-bold">Create Password</h1>
         <div class="flex flex-col gap-y-3 w-[612px]">
-            <div class="flex flex-col gap-y-3">
-                <h2 class="text-lg font-bold text-start">password</h2>
+            <div class="flex flex-col gap-y-3 relative">
+                <h2 class="text-lg font-bold text-start">Password</h2>
                 <input type="password" name="password" id="password" required>
-                @if($errors->has('password'))
-                    <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
-                @endif
-            </div>
-            <div class="flex flex-col gap-y-3">
-                <h2 class="text-lg font-bold text-start">confirm password</h2>
-                <input type="password" name="password_confirmation" id="password_confirmation" required>
-                @if($errors->has('password_confirmation'))
-                    <span class="text-red-500 text-sm">{{ $errors->first('password_confirmation') }}</span>
-                @endif
-            </div>
-            <input type="hidden" name="token" value="{{ $token }}">
-            <input type="hidden" name="email" value="{{ $email }}">
-        </div>
-        <div class="flex w-full">
-            <button type="submit" class="flex flex-grow justify-center items-center p-2 text-kWhite bg-kBlack">set
-                password</button>
-        </div>
-    </form>
-</div>
+                <span class="absolute right-3 top-12 cursor-pointer" onclick="togglePasswordVisibility('password', 'password-eye')">
+                    <svg id="password-eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                        <path id="closed-eye" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3l18 18M10.873 10.872A3 3 0 0115 15m-3-3a3 3 0 00-3 3m0-3a3 3 0 013-3M3.055 12C4.281 7.943 8.063 5 12 5c1.247 0 2.435.254 3.513.714m3.885 2.16c1.387 1.05 2.54 2.6 3.192 4.406M19.442 19.442A10.947 10.947 0 0112 19c-3.937 0-7.719-2.943-8.945-7" />
+                        <path id="open-eye" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />
+                    </svg>
 
-
-<!-- <div class="min-h-screen flex items-center justify-center bg-kWhite font-dm-sans px-4 py-7">
-    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create Password</h2>
-        <form method="POST" action="{{ route('setpassword.post') }}">
-            @csrf
-            <div class="mb-4">
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                <input type="password" id="password" name="password" required autofocus class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </span>
                 @if($errors->has('password'))
                 <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
                 @endif
             </div>
-            <div class="mb-6">
-                <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <div class="flex flex-col gap-y-3 relative">
+                <h2 class="text-lg font-bold text-start">Confirm Password</h2>
+                <input type="password" name="password_confirmation" id="password_confirmation" required>
+                <span class="absolute right-3 top-12 cursor-pointer" onclick="togglePasswordVisibility('password_confirmation', 'password-confirmation-eye')">
+                    <svg id="password-confirmation-eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                        <path id="closed-eye" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3l18 18M10.873 10.872A3 3 0 0115 15m-3-3a3 3 0 00-3 3m0-3a3 3 0 013-3M3.055 12C4.281 7.943 8.063 5 12 5c1.247 0 2.435.254 3.513.714m3.885 2.16c1.387 1.05 2.54 2.6 3.192 4.406M19.442 19.442A10.947 10.947 0 0112 19c-3.937 0-7.719-2.943-8.945-7" />
+                        <path id="open-eye" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />
+                    </svg>
+
+                </span>
                 @if($errors->has('password_confirmation'))
                 <span class="text-red-500 text-sm">{{ $errors->first('password_confirmation') }}</span>
                 @endif
             </div>
+
             <input type="hidden" name="token" value="{{ $token }}">
             <input type="hidden" name="email" value="{{ $email }}">
-            <div class="mb-4">
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg shadow-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Set Password</button>
-            </div>
-        </form>
-    </div>
-</div> -->
+        </div>
+
+        <div class="flex w-full">
+            <button type="submit" class="flex flex-grow justify-center items-center p-2 text-kWhite bg-kBlack">Set Password</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="{{asset('js/passwordEye.js') }}"></script>
